@@ -1,0 +1,2 @@
+class TrnTaskDetail < ApplicationRecord
+end
