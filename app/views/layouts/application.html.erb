@@ -97,7 +97,7 @@
       <div class="col-xs-12">
         <h1 id="title">
           <% if signed_in? %>
-          <%= link_to "PMwave (Ruby on Rails)", trntaskdetails_path%>
+          <%= link_to "PMwave (Ruby on Rails)", trn_task_details_path%>
           <% else %>
           PMwave (Ruby on Rails)
           <% end %>
@@ -108,7 +108,7 @@
           <li><%= link_to 'ユーザ一覧', users_path %></li>
           <li><%= link_to 'アカウント作成', signup_path %></li>
           <li><%= link_to 'プロフィール', current_user %></li>
-          <li><%= link_to 'タスク一覧', trntaskdetails_path %></li>
+          <li><%= link_to 'タスク一覧', trn_task_details_path %></li>
           <li><%= link_to 'ログアウト', signout_path, method: :delete %></li>
           <!--<li><%= link_to 'ログイン', signin_path %></li> -->
           <% else %>

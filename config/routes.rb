@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   #Tasksコントローラーの7つのアクションを作成する
   #resources :tasks do
-  resources :trntaskdetails do
+  resources :trn_task_details do
     member do
       #一覧画面 完了ボタン押下時のアクション
       get "kanryo"

@@ -12,6 +12,7 @@ class CreateTrnTaskDetails < ActiveRecord::Migration[5.2]
       t.datetime :syuryouyotei_ymd
       t.datetime :start_ymd
       t.datetime :end_ymd
+      t.boolean :end_flg, null: false
       t.string :task_detail, limit: 256
       t.string :topics, limit: 256
       t.string :pm_comment, limit: 256
