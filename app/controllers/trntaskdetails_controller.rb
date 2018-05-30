@@ -1,0 +1,2 @@
+class TrntaskdetailsController < ApplicationController
+end

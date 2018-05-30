@@ -1,4 +1,4 @@
-class TrnTaskDetailsController < ApplicationController
+class TrntaskdetailsController < ApplicationController
 
   #一覧画面 表示のアクション
   def index
