@@ -67,13 +67,24 @@ class TrnTaskDetailsController < ApplicationController
         #エラーがない場合
         #--------------
         if @task.end_ymd.present?
-          @task.kigen = Date.new(
+          @task.end_ymd = Date.new(
             @task.end_ymd[0..3].to_i,
             @task.end_ymd[4..5].to_i,
             @task.end_ymd[6..7].to_i)
         end
-        @task.kanryo = false
-     
+        @task.end_flg = false
+        #ここの記述は大丈夫そう @user = User.find(params[:id])
+        #とりあえずべた書き。本当はログインユーザの情報を取得したい
+        @task.inst_user_id = 0
+        @task.hojn_id = 0
+        @task.pj_id = 0
+
+        #とりあえずべた書き。現在時刻を取得する
+        target = DateTime.now
+        @task.inst_ymd = target
+        @task.del_flg = false
+
+
         #更新（エラーチェックを行わない）
         @task.save(validate:false)
      
@@ -81,7 +92,7 @@ class TrnTaskDetailsController < ApplicationController
         flash[:msg] = "登録しました。"
      
         #一覧画面へリダイレクト
-        redirect_to tasks_path
+        redirect_to trn_task_details_path
       else
         #--------------
         #エラー時
@@ -168,10 +179,22 @@ class TrnTaskDetailsController < ApplicationController
      
     #ストロングパラメータ（マスアサインメント脆弱性回避）
     def task_params
-      params.require(:task).permit(
+      params.require(:trn_task_detail).permit(
         :task_title,
         :task_detail,
-        :end_ymd
+        :end_ymd,
+        :tanto_user_id, 
+        :relation_step_id, 
+        :step_ownership_flg, 
+        :progress_rate, 
+        :kaishiyotei_ymd, 
+        :syuryouyotei_ymd, 
+        :start_ymd, 
+        :end_flg,
+        :inst_user_id,
+        :hojn_id,
+        :pj_id,
+        :inst_ymd
       )
     end
 end

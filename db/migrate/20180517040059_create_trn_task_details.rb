@@ -18,7 +18,7 @@ class CreateTrnTaskDetails < ActiveRecord::Migration[5.2]
       t.string :pm_comment, limit: 256
       t.integer :inst_user_id, limit: 4, null: false
       t.integer :hojn_id, limit: 4, null: false
-      t.integer :relation_pj, limit: 4, null: false
+      t.integer :pj_id, limit: 4, null: false
       t.datetime :inst_ymd, null: false
       t.datetime :updt_ymd, default: -> { 'CURRENT_TIMESTAMP' }
       t.datetime :del_ymd

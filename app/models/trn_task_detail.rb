@@ -17,31 +17,31 @@ class TrnTaskDetail < ApplicationRecord
     end
   }
  
-   validate :check_name
-  validate :check_shosai
-  validate :check_kigen_str
+   validate :check_task_title
+   validate :check_task_detail
+   validate :check_end_ymd
  
   private
  
   #nameのバリデーション
-  def check_name
-    if !name.present?
+  def check_task_title
+    if !task_title.present?
       errors.add("タスク","を入力してください")
-    elsif name.length > 20
+    elsif task_title.length > 20
       errors.add("タスク","は20文字以内で入力してください")
     end
   end
  
   #shosaiのバリデーション
-  def check_shosai
-    if shosai.present? && shosai.length > 100
+  def check_task_detail
+    if task_detail.present? && task_detail.length > 100
       errors.add("タスク詳細","は100文字以内で入力してください")
     end
   end
  
   #kigen_strのバリデーション
-  def check_kigen_str
-    if kigen_str.present? && !is_yyyymmdd?(kigen_str)
+  def check_end_ymd
+    if end_ymd.present? && !is_yyyymmdd?(end_ymd)
       errors.add("期限","のフォーマットが不正です")
     end
   end

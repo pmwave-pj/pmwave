@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2018_05_22_163159) do
     t.string "pm_comment", limit: 256
     t.integer "inst_user_id", null: false
     t.integer "hojn_id", null: false
-    t.integer "relation_pj", null: false
+    t.integer "pj_id", null: false
     t.datetime "inst_ymd", null: false
     t.datetime "updt_ymd", default: -> { "CURRENT_TIMESTAMP" }
     t.datetime "del_ymd"
