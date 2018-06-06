@@ -1,7 +1,7 @@
 class TrnTaskDetail < ApplicationRecord
  
   #期限のアクセサー（画面入力用）
-  attr_accessor :kigen_str
+  attr_accessor :end_ymd
   
   #kanryo（文字列）の値がある場合、絞り込みを行う
   scope :by_kanryo, ->(kanryo){

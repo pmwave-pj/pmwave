@@ -4,21 +4,21 @@
     <tbody>
     <tr>
       <th style="width:20%;">タスク</th>
-      <td style="width:80%;"><%= @task.name %></td>
+      <td style="width:80%;"><%= @task.task_title %></td>
     </tr>
     <tr>
       <th>詳細</th>
-      <td><%= @task.shosai %></td>
+      <td><%= @task.task_detail %></td>
     </tr>
     <tr>
       <th>期限</th>
-      <td><%= kigen_format(@task.kigen) %></td>
+      <td><%= kigen_format(@task.end_ymd) %></td>
     </tr>
     <tbody>
   </table>
   <div class="row well" style="margin:20px 0 0 0">
     <div class="col-sm-12">
-      <%= link_to "戻る", tasks_path, class:"btn btn-default", style:"width:150px;display:block;margin:auto" %>
+      <%= link_to "戻る", trn_task_details_path, class:"btn btn-default", style:"width:150px;display:block;margin:auto" %>
     </div>
   </div>
 </div>

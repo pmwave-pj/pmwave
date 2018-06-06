@@ -82,7 +82,7 @@
       $("#task_kigen_str").datepicker();
       $("#task_kigen_str").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#task_kigen_str").val("<%= @task.kigen_str %>");
+      $("#task_kigen_str").val("<%= @task.end_ymd %>");
       <% end %>
     }
     if ($(".alert").length)

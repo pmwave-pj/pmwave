@@ -4,10 +4,10 @@ class TrnTaskDetailsController < ApplicationController
     def index
      
       #データの取得
-      @tasks = Task
-        .by_kanryo(params[:kanryo])
+      @tasks = TrnTaskDetail
+        .by_kanryo(params[:end_flg])
         .paginate(page: params[:page], per_page: 5)
-        .order('kanryo asc, kigen asc')
+        .order('end_flg asc, end_ymd asc')
      
       #No列の開始No
       @grid_no = 1
@@ -24,7 +24,7 @@ class TrnTaskDetailsController < ApplicationController
     def show
     
       #idでTasksテーブルを取得
-      @task = Task.find(params[:id])
+      @task = TrnTaskDetail.find(params[:id])
     
       #viewを表示（省略可）
       render "show"
@@ -50,7 +50,7 @@ class TrnTaskDetailsController < ApplicationController
      
       #期限に値がある場合、日付型から文字列へ変換
       if @task.kigen.present?
-        @task.kigen_str = @task.kigen.strftime("%Y%m%d")
+        @task.end_ymd = @task.kigen.strftime("%Y%m%d")
       end
      
     end
@@ -59,18 +59,18 @@ class TrnTaskDetailsController < ApplicationController
     def create
      
       #POSTされた値を元にTasksテーブル登録用レコードを作成
-      @task = Task.new(task_params)
+      @task = TrnTaskDetail.new(task_params)
      
       #エラーチェック
       if @task.valid?
         #--------------
         #エラーがない場合
         #--------------
-        if @task.kigen_str.present?
+        if @task.end_ymd.present?
           @task.kigen = Date.new(
-            @task.kigen_str[0..3].to_i,
-            @task.kigen_str[4..5].to_i,
-            @task.kigen_str[6..7].to_i)
+            @task.end_ymd[0..3].to_i,
+            @task.end_ymd[4..5].to_i,
+            @task.end_ymd[6..7].to_i)
         end
         @task.kanryo = false
      
@@ -106,11 +106,11 @@ class TrnTaskDetailsController < ApplicationController
         #--------------
         #エラーがない場合
         #--------------
-        if @task.kigen_str.present?
+        if @task.end_ymd.present?
           @task.kigen = Date.new(
-            @task.kigen_str[0..3].to_i,
-            @task.kigen_str[4..5].to_i,
-            @task.kigen_str[6..7].to_i)
+            @task.end_ymd[0..3].to_i,
+            @task.end_ymd[4..5].to_i,
+            @task.end_ymd[6..7].to_i)
         end
      
         #更新（エラーチェックを行わない）
@@ -169,9 +169,9 @@ class TrnTaskDetailsController < ApplicationController
     #ストロングパラメータ（マスアサインメント脆弱性回避）
     def task_params
       params.require(:task).permit(
-        :name,
-        :shosai,
-        :kigen_str
+        :task_title,
+        :task_detail,
+        :end_ymd
       )
     end
 end
