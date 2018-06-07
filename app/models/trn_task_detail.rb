@@ -4,26 +4,30 @@ class TrnTaskDetail < ApplicationRecord
   attr_accessor :end_ymd
   
   #kanryo（文字列）の値がある場合、絞り込みを行う
-  scope :by_kanryo, ->(kanryo){
-    if kanryo.present?
+  scope :by_kanryo, ->(end_flg){
+    if end_flg.present?
       #bool型の変数
-      kanryo_bool = true
-      if kanryo == "true"
-        kanryo_bool = true
+      end_flg_bool = true
+      if end_flg == "true"
+        end_flg_bool = true
       else
-        kanryo_bool = false
+        end_flg_bool = false
       end
-      where('kanryo = ?', kanryo_bool)
+      where('end_flg = ?', end_flg_bool)
     end
   }
  
    validate :check_task_title
    validate :check_task_detail
+   validate :check_kaishiyotei_ymd
+   validate :check_syuryouyotei_ymd
+   validate :check_start_ymd
    validate :check_end_ymd
+
  
   private
  
-  #nameのバリデーション
+  #task_titleのバリデーション
   def check_task_title
     if !task_title.present?
       errors.add("タスク","を入力してください")
@@ -32,19 +36,41 @@ class TrnTaskDetail < ApplicationRecord
     end
   end
  
-  #shosaiのバリデーション
+  #task_detailのバリデーション
   def check_task_detail
-    if task_detail.present? && task_detail.length > 100
-      errors.add("タスク詳細","は100文字以内で入力してください")
+    if task_detail.present? && task_detail.length > 1000
+      errors.add("タスク詳細","は1000文字以内で入力してください")
     end
   end
  
-  #kigen_strのバリデーション
-  def check_end_ymd
-    if end_ymd.present? && !is_yyyymmdd?(end_ymd)
-      errors.add("期限","のフォーマットが不正です")
+  #kaishiyotei_ymdのバリデーション
+  def check_kaishiyotei_ymd
+    if end_ymd.present? && !is_yyyymmdd?(kaishiyotei_ymd)
+      errors.add("開始予定日","のフォーマットが不正です")
     end
   end
+
+  #syuryouyotei_ymdのバリデーション
+  def check_syuryouyotei_ymd
+    if end_ymd.present? && !is_yyyymmdd?(syuryouyotei_ymd)
+      errors.add("終了予定日","のフォーマットが不正です")
+    end
+  end
+
+  #start_ymdのバリデーション
+  def check_start_ymd
+    if end_ymd.present? && !is_yyyymmdd?(start_ymd)
+      errors.add("作業開始日","のフォーマットが不正です")
+    end
+  end
+
+  #end_ymdのバリデーション
+  def check_end_ymd
+    if end_ymd.present? && !is_yyyymmdd?(end_ymd)
+      errors.add("作業完了日","のフォーマットが不正です")
+    end
+  end
+
  
   #文字列がyyyyMMdd型であるか
   def is_yyyymmdd?(yyyymmdd)

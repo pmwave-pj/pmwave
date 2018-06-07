@@ -77,12 +77,36 @@
 <body>
 <script>
   $(function() {
-    if ($("#task_kigen_str").length)
+    if ($("#trn_task_detail_kaishiyotei_ymd").length)
     {
-      $("#task_kigen_str").datepicker();
-      $("#task_kigen_str").datepicker("option", "dateFormat", 'yymmdd');
+      $("#trn_task_detail_kaishiyotei_ymd").datepicker();
+      $("#trn_task_detail_kaishiyotei_ymd").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#task_kigen_str").val("<%= @task.end_ymd %>");
+      $("#trn_task_detail_kaishiyotei_ymd").val("<%= @task.end_ymd %>");
+      <% end %>
+    }
+    if ($("#trn_task_detail_syuryouyotei_ymd").length)
+    {
+      $("#trn_task_detail_syuryouyotei_ymd").datepicker();
+      $("#trn_task_detail_syuryouyotei_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @task.present? %>
+      $("#trn_task_detail_syuryouyotei_ymd").val("<%= @task.end_ymd %>");
+      <% end %>
+    }
+    if ($("#trn_task_detail_start_ymd").length)
+    {
+      $("#trn_task_detail_start_ymd").datepicker();
+      $("#trn_task_detail_start_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @task.present? %>
+      $("#trn_task_detail_start_ymd").val("<%= @task.end_ymd %>");
+      <% end %>
+    }
+    if ($("#trn_task_detail_end_ymd").length)
+    {
+      $("#trn_task_detail_end_ymd").datepicker();
+      $("#trn_task_detail_end_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @task.present? %>
+      $("#trn_task_detail_end_ymd").val("<%= @task.end_ymd %>");
       <% end %>
     }
     if ($(".alert").length)

@@ -6,7 +6,8 @@ class TrnTaskDetailsController < ApplicationController
       #データの取得
       @tasks = TrnTaskDetail
         .by_kanryo(params[:end_flg])
-        .paginate(page: params[:page], per_page: 5)
+        .where(del_flg: "false")
+        .paginate(page: params[:page], per_page: 10)
         .order('end_flg asc, end_ymd asc')
      
       #No列の開始No
@@ -46,11 +47,11 @@ class TrnTaskDetailsController < ApplicationController
     def edit
      
       #idでタスクテーブルを取得
-      @task = Task.find(params[:id])
+      @task = TrnTaskDetail.find(params[:id])
      
       #期限に値がある場合、日付型から文字列へ変換
-      if @task.kigen.present?
-        @task.end_ymd = @task.kigen.strftime("%Y%m%d")
+      if @task.end_ymd.present?
+        @task.end_ymd = @task.end_ymd.strftime("%Y%m%d")
       end
      
     end
@@ -67,14 +68,23 @@ class TrnTaskDetailsController < ApplicationController
         #エラーがない場合
         #--------------
         if @task.end_ymd.present?
-          @task.end_ymd = Date.new(
+           @task.end_ymd = Date.new(
             @task.end_ymd[0..3].to_i,
             @task.end_ymd[4..5].to_i,
             @task.end_ymd[6..7].to_i)
         end
-        @task.end_flg = false
+        #完了フラグをセットする。未入力の場合でもfalseでセットする
+        if @task.end_flg == true
+          else
+           @task.end_flg = false
+        end
+        #親工程フラグをセットする。未入力の場合でもfalseでセットする
+        if @task.step_ownership_flg == true
+          else
+           @task.step_ownership_flg = false
+        end
         #ここの記述は大丈夫そう @user = User.find(params[:id])
-        #とりあえずべた書き。本当はログインユーザの情報を取得したい
+        #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
         @task.inst_user_id = 0
         @task.hojn_id = 0
         @task.pj_id = 0
@@ -107,7 +117,7 @@ class TrnTaskDetailsController < ApplicationController
     def update
      
       #POSTされた値(id)からレコードを取得
-      @task = Task.find(params[:id])
+      @task = TrnTaskDetail.find(params[:id])
      
       #レコードをPOSTされた値(入力値)で上書き
       @task.assign_attributes(task_params)
@@ -118,11 +128,33 @@ class TrnTaskDetailsController < ApplicationController
         #エラーがない場合
         #--------------
         if @task.end_ymd.present?
-          @task.kigen = Date.new(
+           @task.end_ymd = Date.new(
             @task.end_ymd[0..3].to_i,
             @task.end_ymd[4..5].to_i,
             @task.end_ymd[6..7].to_i)
         end
+        #完了フラグをセットする。未入力の場合でもfalseでセットする
+        if @task.end_flg == true
+          else
+           @task.end_flg = false
+        end
+        #親工程フラグをセットする。未入力の場合でもfalseでセットする
+        if @task.step_ownership_flg == true
+          else
+           @task.step_ownership_flg = false
+        end
+        #ここの記述は大丈夫そう @user = User.find(params[:id])
+        #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
+        @task.updt_history_tanto = 0
+        #@task.hojn_id = 0
+        #@task.pj_id = 0
+
+        #とりあえずべた書き。現在時刻を取得する
+        target = DateTime.now
+        @task.updt_ymd = target
+        @task.del_flg = false
+
+
      
         #更新（エラーチェックを行わない）
         @task.save(validate:false)
@@ -131,7 +163,7 @@ class TrnTaskDetailsController < ApplicationController
         flash[:msg] = "編集しました。"
      
         #一覧画面へリダイレクト
-        redirect_to tasks_path
+        redirect_to trn_task_details_path
       else
         #--------------
         #エラー時
@@ -144,10 +176,21 @@ class TrnTaskDetailsController < ApplicationController
   def destroy
  
     #idでTasksテーブルを取得
-    @task = Task.find(params[:id])
+    @task = TrnTaskDetail.find(params[:id])
  
     #削除処理（delete文発行）
-    @task.destroy
+    #@task.destroy
+    
+    #削除処理（論理削除）
+    @task.del_flg = true
+    target = DateTime.now
+    @task.updt_ymd = target
+    @task.del_ymd = target
+    @task.updt_history_tanto = 0
+    
+    #更新（エラーチェックを行わない）
+    @task.save(validate:false)
+
  
     #フラッシュ（一度きりのセッション）にメッセージを格納
     flash[:msg] = "削除しました。"
@@ -161,10 +204,10 @@ class TrnTaskDetailsController < ApplicationController
   def kanryo
  
     #idでTasksテーブルを取得
-    @task = Task.find(params[:id])
- 
+    @task = TrnTaskDetail.find(params[:id])
+
     #kanryoにtrueをセット
-    @task.kanryo = true
+    @task.end_flg = true
  
     #更新処理（update文発行）
     @task.save

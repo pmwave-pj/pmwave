@@ -13,7 +13,7 @@ class CreateTrnTaskDetails < ActiveRecord::Migration[5.2]
       t.datetime :start_ymd
       t.datetime :end_ymd
       t.boolean :end_flg, null: false
-      t.string :task_detail, limit: 256
+      t.text :task_detail
       t.string :topics, limit: 256
       t.string :pm_comment, limit: 256
       t.integer :inst_user_id, limit: 4, null: false
@@ -22,7 +22,7 @@ class CreateTrnTaskDetails < ActiveRecord::Migration[5.2]
       t.datetime :inst_ymd, null: false
       t.datetime :updt_ymd, default: -> { 'CURRENT_TIMESTAMP' }
       t.datetime :del_ymd
-      t.boolean :del_flg, null: false
+      t.boolean :del_flg, null: false, :default => false
       t.string :updt_pgm_id, limit: 256
       t.string :updt_history, limit: 256
       t.string :updt_history_tanto, limit: 256
