@@ -20,8 +20,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      sign_in @user
-      redirect_to @user
+      #sign_in @user ←作成後、作成されたユーザでログインしたくない。
+      #フラッシュ（一度きりのセッション）にメッセージを格納
+      flash[:msg] = "ユーザ作成が完了しました"
+      #作成後はアカウント作成画面へ遷移
+      redirect_to new_user_path
     else
       render 'new'
     end
