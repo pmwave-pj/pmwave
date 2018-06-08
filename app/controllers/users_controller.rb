@@ -3,21 +3,34 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
+    #ログインチェック
+    signed_check
+    
     @users = User.all
   end
 
   def show
+    #ログインチェック
+    signed_check
     @user = User.find(params[:id])
   end
 
   def new
+    #ログインチェック
+    signed_check
     @user = User.new
   end
 
   def edit
+    #ログインチェック
+    signed_check
   end
 
   def create
+    
+    #ログインチェック
+    signed_check
+    
     @user = User.new(user_params)
     if @user.save
       #sign_in @user ←作成後、作成されたユーザでログインしたくない。
@@ -31,11 +44,21 @@ class UsersController < ApplicationController
   end
 
   def update
+    #ログインチェック
+    signed_check
+      
     if @user.update_attributes(user_params)
       redirect_to @user
     else
       render 'edit'
     end
+  end
+
+  def signed_check
+   if signed_in?
+    else
+     redirect_to root_url
+   end
   end
 
   private

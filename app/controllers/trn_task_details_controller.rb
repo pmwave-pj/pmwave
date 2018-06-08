@@ -2,7 +2,8 @@ class TrnTaskDetailsController < ApplicationController
 
     #一覧画面 表示のアクション
     def index
-     
+      signed_check
+
       #データの取得
       @tasks = TrnTaskDetail
         .by_kanryo(params[:end_flg])
@@ -23,7 +24,8 @@ class TrnTaskDetailsController < ApplicationController
 
     #照会画面 表示のアクション
     def show
-    
+      #ログインチェック
+      signed_check
       #idでTasksテーブルを取得
       @task = TrnTaskDetail.find(params[:id])
     
@@ -34,18 +36,22 @@ class TrnTaskDetailsController < ApplicationController
 
     #登録画面 表示のアクション
     def new
-     
+      #ログインチェック
+      signed_check
+      
       #Tasksテーブルのスキーマでモデル（ActiveRecord）を作成
       @task = TrnTaskDetail.new
      
-      #viewを表示（省略可）
+      #viewを表示（省略可）#TODO：未ログイン時にURL直打ちでエラー発生中
       render "new"
      
     end
 
     #編集画面 表示のアクション
     def edit
-     
+      #ログインチェック
+      signed_check
+      
       #idでタスクテーブルを取得
       @task = TrnTaskDetail.find(params[:id])
      
@@ -59,6 +65,9 @@ class TrnTaskDetailsController < ApplicationController
     #登録画面 登録ボタン押下時のアクション
     def create
      
+      #ログインチェック
+      signed_check
+      
       #POSTされた値を元にTasksテーブル登録用レコードを作成
       @task = TrnTaskDetail.new(task_params)
      
@@ -116,6 +125,9 @@ class TrnTaskDetailsController < ApplicationController
     #編集画面 更新ボタン押下時のアクション
     def update
      
+      #ログインチェック
+      signed_check
+      
       #POSTされた値(id)からレコードを取得
       @task = TrnTaskDetail.find(params[:id])
      
@@ -174,6 +186,9 @@ class TrnTaskDetailsController < ApplicationController
 
   #一覧画面 削除ボタン押下時のアクション
   def destroy
+
+      #ログインチェック
+      signed_check
  
     #idでTasksテーブルを取得
     @task = TrnTaskDetail.find(params[:id])
@@ -203,6 +218,9 @@ class TrnTaskDetailsController < ApplicationController
   #一覧画面 完了ボタン押下時のアクション
   def kanryo
  
+      #ログインチェック
+      signed_check
+      
     #idでTasksテーブルを取得
     @task = TrnTaskDetail.find(params[:id])
 
@@ -216,6 +234,14 @@ class TrnTaskDetailsController < ApplicationController
     redirect_to request.referer
  
   end
+  
+    def signed_check
+     if signed_in?
+      else
+       redirect_to root_url
+     end
+    end
+
     #------------------------------------------------------------------------------
     private
     #------------------------------------------------------------------------------
