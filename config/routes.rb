@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   #アプリケーションのルートディレクトリのページを決定
   #root to: "tasks#index"
   root to: "sessions#new"
-  resources :users, only: [:index, :show, :new, :edit, :create, :update]
+  resources :mst_users, only: [:index, :show, :new, :edit, :create, :update]
   resources :sessions, only: [:new, :create, :destroy]
   #Tasksコントローラーの7つのアクションを作成する
   #resources :tasks do
@@ -12,10 +12,10 @@ Rails.application.routes.draw do
       get "kanryo"
     end
   end
-  match 'signup', to: 'users#new', via: 'get'
+  match 'signup', to: 'mst_users#new', via: 'get'
   match 'signin', to: 'sessions#new', via: 'get'
   match 'signout', to: 'sessions#destroy', via: 'delete'
 
-  #match 'taskdetail', to: 'trntaskdetails#index', via: 'get'
+  #match 'mst_user', to: 'users#edit', via: 'get'
 
 end

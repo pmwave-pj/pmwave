@@ -129,7 +129,7 @@
       </div>
         <ul class="headerlist">
           <% if signed_in? %>
-          <li><%= link_to 'ユーザ一覧', users_path %></li>
+          <li><%= link_to 'ユーザ一覧', mst_users_path %></li>
           <li><%= link_to 'アカウント作成', signup_path %></li>
           <li><%= link_to 'プロフィール', current_user %></li>
           <li><%= link_to 'タスク一覧', trn_task_details_path %></li>
@@ -158,8 +158,9 @@
             <ul>
               <li><%= flash[:msg] %></li>
             </ul>
-          </div>
+          </div> 
         <% end %>
+        
         <%= yield %>
       </div>
     </div>

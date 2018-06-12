@@ -1,0 +1,130 @@
+<h1>アカウント作成</h1>
+
+<%= form_for(@user) do |f| %>
+
+  <table border="1">
+    <tr>
+      <th><%= f.label :name, '名前' %></th>
+      <td><%= f.text_field :user_nm %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :user_nm_kana, '名前_カナ' %></th>
+      <td><%= f.text_field :user_nm_kana %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :email, 'メールアドレス' %></th>
+      <td><%= f.text_field :user_cd %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :pj_id, 'PJID' %></th>
+      <td><%= f.text_field :pj_id %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :group_id, '役割（ロール）' %></th>
+      <td><%= f.text_field :group_id %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :hojn_id, '法人コード' %></th>
+      <td><%= f.text_field :hojn_id %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :password, 'パスワード' %></th>
+      <td><%= f.password_field :password %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :password_confirmation, '確認' %></th>
+      <td><%= f.password_field :password_confirmation %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :company_nm, '会社名' %></th>
+      <td><%= f.text_field :company_nm %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :department_nm, '部署' %></th>
+      <td><%= f.text_field :department_nm %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :tel_1, '連絡先1（電話）' %></th>
+      <td><%= f.text_field :tel_1 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :tel_2, '連絡先2（電話）' %></th>
+      <td><%= f.text_field :tel_2 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :tel_3, '連絡先3（電話）' %></th>
+      <td><%= f.text_field :tel_3 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :birthday_ymd, '誕生日' %></th>
+      <td><%= f.text_field :birthday_ymd %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :entry_ymd, '入社日' %></th>
+      <td><%= f.text_field :entry_ymd %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :twitter_url, 'Twitter' %></th>
+      <td><%= f.text_field :twitter_url %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :facebook_url, 'Facebook' %></th>
+      <td><%= f.text_field :facebook_url %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :account1, 'アカウント1' %></th>
+      <td><%= f.text_field :account1 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :account2, 'アカウント2' %></th>
+      <td><%= f.text_field :account2 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :timezone, 'タイムゾーン' %></th>
+      <td><%= f.text_field :timezone %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :region, '地域' %></th>
+      <td><%= f.text_field :region %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :language, '言語' %></th>
+      <td><%= f.text_field :language %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :address_country, '住所_国' %></th>
+      <td><%= f.text_field :address_country %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :address_zip_code, '住所_郵便番号' %></th>
+      <td><%= f.text_field :address_zip_code %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :address_prefectures, '住所_都道府県' %></th>
+      <td><%= f.text_field :address_prefectures %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :address_city, '住所_市区群' %></th>
+      <td><%= f.text_field :address_city %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :address_street, '住所_町名・番地' %></th>
+      <td><%= f.text_field :address_street %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :comment, 'コメント' %></th>
+      <td><%= f.text_field :comment %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :notices, 'その他特記事項' %></th>
+      <td><%= f.text_field :notices %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :inst_user_id, '登録者ID' %></th>
+      <td><%= f.text_field :inst_user_id %></td>
+    </tr>
+  </table>
+
+  <%= f.submit 'アカウントを作成する' %>
+
+<% end %>

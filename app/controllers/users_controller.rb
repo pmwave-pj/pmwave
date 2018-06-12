@@ -6,19 +6,19 @@ class UsersController < ApplicationController
     #ログインチェック
     signed_check
     
-    @users = User.all
+    @users = MstUser.all
   end
 
   def show
     #ログインチェック
     signed_check
-    @user = User.find(params[:id])
+    @user = MstUser.find(params[:id])
   end
 
   def new
     #ログインチェック
     signed_check
-    @user = User.new
+    @user = MstUser.new
   end
 
   def edit
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     #ログインチェック
     signed_check
     
-    @user = User.new(user_params)
+    @user = MstUser.new(user_params)
     if @user.save
       #sign_in @user ←作成後、作成されたユーザでログインしたくない。
       #フラッシュ（一度きりのセッション）にメッセージを格納
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     end
 
     def correct_user
-      @user = User.find(params[:id])
+      @user = MstUser.find(params[:id])
       redirect_to root_url unless current_user?(@user)
     end
 end
