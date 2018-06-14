@@ -17,7 +17,7 @@ class TrnTaskDetailsController < ApplicationController
       #params[:page]がNullまたは空ではない場合
       if params[:page].present?
         #開始No = ページ × ページングサイズ
-        @grid_no = (params[:page].to_i - 1) * 5 + 1
+        @grid_no = (params[:page].to_i - 1) * 10 + 1
       end
      
     end

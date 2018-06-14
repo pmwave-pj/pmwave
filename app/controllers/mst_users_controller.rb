@@ -6,7 +6,20 @@ class MstUsersController < ApplicationController
     #ログインチェック
     signed_check
     
-    @users = MstUser.all
+    @users = MstUser
+        .where(del_flg: "false")
+        .paginate(page: params[:page], per_page: 10)
+
+    
+     #No列の開始No
+      @grid_no = 1
+     
+      #params[:page]がNullまたは空ではない場合
+      if params[:page].present?
+        #開始No = ページ × ページングサイズ
+        @grid_no = (params[:page].to_i - 1) * 5 + 1
+      end
+     
   end
 
   def show
@@ -73,6 +86,37 @@ class MstUsersController < ApplicationController
    end
   end
 
+  #一覧画面 削除ボタン押下時のアクション
+  def destroy
+
+      #ログインチェック
+      signed_check
+ 
+    #idでMstUsersテーブルを取得
+    @user = MstUser.find(params[:id])
+ 
+    #削除処理（delete文発行）
+    #@task.destroy
+    
+    #削除処理（論理削除）
+    @user.remember_token = 'Null'
+    @user.del_flg = true
+    target = DateTime.now
+    @user.updt_ymd = target
+    @user.del_ymd = target
+    @user.updt_history_tanto = 0
+    
+    #更新（エラーチェックを行わない）
+    @user.save(validate:false)
+
+ 
+    #フラッシュ（一度きりのセッション）にメッセージを格納
+    flash[:msg] = "削除しました。"
+ 
+    #呼び出し元URLへリダイレクト
+    redirect_to request.referer
+ 
+  end
     #------------------------------------------------------------------------------
     private
     #------------------------------------------------------------------------------
