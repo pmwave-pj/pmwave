@@ -92,11 +92,12 @@ class TrnTaskDetailsController < ApplicationController
           else
            @task.step_ownership_flg = false
         end
-        #ここの記述は大丈夫そう @user = User.find(params[:id])
-        #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
-        @task.inst_user_id = 0
-        @task.hojn_id = 0
-        @task.pj_id = 0
+        #ここの記述は大丈夫そう
+        @user = MstUser.find(current_user.id)
+        #↓とりあえずべた書き。ログインユーザの情報を取得
+        @task.inst_user_id = @user.user_id
+        @task.hojn_id = @user.hojn_id
+        @task.pj_id = @user.pj_id
 
         #とりあえずべた書き。現在時刻を取得する
         target = DateTime.now
@@ -155,18 +156,17 @@ class TrnTaskDetailsController < ApplicationController
           else
            @task.step_ownership_flg = false
         end
-        #ここの記述は大丈夫そう @user = User.find(params[:id])
-        #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
-        @task.updt_history_tanto = 0
-        #@task.hojn_id = 0
-        #@task.pj_id = 0
+
+        #ここの記述は大丈夫そう
+        @user = MstUser.find(current_user.id)
+        #↓とりあえずべた書き。ログインユーザの情報を取得
+        @task.updt_history_tanto = @user.user_id
+        @task.updt_history = 'task_update'
 
         #とりあえずべた書き。現在時刻を取得する
         target = DateTime.now
         @task.updt_ymd = target
         @task.del_flg = false
-
-
      
         #更新（エラーチェックを行わない）
         @task.save(validate:false)
@@ -201,7 +201,13 @@ class TrnTaskDetailsController < ApplicationController
     target = DateTime.now
     @task.updt_ymd = target
     @task.del_ymd = target
-    @task.updt_history_tanto = 0
+
+    #ここの記述は大丈夫そう
+    @user = MstUser.find(current_user.id)
+
+    #↓とりあえずべた書き。ログインユーザの情報を取得
+    @task.updt_history_tanto = @user.user_id
+    @task.updt_history = 'task_delete'
     
     #更新（エラーチェックを行わない）
     @task.save(validate:false)
@@ -227,6 +233,16 @@ class TrnTaskDetailsController < ApplicationController
     #kanryoにtrueをセット
     @task.end_flg = true
  
+    target = DateTime.now
+    @task.updt_ymd = target
+
+    #ここの記述は大丈夫そう
+    @user = MstUser.find(current_user.id)
+
+    #↓とりあえずべた書き。ログインユーザの情報を取得
+    @task.updt_history_tanto = @user.user_id
+    @task.updt_history = 'task_end'
+
     #更新処理（update文発行）
     @task.save
  
