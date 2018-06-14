@@ -2,7 +2,7 @@
 
 <%= form_for(@user) do |f| %>
 
-  <table border="1">
+  <table class="table table-bordered">
     <tr>
       <th><%= f.label :name, '名前' %></th>
       <td><%= f.text_field :user_nm %></td>
@@ -32,7 +32,7 @@
       <td><%= f.password_field :password %></td>
     </tr>
     <tr>
-      <th><%= f.label :password_confirmation, '確認' %></th>
+      <th><%= f.label :password_confirmation, 'パスワード確認' %></th>
       <td><%= f.password_field :password_confirmation %></td>
     </tr>
     <tr>
@@ -113,18 +113,29 @@
     </tr>
     <tr>
       <th><%= f.label :comment, 'コメント' %></th>
-      <td><%= f.text_field :comment %></td>
+      <td><%= f.text_area :comment %></td>
     </tr>
     <tr>
       <th><%= f.label :notices, 'その他特記事項' %></th>
-      <td><%= f.text_field :notices %></td>
+      <td><%= f.text_area :notices %></td>
     </tr>
+<%
+=begin
+%>
     <tr>
       <th><%= f.label :inst_user_id, '登録者ID' %></th>
       <td><%= f.text_field :inst_user_id %></td>
     </tr>
+<%
+=end
+%>
   </table>
+      <div class="row well" style="margin:20px 0 0 0;padding:10px;">
+        <div class="col-sm-12">
+          <%= link_to "戻る", mst_users_path, class:"btn btn-default", style:"float:left" %>
+          <%= f.submit 'アカウントを作成する', class:"btn btn-primary", style:"float:right" %>
+        </div>
+      </div>
 
-  <%= f.submit 'アカウントを作成する' %>
 
 <% end %>

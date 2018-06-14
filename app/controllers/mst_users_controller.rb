@@ -17,7 +17,7 @@ class MstUsersController < ApplicationController
       #params[:page]がNullまたは空ではない場合
       if params[:page].present?
         #開始No = ページ × ページングサイズ
-        @grid_no = (params[:page].to_i - 1) * 5 + 1
+        @grid_no = (params[:page].to_i - 1) * 10 + 1
       end
      
   end
@@ -45,26 +45,38 @@ class MstUsersController < ApplicationController
     signed_check
     
     @user = MstUser.new(user_params)
-        #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
-        @user.inst_user_id = 0
-        #@user.hojn_id = 0
-        #@user.pj_id = 0
+    @current_user = MstUser.find(current_user.id)
 
-        #とりあえずべた書き。現在時刻を取得する
-        target = DateTime.now
-        @user.inst_ymd = target
-        @user.del_flg = false
+    #エラーチェック
+    if @user.valid?
+    #--------------
+    #エラーがない場合
+    #--------------
 
-    if @user.save
-      #sign_in @user ←作成後、作成されたユーザでログインしたくないのでサンプルには記述があったが削除している。
+       #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
+       @user.inst_user_id = @current_user.id
+       #@user.hojn_id = 0
+       #@user.pj_id = 0
 
-      #フラッシュ（一度きりのセッション）にメッセージを格納
-      flash[:msg] = "ユーザ作成が完了しました"
-      #作成後はアカウント作成画面へ遷移
-      redirect_to new_mst_user_path
+       #とりあえずべた書き。現在時刻を取得する
+       target = DateTime.now
+       @user.inst_ymd = target
+       @user.del_flg = false
+
+        #更新（エラーチェックを行わない）
+        @user.save(validate:false)
+        #sign_in @user ←作成後、作成されたユーザでログインしたくないのでサンプルには記述があったが削除している。
+        #フラッシュ（一度きりのセッション）にメッセージを格納
+        flash[:msg] = "ユーザ作成が完了しました"
+        #作成後はアカウント作成画面へ遷移
+        redirect_to new_mst_user_path
     else
-      flash[:msg] = "ユーザ作成に失敗しました。パスワードが未入力です。"
-      render 'new'
+        #--------------
+        #エラー時
+        #--------------
+        #登録画面のviewを再表示
+        #flash[:msg] = "ユーザ作成に失敗しました。"
+        render 'new'
     end
   end
 
@@ -98,13 +110,15 @@ class MstUsersController < ApplicationController
     #削除処理（delete文発行）
     #@task.destroy
     
+    @current_user = MstUser.find(current_user.id)
+
     #削除処理（論理削除）
     @user.remember_token = 'Null'
     @user.del_flg = true
     target = DateTime.now
     @user.updt_ymd = target
     @user.del_ymd = target
-    @user.updt_history_tanto = 0
+    @user.updt_history_tanto = @current_user.id
     
     #更新（エラーチェックを行わない）
     @user.save(validate:false)

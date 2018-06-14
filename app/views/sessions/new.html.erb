@@ -2,7 +2,7 @@
 
 <%= form_for(:session, url: sessions_path) do |f| %>
 
-  <table border="1">
+  <table class="table table-bordered">
     <tr>
       <th><%= f.label :email, 'メールアドレス' %></th>
       <td><%= f.text_field :email %></td>
@@ -12,7 +12,11 @@
       <td><%= f.password_field :password %></td>
     </tr>
   </table>
-
-  <%= f.submit 'ログインする' %>
-
+      <div class="row well" style="margin:20px 0 0 0;padding:10px;">
+        <div class="col-sm-12">
+          <div style="text-align: center">
+          <%= f.submit 'ログインする', class:"btn btn-primary", style:"text-align:center" %>
+          </div>
+        </div>
+      </div>
 <% end %>

@@ -1,16 +1,126 @@
 <h1>ユーザ情報</h1>
 
-<table border="1">
-  <tr>
-    <th>名前</th>
-    <td><%= @user.user_nm %></td>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @user.user_cd %></td>
-  </tr>
+<table class="table table-bordered">
+    <tr>
+      <th>名前</th>
+      <td><%= @user.user_nm %></td>
+    </tr>
+    <tr>
+      <th>名前_カナ</th>
+      <td><%= @user.user_nm_kana %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= @user.user_cd %></td>
+    </tr>
+    <tr>
+      <th>PJID</th>
+      <td><%= @user.pj_id %></td>
+    </tr>
+    <tr>
+      <th>役割（ロール）</th>
+      <td><%= @user.group_id %></td>
+    </tr>
+    <tr>
+      <th>法人コード</th>
+      <td><%= @user.hojn_id %></td>
+    </tr>
+    <tr>
+      <th>会社名</th>
+      <td><%= @user.company_nm %></td>
+    </tr>
+    <tr>
+      <th>部署</th>
+      <td><%= @user.department_nm %></td>
+    </tr>
+    <tr>
+      <th>連絡先1（電話）</th>
+      <td><%= @user.tel_1 %></td>
+    </tr>
+    <tr>
+      <th>連絡先2（電話）</th>
+      <td><%= @user.tel_2 %></td>
+    </tr>
+    <tr>
+      <th>連絡先3（電話）</th>
+      <td><%= @user.tel_3 %></td>
+    </tr>
+    <tr>
+      <th>誕生日</th>
+      <td><%= @user.birthday_ymd %></td>
+    </tr>
+    <tr>
+      <th>入社日</th>
+      <td><%= @user.entry_ymd %></td>
+    </tr>
+    <tr>
+      <th>Twitter</th>
+      <td><%= @user.twitter_url %></td>
+    </tr>
+    <tr>
+      <th>Facebook</th>
+      <td><%= @user.facebook_url %></td>
+    </tr>
+    <tr>
+      <th>アカウント1</th>
+      <td><%= @user.account1 %></td>
+    </tr>
+    <tr>
+      <th>アカウント2</th>
+      <td><%= @user.account2 %></td>
+    </tr>
+    <tr>
+      <th>タイムゾーン</th>
+      <td><%= @user.timezone %></td>
+    </tr>
+    <tr>
+      <th>地域</th>
+      <td><%= @user.region %></td>
+    </tr>
+    <tr>
+      <th>言語</th>
+      <td><%= @user.language %></td>
+    </tr>
+    <tr>
+      <th>住所_国</th>
+      <td><%= @user.address_country %></td>
+    </tr>
+    <tr>
+      <th>住所_郵便番号</th>
+      <td><%= @user.address_zip_code %></td>
+    </tr>
+    <tr>
+      <th>住所_都道府県</th>
+      <td><%= @user.address_prefectures %></td>
+    </tr>
+    <tr>
+      <th>住所_市区群</th>
+      <td><%= @user.address_city %></td>
+    </tr>
+    <tr>
+      <th>住所_町名・番地</th>
+      <td><%= @user.address_street %></td>
+    </tr>
+    <tr>
+      <th>コメント</th>
+      <td><%= @user.comment %></td>
+    </tr>
+    <tr>
+      <th>その他特記事項</th>
+      <td><%= @user.notices %></td>
+    </tr>
+    <tr>
+      <th>登録者ID</th>
+      <td><%= @user.inst_user_id %></td>
+    </tr>
+
 </table>
 
 <% if current_user?(@user) %>
-<p><%= link_to '編集', edit_mst_user_path %></p>
+      <div class="row well" style="margin:20px 0 0 0;padding:10px;">
+        <div class="col-sm-12">
+          <%= link_to "戻る", mst_users_path, class:"btn btn-default", style:"float:left" %>
+          <%= link_to '編集', edit_mst_user_path, class:"btn btn-primary", style:"float:right" %>
+        </div>
+      </div>
 <% end %>

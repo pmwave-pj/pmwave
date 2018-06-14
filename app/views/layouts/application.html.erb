@@ -153,6 +153,15 @@
               </ul>
             </div>
         <% end %>
+        <% if @user.present? && @user.errors.present? %>
+            <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
+              <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
          <% if flash[:msg].present? %>
           <div class="alert alert-info" style="margin-top:20px;border-width:3px;display:none">
             <ul>
