@@ -1,0 +1,2 @@
+class MstTeam < ApplicationRecord
+end

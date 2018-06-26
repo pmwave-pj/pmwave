@@ -1,0 +1,7 @@
+<h1>予算実績一覧</h1>
+
+<ul>
+  <% @trn_performance_details.each do |trn_performance_detail| %>
+    <li><%= trn_performance_detail.content %></li>
+  <% end %>
+</ul>

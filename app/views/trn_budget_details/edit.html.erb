@@ -1,0 +1,11 @@
+<h1>予算ID: <%= @trn_budget_details.id %> の予算編集ページ</h1>
+
+<h2>編集画面</h2>
+<div class="waku" style="margin:20px 0">
+  <%= form_for @trn_budget_details do |f| %>
+      <%= render "form", f: f %>
+
+  <% end %>
+</div>
+
+<%= link_to '一覧に戻る', trn_budget_details_path %>

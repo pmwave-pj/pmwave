@@ -9,7 +9,7 @@ class TrnTaskDetailsController < ApplicationController
         .by_kanryo(params[:end_flg])
         .where(del_flg: "false")
         .paginate(page: params[:page], per_page: 10)
-        .order('end_flg asc, end_ymd asc')
+        .order('task_id asc')
      
       #No列の開始No
       @grid_no = 1

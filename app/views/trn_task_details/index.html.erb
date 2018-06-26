@@ -7,6 +7,7 @@
   <thead>
   <tr>
     <th class="grid-th-width1 pc-only">No</th>
+    <th class="grid-th-width1 ">タスクID</th>
     <th class="grid-th-width2">タスク</th>
     <th class="grid-th-width3">期限</th>
     <th class="grid-th-width4">ｽﾃｰﾀｽ</th>
@@ -17,6 +18,7 @@
   <% @tasks.each do |task| %>
       <tr style="height:48px;">
         <td class="pc-only"><%= @grid_no.to_s %></td>
+        <td style="vertical-align: middle"><%= task.task_id %></td>
         <td style="vertical-align: middle"><%= task.task_title %></td>
         <td style="vertical-align: middle"><%= kigen_format(task.syuryouyotei_ymd) %></td>
         <td style="vertical-align: middle"><%= kanryo_tag(task) %></td>

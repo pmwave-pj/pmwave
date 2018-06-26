@@ -42,8 +42,12 @@ class MstUser < ApplicationRecord
   def check_password
     if !password.present?
       errors.add("パスワード","は必須項目です")
+    elsif password.present? && password.length < 8
+      errors.add("パスワード","は8文字以上で入力してください")
     elsif !password_confirmation.present?
       errors.add("パスワード確認","が未入力です")
+#    elsif password.present? && password_confirmation.present? && password == password_confirmation
+#      errors.add("確認用パスワード","が一致していません")
     end
   end
 

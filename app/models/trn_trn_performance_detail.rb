@@ -1,0 +1,2 @@
+class TrnTrnPerformanceDetail < ApplicationRecord
+end

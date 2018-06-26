@@ -1,0 +1,2 @@
+class MstSubpj < ApplicationRecord
+end

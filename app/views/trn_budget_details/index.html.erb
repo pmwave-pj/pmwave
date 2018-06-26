@@ -1,0 +1,45 @@
+
+<h2>予算一覧</h2>
+<%= link_to '新規予算の登録', new_trn_budget_detail_path %>
+<div class="table-responsive">
+<table class="table table-bordered" "table-sm">
+  <thead>
+  <tr>
+    <th class="grid-th-width1">予算ID</th>
+    <th class="grid-th-width2">予算名</th>
+    <th class="grid-th-width3">予算種別</th>
+    <th class="grid-th-width4">予算詳細</th>
+    <th class="grid-th-width5"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @trn_budget_details.each do |trn_budget_detail| %>
+      <tr style="height:48px;">
+        <td style="vertical-align: middle"><%= trn_budget_detail.bg_id %></td>
+        <td style="vertical-align: middle"><%= trn_budget_detail.bg_title %></td>
+        <td style="vertical-align: middle"><%= trn_budget_detail.bg_kind %></td>
+        <td style="vertical-align: middle"><%= trn_budget_detail.bg_detail %></td>
+        <td style="vertical-align: middle">
+              <button type="button" class="btn btn-default"><%= link_to '詳細',trn_budget_detail %></button>
+              <button type="button" class="btn btn-default"><%= link_to '編集',edit_trn_budget_detail_path(trn_budget_detail) %></button>
+              <button type="button" class="btn btn-default"><%= link_to '削除',trn_budget_detail, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></button>
+        </td>
+      </tr>
+      <% @grid_no = @grid_no %>
+  <% end %>
+  <tbody>
+  </table>
+</div>  
+
+<div style="text-align: center">
+  <%= will_paginate @trn_budget_details,
+                    renderer: BootstrapPagination::Rails,
+                    previous_label: "前へ",
+                    next_label: "次へ",
+                    inner_window: 1,
+                    outer_window: 0,
+                    class:"pagination-sm"
+  %>
+</div>
+
+

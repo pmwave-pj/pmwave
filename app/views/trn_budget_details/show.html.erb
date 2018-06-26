@@ -1,0 +1,113 @@
+<h1>予算ID: <%= @trn_budget_details.bg_id %> の予算詳細ページ</h1>
+
+<h2>予算詳細ページ</h2>
+<div class="waku">
+  <table class="table table-bordered" style="table-layout: fixed;">
+    <tbody>
+    <tr>
+      <th style="width:20%;">予算ID</th>
+      <td style="width:80%;"><%= @trn_budget_details.bg_id %></td>
+    </tr>
+    <tr>
+      <th style="width:20%;">プロジェクトID</th>
+      <td style="width:80%;"><%= @trn_budget_details.pj_id %></td>
+    </tr>
+    <tr>
+      <th style="width:20%;">プロジェクト名</th>
+      <td style="width:80%;"><%= @trn_budget_details.pj_name %></td>
+    </tr>
+    <tr>
+      <th style="width:20%;">サブプロジェクトID</th>
+      <td style="width:80%;"><%= @trn_budget_details.subpj_id %></td>
+    </tr>
+    <tr>
+      <th style="width:20%;">サブプロジェクト名</th>
+      <td style="width:80%;"><%= @trn_budget_details.subpj_name %></td>
+    </tr>
+    <tr>
+      <th style="width:20%;">チームID</th>
+      <td style="width:80%;"><%= @trn_budget_details.team_id %></td>
+    </tr>
+    <tr>
+      <th style="width:20%;">チーム名</th>
+      <td style="width:80%;"><%= @trn_budget_details.team_name%></td>
+    </tr>
+    <tr>
+      <th style="width:20%;">予算ID</th>
+      <td style="width:80%;"><%= @trn_budget_details.bg_id %></td>
+    </tr>
+    <tr>
+      <th style="width:20%;">予算名</th>
+      <td style="width:80%;"><%= @trn_budget_details.bg_title %></td>
+    </tr>
+    <tr>
+      <th>予算種別</th>
+      <td><%= @trn_budget_details.bg_kind %></td>
+    </tr>
+    <tr>
+      <th>予算詳細</th>
+      <td><%= @trn_budget_details.bg_detail %></td>
+    </tr>
+    <tr>
+      <th>予算種別</th>
+      <td><%= @trn_budget_details.bg_kind %></td>
+    </tr>
+    <tr>
+      <th>予算単価</th>
+      <td><%= @trn_budget_details.bg_unit_price %></td>
+    </tr>
+    <tr>
+      <th>予算数量</th>
+      <td><%= @trn_budget_details.bg_quantity %></td>
+    </tr>
+    <tr>
+      <th>合計</th>
+      <td><%= @trn_budget_details.bg_total_price %></td>
+    </tr>
+    <tr>
+      <th>添付ファイル</th>
+      <td><%= @trn_budget_details.file %></td>
+    </tr>
+    <tr>
+      <th>登録者ID</th>
+      <td><%= @trn_budget_details.inst_user_id %></td>
+    </tr>
+
+    <tr>
+      <th>削除フラグ</th>
+      <td><%= @trn_budget_details.del_flg %></td>
+    </tr>
+
+    <tr>
+      <th>登録日時</th>
+      <td><%= @trn_budget_details.inst_ymd %></td>
+    </tr>
+
+    <tr>
+      <th>更新日時</th>
+      <td><%= @trn_budget_details.updt_ymd %></td>
+    </tr>
+
+
+    <tbody>
+  </table>
+
+  <div class="row well" style="margin:20px 0">
+   <div style="text-align:center;">
+    <div class="col-sm-12">
+　    <div class="btn-group" role="group">
+  　    <%= link_to "戻る", trn_budget_details_path, class:"btn btn-default", style:"width:150px;display:block;margin:auto" %>
+　　　</div>
+　    <div class="btn-group" role="group">
+    　 <%= link_to "編集", edit_trn_budget_detail_path(@trn_budget_details), class:"btn btn-default", style:"width:150px;display:block;margin:auto" %>
+　　　</div>
+　    <div class="btn-group" role="group">
+     　<%= link_to "削除", @trn_budget_details, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class:"btn btn-default", style:"width:150px;display:block;margin:auto" %>
+　　　</div>
+   　</div>
+    </div>
+  </div>
+
+</div>
+
+

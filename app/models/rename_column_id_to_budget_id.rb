@@ -1,0 +1,2 @@
+class RenameColumnIdToBudgetId < ApplicationRecord
+end

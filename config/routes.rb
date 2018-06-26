@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       get "kanryo"
     end
   end
+  resources :trn_budget_details
+  resources :trn_performance_details
+  resources :trn_manhr_details
   match 'signup', to: 'mst_users#new', via: 'get'
   match 'signin', to: 'sessions#new', via: 'get'
   match 'signout', to: 'sessions#destroy', via: 'delete'

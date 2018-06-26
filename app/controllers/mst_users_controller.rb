@@ -81,12 +81,41 @@ class MstUsersController < ApplicationController
   end
 
   def update
+
     #ログインチェック
     signed_check
-      
-    if @user.update_attributes(user_params)
-      redirect_to @user
+
+    @user = MstUser.new(user_params)
+    @current_user = MstUser.find(current_user.id)
+
+    #エラーチェック
+    if @user.valid?
+    #--------------
+    #エラーがない場合
+    #--------------
+
+       #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
+       @user.updt_history_tanto = @current_user.id
+       @user.updt_history = 'user_update'
+
+       #とりあえずべた書き。現在時刻を取得する
+       target = DateTime.now
+       @user.inst_ymd = target
+       @user.del_flg = false
+
+       #更新（エラーチェックを行わない）
+       @user.save(validate:false)
+       #sign_in @user ←作成後、作成されたユーザでログインしたくないのでサンプルには記述があったが削除している。
+       #フラッシュ（一度きりのセッション）にメッセージを格納
+       flash[:msg] = "ユーザ情報の編集が完了しました"
+       #作成後はアカウント参照画面へ遷移
+       redirect_to @user
     else
+        #--------------
+        #エラー時
+        #--------------
+        #登録画面のviewを再表示
+        #flash[:msg] = "ユーザ作成に失敗しました。"
       render 'edit'
     end
   end
@@ -119,6 +148,7 @@ class MstUsersController < ApplicationController
     @user.updt_ymd = target
     @user.del_ymd = target
     @user.updt_history_tanto = @current_user.id
+    @user.updt_history = 'user_delete'
     
     #更新（エラーチェックを行わない）
     @user.save(validate:false)

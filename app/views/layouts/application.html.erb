@@ -133,6 +133,9 @@
           <li><%= link_to 'アカウント作成', signup_path %></li>
           <li><%= link_to 'プロフィール', current_user %></li>
           <li><%= link_to 'タスク一覧', trn_task_details_path %></li>
+          <li><%= link_to '予算一覧', trn_budget_details_path %></li>
+          <li><%= link_to '予算実績一覧', trn_performance_details_path %></li>
+          <li><%= link_to '工数一覧', trn_manhr_details_path %></li>
           <li><%= link_to 'ログアウト', signout_path, method: :delete %></li>
           <% else %>
           <% end %>
