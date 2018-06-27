@@ -1,0 +1,2 @@
+class MstKadaiCgr < ApplicationRecord
+end

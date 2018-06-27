@@ -1,0 +1,2 @@
+class MstKadaiPhase < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class MstKadaiStatus < ApplicationRecord
+end

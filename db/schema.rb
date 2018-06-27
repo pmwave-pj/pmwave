@@ -12,6 +12,51 @@
 
 ActiveRecord::Schema.define(version: 2018_06_12_004920) do
 
+  create_table "mst_kadai_cgrs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "pj_id", null: false
+    t.integer "hojn_id", null: false
+    t.integer "menu_id", null: false
+    t.integer "kadai_cgr_id", null: false
+    t.string "kadai_cgr_name", null: false
+    t.datetime "kadai_inst_ymd", null: false
+    t.datetime "kadai_updt_ymd"
+    t.datetime "kadai_del_ymd"
+    t.integer "kadai_del_flag"
+    t.integer "kadai_updt_id"
+    t.datetime "kadai_updt_s_end"
+    t.datetime "kadai_updt_t_end"
+  end
+
+  create_table "mst_kadai_phases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "pj_id", null: false
+    t.integer "hojn_id", null: false
+    t.integer "menu_id", null: false
+    t.integer "kadai_phase_id", null: false
+    t.string "kadai_phase_name", null: false
+    t.datetime "kadai_inst_ymd", null: false
+    t.datetime "kadai_updt_ymd"
+    t.datetime "kadai_del_ymd"
+    t.integer "kadai_del_flag"
+    t.integer "kadai_updt_id"
+    t.datetime "kadai_updt_s_end"
+    t.datetime "kadai_updt_t_end"
+  end
+
+  create_table "mst_kadai_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "pj_id", null: false
+    t.integer "hojn_id", null: false
+    t.integer "menu_id", null: false
+    t.integer "kadai_status_id", null: false
+    t.string "kadai_status_name", null: false
+    t.datetime "kadai_inst_ymd", null: false
+    t.datetime "kadai_updt_ymd"
+    t.datetime "kadai_del_ymd"
+    t.integer "kadai_del_flag"
+    t.integer "kadai_updt_id"
+    t.datetime "kadai_updt_s_end"
+    t.datetime "kadai_updt_t_end"
+  end
+
   create_table "mst_pjs", primary_key: "pj_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "hojn_id", null: false
     t.string "pj_name", limit: 256, null: false
@@ -135,6 +180,46 @@ ActiveRecord::Schema.define(version: 2018_06_12_004920) do
     t.string "updt_pgm_id", limit: 256
     t.string "updt_history", limit: 256
     t.string "updt_history_tanto", limit: 256
+  end
+
+  create_table "trn_kadai_kanris", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "pj_id", null: false
+    t.integer "hojn_id", null: false
+    t.integer "menu_id", null: false
+    t.integer "kadai_s_id", null: false
+    t.string "kadai_title", null: false
+    t.string "kadai_psner", null: false
+    t.text "kadai_contents", null: false
+    t.string "kadai_person", null: false
+    t.datetime "kadai_limit", null: false
+    t.integer "kadai_phase", null: false
+    t.integer "kadai_impt", null: false
+    t.integer "kadai_status", null: false
+    t.integer "kadai_cgr", null: false
+    t.string "kadai_tenp"
+    t.text "kadai_try"
+    t.text "kadai_try2"
+    t.text "kadai_try3"
+    t.datetime "kadai_try_d"
+    t.datetime "kadai_try2_d"
+    t.datetime "kadai_try3_d"
+    t.string "kadai_try_w"
+    t.string "kadai_try2_w"
+    t.string "kadai_try3_w"
+    t.string "kadai_try_p"
+    t.string "kadai_try2_p"
+    t.string "kadai_try3_p"
+    t.string "kadai_cmt_psner"
+    t.text "kadai_cmt_ents"
+    t.string "kadai_cmt_notifier"
+    t.datetime "kadai_inst_ymd"
+    t.datetime "kadai_updt_ymd"
+    t.datetime "kadai_del_ymd"
+    t.bigint "kadai_del_flag", null: false
+    t.string "kadai_updt_id", limit: 256
+    t.string "kadai_updt_s_end", limit: 256
+    t.string "kadai_updt_t_end", limit: 256
+    t.boolean "kadai_kanryo"
   end
 
   create_table "trn_manhr_details", primary_key: "mh_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

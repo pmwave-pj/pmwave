@@ -1,0 +1,31 @@
+<div class="center jumbotron">
+  <div class="text-center">
+    <h1>trn_kadai_kanri_show</h1>
+       <p><%= link_to 'トップページへ', '/top_kadais/index' %></p>
+  </div>
+</div>
+
+<h2>照会画面</h2>
+<div class="waku">
+  <table class="table table-bordered" style="table-layout: fixed;">
+    <tbody>
+    <tr>
+      <th style="width:20%;">タスク</th>
+      <td style="width:80%;"><%= @trn_kadai_kanri.kadai_title %></td>
+    </tr>
+    <tr>
+      <th>詳細</th>
+      <td><%= @trn_kadai_kanri.kadai_contents %></td>
+    </tr>
+    <tr>
+      <th>期限</th>
+      <td><%= kadai_limit_format(@trn_kadai_kanri.kadai_limit) %></td>
+    </tr>
+    <tbody>
+  </table>
+  <div class="row well" style="margin:20px 0 0 0">
+    <div class="col-sm-12">
+      <%= link_to "戻る", trn_kadai_kanris_path, class:"btn btn-default", style:"width:150px;display:block;margin:auto" %>
+    </div>
+  </div>
+</div>

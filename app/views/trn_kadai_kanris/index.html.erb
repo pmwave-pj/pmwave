@@ -1,0 +1,53 @@
+<div class="center jumbotron">
+  <div class="text-center">
+    <h1>trn_kadai_kanri_index</h1>
+       <p><%= link_to 'トップページへ', '/top_kadais/index' %></p>
+  </div>
+</div>
+
+<h2>一覧画面</h2>
+<!-- 一覧画面の作成②で追加 ここから -->
+<%= link_to "全て表示", trn_kadai_kanris_path %>
+<%= link_to "完了のみ", trn_kadai_kanris_path + "?kanryo=true", style:"margin-left:5px;" %>
+<%= link_to "未完了のみ", trn_kadai_kanris_path + "?kanryo=false", style:"margin-left:5px;" %>
+<%= link_to "タスクを登録", new_trn_kadai_kanri_path, class:"pull-right" %>
+<!-- 一覧画面の作成②で追加 ここまで -->
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th class="grid-th-width1 pc-only">No</th>
+    <th class="grid-th-width2">タスク(kadai_title)</th>
+    <th class="grid-th-width3">期限(kadai_limit)</th>
+    <th class="grid-th-width4">ｽﾃｰﾀｽ(kadai_status)</th>
+    <th class="grid-th-width5">編集</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @trn_kadai_kanris.each do |trn_kadai_kanri| %>
+      <tr style="height:48px;">
+        <td class="pc-only"><%= @grid_no.to_s %></td>
+        <td style="vertical-align: middle"><%= trn_kadai_kanri.kadai_title %></td>
+        <td style="vertical-align: middle"><%= kadai_limit_format(trn_kadai_kanri.kadai_limit) %></td>
+        <td style="vertical-align: middle"><%= kadai_status_tag(trn_kadai_kanri) %></td>
+        <td class="henshu-cell">
+<!-- 一覧画面の作成②で追加 ここから -->
+          <%= link_to "照会", trn_kadai_kanri_path(trn_kadai_kanri) %>
+          <%= link_to "編集", edit_trn_kadai_kanri_path(trn_kadai_kanri) %>
+          <%= link_to "削除", trn_kadai_kanri_path(trn_kadai_kanri), method:"delete" %>
+<!-- 一覧画面の作成②で追加 ここまで -->
+        </td>
+      </tr>
+      <% @grid_no = @grid_no + 1 %>
+  <% end %>
+  <tbody>
+  </table>
+<div style="text-align: center">
+  <%= will_paginate @trn_kadai_kanris,
+                    renderer: BootstrapPagination::Rails,
+                    previous_label: "前へ",
+                    next_label: "次へ",
+                    inner_window: 1,
+                    outer_window: 0,
+                    class:"pagination-sm"
+  %>
+</div>
