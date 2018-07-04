@@ -25,7 +25,7 @@
         <td class="henshu-cell">
           <%= link_to "照会", trn_task_detail_path(task) %>
           <%= link_to "編集", edit_trn_task_detail_path(task) %>
-          <%= link_to "削除", trn_task_detail_path(task), method:"delete" %> 
+          <%= link_to "削除", trn_task_detail_path(task), method:"delete" , data: { confirm: '本当に削除してよろしいですか？' } %>
         </td>
       </tr>
       <% @grid_no = @grid_no + 1 %>

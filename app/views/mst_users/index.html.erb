@@ -24,7 +24,7 @@
           <% end %>
           <% if current_user?(user) %>
           <% else %>
-          <%= link_to "削除", mst_user_path(user), method:"delete" %>
+          <%= link_to "削除", mst_user_path(user), method:"delete", data: { confirm: '本当に削除してよろしいですか？' } %>
           <% #ここに権限によって出し分けをしたい
           %>
           <% end %>
