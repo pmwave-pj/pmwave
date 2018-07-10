@@ -9,7 +9,7 @@ class TrnTaskDetailsController < ApplicationController
         .by_kanryo(params[:end_flg])
         .where(del_flg: "false")
         .paginate(page: params[:page], per_page: 10)
-        .order('task_id asc')
+        .order('task_id desc')
      
       #No列の開始No
       @grid_no = 1
@@ -56,8 +56,17 @@ class TrnTaskDetailsController < ApplicationController
       @task = TrnTaskDetail.find(params[:id])
      
       #期限に値がある場合、日付型から文字列へ変換
+      if @task.kaishiyotei_ymd.present?
+        @task.kaishiyotei_ymd_str = @task.kaishiyotei_ymd.strftime("%Y%m%d")
+      end
+      if @task.syuryouyotei_ymd.present?
+        @task.syuryouyotei_ymd_str = @task.syuryouyotei_ymd.strftime("%Y%m%d")
+      end
+      if @task.start_ymd.present?
+        @task.start_ymd_str = @task.start_ymd.strftime("%Y%m%d")
+      end
       if @task.end_ymd.present?
-        @task.end_ymd = @task.end_ymd.strftime("%Y%m%d")
+        @task.end_ymd_str = @task.end_ymd.strftime("%Y%m%d")
       end
      
     end
@@ -76,11 +85,29 @@ class TrnTaskDetailsController < ApplicationController
         #--------------
         #エラーがない場合
         #--------------
-        if @task.end_ymd.present?
+        if @task.kaishiyotei_ymd_str.present?
+           @task.kaishiyotei_ymd = Date.new(
+            @task.kaishiyotei_ymd_str[0..3].to_i,
+            @task.kaishiyotei_ymd_str[4..5].to_i,
+            @task.kaishiyotei_ymd_str[6..7].to_i)
+        end
+        if @task.syuryouyotei_ymd_str.present?
+           @task.syuryouyotei_ymd = Date.new(
+            @task.syuryouyotei_ymd_str[0..3].to_i,
+            @task.syuryouyotei_ymd_str[4..5].to_i,
+            @task.syuryouyotei_ymd_str[6..7].to_i)
+        end
+        if @task.start_ymd_str.present?
+           @task.start_ymd = Date.new(
+            @task.start_ymd_str[0..3].to_i,
+            @task.start_ymd_str[4..5].to_i,
+            @task.start_ymd_str[6..7].to_i)
+        end
+        if @task.end_ymd_str.present?
            @task.end_ymd = Date.new(
-            @task.end_ymd[0..3].to_i,
-            @task.end_ymd[4..5].to_i,
-            @task.end_ymd[6..7].to_i)
+            @task.end_ymd_str[0..3].to_i,
+            @task.end_ymd_str[4..5].to_i,
+            @task.end_ymd_str[6..7].to_i)
         end
         #完了フラグをセットする。未入力の場合でもfalseでセットする
         if @task.end_flg == true
@@ -88,9 +115,12 @@ class TrnTaskDetailsController < ApplicationController
            @task.end_flg = false
         end
         #親工程フラグをセットする。未入力の場合でもfalseでセットする
-        if @task.step_ownership_flg == true
-          else
-           @task.step_ownership_flg = false
+        #テスト中
+        if !@task.relation_step_id?
+          @task.step_ownership_flg = true
+        elsif @task.step_ownership_flg == true
+        elsif
+          @task.step_ownership_flg = false
         end
         #ここの記述は大丈夫そう
         @user = MstUser.find(current_user.id)
@@ -140,11 +170,29 @@ class TrnTaskDetailsController < ApplicationController
         #--------------
         #エラーがない場合
         #--------------
-        if @task.end_ymd.present?
+        if @task.kaishiyotei_ymd_str.present?
+           @task.kaishiyotei_ymd = Date.new(
+            @task.kaishiyotei_ymd_str[0..3].to_i,
+            @task.kaishiyotei_ymd_str[4..5].to_i,
+            @task.kaishiyotei_ymd_str[6..7].to_i)
+        end
+        if @task.syuryouyotei_ymd_str.present?
+           @task.syuryouyotei_ymd = Date.new(
+            @task.syuryouyotei_ymd_str[0..3].to_i,
+            @task.syuryouyotei_ymd_str[4..5].to_i,
+            @task.syuryouyotei_ymd_str[6..7].to_i)
+        end
+        if @task.start_ymd_str.present?
+           @task.start_ymd = Date.new(
+            @task.start_ymd_str[0..3].to_i,
+            @task.start_ymd_str[4..5].to_i,
+            @task.start_ymd_str[6..7].to_i)
+        end
+        if @task.end_ymd_str.present?
            @task.end_ymd = Date.new(
-            @task.end_ymd[0..3].to_i,
-            @task.end_ymd[4..5].to_i,
-            @task.end_ymd[6..7].to_i)
+            @task.end_ymd_str[0..3].to_i,
+            @task.end_ymd_str[4..5].to_i,
+            @task.end_ymd_str[6..7].to_i)
         end
         #完了フラグをセットする。未入力の場合でもfalseでセットする
         if @task.end_flg == true
@@ -152,9 +200,12 @@ class TrnTaskDetailsController < ApplicationController
            @task.end_flg = false
         end
         #親工程フラグをセットする。未入力の場合でもfalseでセットする
-        if @task.step_ownership_flg == true
-          else
-           @task.step_ownership_flg = false
+        #テスト中
+        if !@task.relation_step_id?
+          @task.step_ownership_flg = true
+        elsif @task.step_ownership_flg == true
+        elsif
+          @task.step_ownership_flg = false
         end
 
         #ここの記述は大丈夫そう
@@ -267,14 +318,14 @@ class TrnTaskDetailsController < ApplicationController
       params.require(:trn_task_detail).permit(
         :task_title,
         :task_detail,
-        :end_ymd,
         :tanto_user_id, 
         :relation_step_id, 
         :step_ownership_flg, 
         :progress_rate, 
-        :kaishiyotei_ymd, 
-        :syuryouyotei_ymd, 
-        :start_ymd, 
+        :kaishiyotei_ymd_str, 
+        :syuryouyotei_ymd_str, 
+        :start_ymd_str, 
+        :end_ymd_str,
         :end_flg,
         :inst_user_id,
         :hojn_id,

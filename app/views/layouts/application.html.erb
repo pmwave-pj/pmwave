@@ -77,36 +77,36 @@
 <body>
 <script>
   $(function() {
-    if ($("#trn_task_detail_kaishiyotei_ymd").length)
+    if ($("#trn_task_detail_kaishiyotei_ymd_str").length)
     {
-      $("#trn_task_detail_kaishiyotei_ymd").datepicker();
-      $("#trn_task_detail_kaishiyotei_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      $("#trn_task_detail_kaishiyotei_ymd_str").datepicker();
+      $("#trn_task_detail_kaishiyotei_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#trn_task_detail_kaishiyotei_ymd").val("<%= @task.end_ymd %>");
+      $("#trn_task_detail_kaishiyotei_ymd_str").val("<%= @task.kaishiyotei_ymd_str %>");
       <% end %>
     }
-    if ($("#trn_task_detail_syuryouyotei_ymd").length)
+    if ($("#trn_task_detail_syuryouyotei_ymd_str").length)
     {
-      $("#trn_task_detail_syuryouyotei_ymd").datepicker();
-      $("#trn_task_detail_syuryouyotei_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      $("#trn_task_detail_syuryouyotei_ymd_str").datepicker();
+      $("#trn_task_detail_syuryouyotei_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#trn_task_detail_syuryouyotei_ymd").val("<%= @task.end_ymd %>");
+      $("#trn_task_detail_syuryouyotei_ymd_str").val("<%= @task.syuryouyotei_ymd_str %>");
       <% end %>
     }
-    if ($("#trn_task_detail_start_ymd").length)
+    if ($("#trn_task_detail_start_ymd_str").length)
     {
-      $("#trn_task_detail_start_ymd").datepicker();
-      $("#trn_task_detail_start_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      $("#trn_task_detail_start_ymd_str").datepicker();
+      $("#trn_task_detail_start_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#trn_task_detail_start_ymd").val("<%= @task.end_ymd %>");
+      $("#trn_task_detail_start_ymd_str").val("<%= @task.start_ymd_str %>");
       <% end %>
     }
-    if ($("#trn_task_detail_end_ymd").length)
+    if ($("#trn_task_detail_end_ymd_str").length)
     {
-      $("#trn_task_detail_end_ymd").datepicker();
-      $("#trn_task_detail_end_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      $("#trn_task_detail_end_ymd_str").datepicker();
+      $("#trn_task_detail_end_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#trn_task_detail_end_ymd").val("<%= @task.end_ymd %>");
+      $("#trn_task_detail_end_ymd_str").val("<%= @task.end_ymd_str %>");
       <% end %>
     }
     if ($(".alert").length)

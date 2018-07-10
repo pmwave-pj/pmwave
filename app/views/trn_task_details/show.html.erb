@@ -3,22 +3,75 @@
   <table class="table table-bordered" style="table-layout: fixed;">
     <tbody>
     <tr>
-      <th style="width:20%;">タスク</th>
-      <td style="width:80%;"><%= @task.task_title %></td>
+      <th>タスク</th>
+      <td><%= @task.task_title %></td>
     </tr>
+
     <tr>
-      <th>詳細</th>
+      <th>タスク詳細</th>
       <td><%= @task.task_detail %></td>
     </tr>
+
     <tr>
-      <th>期限</th>
+      <th>担当者</th>
+      <td><%= user_nm_tag(@task.tanto_user_id) %></td>
+    </tr>
+
+    <tr>
+      <th>関連工程</th>
+      <td><%= task_nm_tag(@task.relation_step_id) %></td>
+    </tr>
+
+    <tr>
+      <th>親工程フラグ</th>
+      <td><%= flg_check_tag(@task.step_ownership_flg) %></td>
+    </tr>
+
+    <tr>
+      <th>進捗率</th>
+      <td><%= @task.progress_rate %></td>
+    </tr>
+
+    <tr>
+      <th>開始予定日</th>
+      <td><%= kigen_format(@task.kaishiyotei_ymd) %></td>
+    </tr>
+
+    <tr>
+      <th>終了予定日</th>
       <td><%= kigen_format(@task.syuryouyotei_ymd) %></td>
+    </tr>
+
+    <tr>
+      <th>作業開始日</th>
+      <td><%= kigen_format(@task.start_ymd) %></td>
+    </tr>
+
+    <tr>
+      <th>作業完了日</th>
+      <td><%= kigen_format(@task.end_ymd) %></td>
+    </tr>
+
+    <tr>
+      <th>完了フラグ</th>
+      <td><%= flg_check_tag(@task.end_flg) %></td>
+    </tr>
+
+    <tr>
+      <th>登録者</th>
+      <td><%= user_nm_tag(@task.inst_user_id) %></td>
+    </tr>
+
+    <tr>
+      <th>最終更新者</th>
+      <td><%= user_nm_tag(@task.updt_history_tanto) %></td>
     </tr>
     <tbody>
   </table>
   <div class="row well" style="margin:20px 0 0 0">
     <div class="col-sm-12">
-      <%= link_to "戻る", trn_task_details_path, class:"btn btn-default", style:"width:150px;display:block;margin:auto" %>
+      <%= link_to "戻る", trn_task_details_path, class:"btn btn-default", style:"float:left;" %>
+      <%= link_to "編集する", edit_trn_task_detail_path, class:"btn btn-primary", style:"float:right" %>
     </div>
   </div>
 </div>
