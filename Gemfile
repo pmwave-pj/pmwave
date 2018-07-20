@@ -16,6 +16,10 @@ gem 'will_paginate', '= 3.1.6'
 #will_paginateをbootstrap風にする
 gem 'will_paginate-bootstrap'
 
+
+#slider表示のためにjQuery-uiを導入する
+gem 'jquery-ui-rails'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

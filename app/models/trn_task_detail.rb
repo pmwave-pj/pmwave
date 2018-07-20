@@ -33,9 +33,9 @@ class TrnTaskDetail < ApplicationRecord
   #task_titleのバリデーション
   def check_task_title
     if !task_title.present?
-      errors.add("タスク","を入力してください")
+      errors.add("タスク名","を入力してください")
     elsif task_title.length > 20
-      errors.add("タスク","は20文字以内で入力してください")
+      errors.add("タスク名","は20文字以内で入力してください")
     end
   end
  

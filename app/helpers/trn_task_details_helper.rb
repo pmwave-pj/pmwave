@@ -7,7 +7,7 @@ module TrnTaskDetailsHelper
     if trn_task_detail.end_flg == true
       result = '済'
     else
-      result = '<a class="btn btn-sm btn-primary" href="' + kanryo_trn_task_detail_path(trn_task_detail) + '">完了</a>'
+      result = '<a class="btn btn-sm btn-primary" href="' + kanryo_trn_task_detail_path(trn_task_detail) + '">完了にする</a>'
     end
     #文字列をそのままHTMLタグとして出力
     result.html_safe
@@ -25,14 +25,22 @@ module TrnTaskDetailsHelper
 
   #IDから名前を表示する
   def user_nm_tag(user_id)
-    result = MstUser.find(user_id).user_nm
+    if user_id.nil?
+     result = ""
+    else
+     result = MstUser.find(user_id).user_nm
+    end
     #文字列をそのままHTMLタグとして出力
     result.html_safe
   end
 
   #IDからタスク名を表示する
   def task_nm_tag(task_id)
-    result = TrnTaskDetail.find(task_id).task_title
+    if task_id.nil?
+     result = ""
+    else
+     result = TrnTaskDetail.find(task_id).task_title
+    end
     #文字列をそのままHTMLタグとして出力
     result.html_safe
   end
@@ -46,4 +54,12 @@ module TrnTaskDetailsHelper
     result
   end
  
+  #期限（日付型）をYYYY/MM/DD hh:mm:ss 形式の文字列で表示する
+  def dt_format(various_ymd)
+    result = ""
+    if various_ymd.present?
+      result = various_ymd.strftime("%Y/%m/%d %H:%M:%S")
+    end
+    result
+  end
 end

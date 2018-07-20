@@ -54,16 +54,16 @@
         font-size:24pt;
       }
       .grid-th-width1{
-        width:10%;
+        width:7%;
       }
       .grid-th-width2{
         width:55%;
       }
       .grid-th-width3{
-        width:10%;
+        width:20%;
       }
       .grid-th-width4{
-        width:10%;
+        width:25%;
       }
       .grid-th-width5{
         width:15%;
@@ -112,6 +112,32 @@
     if ($(".alert").length)
     {
       $(".alert").show();
+    }
+    if ($("#slider").length)
+    {
+      $('#slider').slider({
+       min: 0,
+       max: 100,
+       step: 10,
+       value: 
+        <% if @task.present? %>
+          <% if @task.progress_rate.nil? %>
+                0
+          <% else %>
+            <%= @task.progress_rate %>
+          <% end %>
+        <% end %>
+       ,
+       animate: 'fast',
+       slide: function(event, ui){
+          $('#trn_task_detail_progress_rate').html(ui.value);
+          $('#trn_task_detail_progress_rate').val(ui.value);
+        },
+       //スライダーの初期化時に、その値をテキストボックスにも反映
+       create: function(event, ui) {
+          $('#trn_task_detail_progress_rate').val($(this).slider('option', 'value'));
+        }
+      })
     }
   });
 </script>

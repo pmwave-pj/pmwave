@@ -6,27 +6,31 @@
 <table class="table table-bordered">
   <thead>
   <tr>
-    <th class="grid-th-width1 pc-only">No</th>
-    <th class="grid-th-width1 ">タスクID</th>
-    <th class="grid-th-width2">タスク</th>
-    <th class="grid-th-width3">期限</th>
-    <th class="grid-th-width4">ｽﾃｰﾀｽ</th>
+    <th class="grid-th-width1">No</th>
+    <th class="grid-th-width1">タスクID</th>
+    <th class="grid-th-width4">タスク名</th>
+    <th class="grid-th-width5">期限</th>
+    <th class="grid-th-width5">最終更新日</th>
+    <th class="grid-th-width1">進捗率</th>
     <th class="grid-th-width5">編集</th>
+    <th class="grid-th-width1">完了状況</th>
   </tr>
   </thead>
   <tbody>
   <% @tasks.each do |task| %>
       <tr style="height:48px;">
-        <td class="pc-only"><%= @grid_no.to_s %></td>
+        <td style="vertical-align: middle"><%= @grid_no.to_s %></td>
         <td style="vertical-align: middle"><%= task.task_id %></td>
         <td style="vertical-align: middle"><%= task.task_title %></td>
         <td style="vertical-align: middle"><%= kigen_format(task.syuryouyotei_ymd) %></td>
-        <td style="vertical-align: middle"><%= kanryo_tag(task) %></td>
+        <td style="vertical-align: middle"><%= dt_format(task.updt_ymd) %></td>
+        <td style="vertical-align: middle;text-align: center"><%= task.progress_rate %> % </td>
         <td class="henshu-cell">
           <%= link_to "照会", trn_task_detail_path(task) %>
           <%= link_to "編集", edit_trn_task_detail_path(task) %>
           <%= link_to "削除", trn_task_detail_path(task), method:"delete" , data: { confirm: '本当に削除してよろしいですか？' } %>
         </td>
+        <td style="vertical-align: middle;text-align: center"><%= kanryo_tag(task) %></td>
       </tr>
       <% @grid_no = @grid_no + 1 %>
   <% end %>

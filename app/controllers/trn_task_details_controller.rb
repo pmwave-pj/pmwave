@@ -110,9 +110,14 @@ class TrnTaskDetailsController < ApplicationController
             @task.end_ymd_str[6..7].to_i)
         end
         #完了フラグをセットする。未入力の場合でもfalseでセットする
-        if @task.end_flg == true
-          else
-           @task.end_flg = false
+        if @task.progress_rate == 100
+          @task.end_flg = true
+        elsif @task.progress_rate < 100
+          @task.end_flg = false
+        elsif @task.progress_rate < 100 && @task.progress_rate == true
+          @task.end_flg = false
+        elsif
+          @task.end_flg = false
         end
         #親工程フラグをセットする。未入力の場合でもfalseでセットする
         #テスト中
@@ -130,7 +135,7 @@ class TrnTaskDetailsController < ApplicationController
         @task.pj_id = @user.pj_id
 
         #とりあえずべた書き。現在時刻を取得する
-        target = DateTime.now
+        target = DateTime.current
         @task.inst_ymd = target
         @task.del_flg = false
 
@@ -195,9 +200,14 @@ class TrnTaskDetailsController < ApplicationController
             @task.end_ymd_str[6..7].to_i)
         end
         #完了フラグをセットする。未入力の場合でもfalseでセットする
-        if @task.end_flg == true
-          else
-           @task.end_flg = false
+        if @task.progress_rate == 100
+          @task.end_flg = true
+        elsif @task.progress_rate < 100
+          @task.end_flg = false
+        elsif @task.progress_rate < 100 && @task.progress_rate == true
+          @task.end_flg = false
+        elsif
+          @task.end_flg = false
         end
         #親工程フラグをセットする。未入力の場合でもfalseでセットする
         #テスト中
@@ -215,7 +225,7 @@ class TrnTaskDetailsController < ApplicationController
         @task.updt_history = 'task_update'
 
         #とりあえずべた書き。現在時刻を取得する
-        target = DateTime.now
+        target = DateTime.current
         @task.updt_ymd = target
         @task.del_flg = false
      
@@ -249,7 +259,7 @@ class TrnTaskDetailsController < ApplicationController
     
     #削除処理（論理削除）
     @task.del_flg = true
-    target = DateTime.now
+    target = DateTime.current
     @task.updt_ymd = target
     @task.del_ymd = target
 
@@ -281,10 +291,13 @@ class TrnTaskDetailsController < ApplicationController
     #idでTasksテーブルを取得
     @task = TrnTaskDetail.find(params[:id])
 
-    #kanryoにtrueをセット
+    #end_flgにtrueをセット
     @task.end_flg = true
+
+    #progress_rateに100をセット
+    @task.progress_rate = 100
  
-    target = DateTime.now
+    target = DateTime.current
     @task.updt_ymd = target
 
     #ここの記述は大丈夫そう
