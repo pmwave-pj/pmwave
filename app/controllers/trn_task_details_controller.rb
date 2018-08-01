@@ -127,7 +127,7 @@ class TrnTaskDetailsController < ApplicationController
         elsif
           @task.step_ownership_flg = false
         end
-        #ここの記述は大丈夫そう
+        #ログインユーザ情報の取得
         @user = MstUser.find(current_user.id)
         #↓とりあえずべた書き。ログインユーザの情報を取得
         @task.inst_user_id = @user.user_id
@@ -218,7 +218,7 @@ class TrnTaskDetailsController < ApplicationController
           @task.step_ownership_flg = false
         end
 
-        #ここの記述は大丈夫そう
+        #ログインユーザ情報の取得
         @user = MstUser.find(current_user.id)
         #↓とりあえずべた書き。ログインユーザの情報を取得
         @task.updt_history_tanto = @user.user_id
@@ -263,7 +263,7 @@ class TrnTaskDetailsController < ApplicationController
     @task.updt_ymd = target
     @task.del_ymd = target
 
-    #ここの記述は大丈夫そう
+    #ログインユーザ情報の取得
     @user = MstUser.find(current_user.id)
 
     #↓とりあえずべた書き。ログインユーザの情報を取得
@@ -300,7 +300,7 @@ class TrnTaskDetailsController < ApplicationController
     target = DateTime.current
     @task.updt_ymd = target
 
-    #ここの記述は大丈夫そう
+    #ログインユーザ情報の取得
     @user = MstUser.find(current_user.id)
 
     #↓とりあえずべた書き。ログインユーザの情報を取得

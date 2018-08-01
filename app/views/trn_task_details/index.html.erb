@@ -7,30 +7,34 @@
   <thead>
   <tr>
     <th class="grid-th-width1">No</th>
-    <th class="grid-th-width1">タスクID</th>
-    <th class="grid-th-width4">タスク名</th>
-    <th class="grid-th-width5">期限</th>
-    <th class="grid-th-width5">最終更新日</th>
+    <th class="grid-th-width1">ID</th>
+    <th class="grid-th-width6">タスク名</th>
+    <th class="grid-th-width2">開始予定日</th>
+    <th class="grid-th-width2">作業開始日</th>
+    <th class="grid-th-width2">終了予定日</th>
+    <th class="grid-th-width2">作業完了日</th>
     <th class="grid-th-width1">進捗率</th>
-    <th class="grid-th-width5">編集</th>
-    <th class="grid-th-width1">完了状況</th>
+    <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width1">削除</th>
+    <th class="grid-th-width1">完了</th>
+    <th class="grid-th-width2">更新日時</th>
   </tr>
   </thead>
   <tbody>
   <% @tasks.each do |task| %>
       <tr style="height:48px;">
-        <td style="vertical-align: middle"><%= @grid_no.to_s %></td>
-        <td style="vertical-align: middle"><%= task.task_id %></td>
-        <td style="vertical-align: middle"><%= task.task_title %></td>
-        <td style="vertical-align: middle"><%= kigen_format(task.syuryouyotei_ymd) %></td>
-        <td style="vertical-align: middle"><%= dt_format(task.updt_ymd) %></td>
-        <td style="vertical-align: middle;text-align: center"><%= task.progress_rate %> % </td>
-        <td class="henshu-cell">
-          <%= link_to "照会", trn_task_detail_path(task) %>
-          <%= link_to "編集", edit_trn_task_detail_path(task) %>
-          <%= link_to "削除", trn_task_detail_path(task), method:"delete" , data: { confirm: '本当に削除してよろしいですか？' } %>
-        </td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= @grid_no.to_s %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= task.task_id %></td>
+        <td style="vertical-align: middle"><%= link_to task.task_title, task %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(task.kaishiyotei_ymd) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(task.start_ymd) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(task.syuryouyotei_ymd) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(task.end_ymd) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= task.progress_rate %> % </td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= link_to "編集", edit_trn_task_detail_path(task) %> </td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= link_to "削除", trn_task_detail_path(task), method:"delete" , data: { confirm: '本当に削除してよろしいですか？' } %> </td>
         <td style="vertical-align: middle;text-align: center"><%= kanryo_tag(task) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:8pt;"><%= dt_format(task.updt_ymd) %></td>
       </tr>
       <% @grid_no = @grid_no + 1 %>
   <% end %>

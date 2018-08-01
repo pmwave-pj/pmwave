@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_12_004920) do
+ActiveRecord::Schema.define(version: 2018_07_31_004721) do
+
+  create_table "mst_groups", primary_key: "group_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "hojn_id", null: false
+    t.integer "pj_id", null: false
+    t.string "group_nm", limit: 256, null: false
+    t.boolean "account_edit_flg", default: false, null: false
+    t.boolean "pj_mg_edit_flg", default: false, null: false
+    t.boolean "top_msg_edit_flg", default: false, null: false
+    t.boolean "com_mg_edit_flg", default: false, null: false
+    t.boolean "progress_mg_edit_flg", default: false, null: false
+    t.boolean "trq_mg_approval_flg", default: false, null: false
+    t.boolean "trq_mg_edit_flg", default: false, null: false
+    t.boolean "budget_mg_approval_flg", default: false, null: false
+    t.boolean "budget_mg_edit_flg", default: false, null: false
+    t.boolean "talent_mg_approval_flg", default: false, null: false
+    t.boolean "talent_mg_edit_flg", default: false, null: false
+    t.integer "inst_user_id", null: false
+    t.datetime "inst_ymd", null: false
+    t.datetime "updt_ymd", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "del_ymd"
+    t.boolean "del_flg", default: false, null: false
+    t.string "updt_pgm_id", limit: 256
+    t.string "updt_history", limit: 256
+    t.string "updt_history_tanto", limit: 256
+  end
 
   create_table "mst_kadai_cgrs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "pj_id", null: false

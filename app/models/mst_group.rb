@@ -1,0 +1,2 @@
+class MstGroup < ApplicationRecord
+end

@@ -1,0 +1,139 @@
+※名前：
+  <%= f.text_field :user_nm, class:"form-control" , style:"width:200px;",autocomplete: 'off'%>
+  <br>
+  
+名前_カナ：
+  <%= f.text_field :user_nm_kana, class:"form-control", style:"width:200px;",autocomplete: 'off' %>
+  <br>
+  
+※メールアドレス（ログインID）：
+  <%= f.text_field :user_cd, class:"form-control", style:"width:500px;",autocomplete: 'off' %>
+  <br>
+
+※法人コード（必須だが現時点では裏側で0セット）：
+  <%= f.text_field :hojn_id, class:"form-control", style:"width:50px; display: inline-block;",autocomplete: 'off' %>
+  <br>
+  <br>
+
+※PJID（必須だが現時点では裏側で0セット）：
+  <%= f.text_field :pj_id ,class:"form-control" , style:"width:50px; display: inline-block;",autocomplete: 'off'%>
+  <br>
+  <br>
+
+※役割（ロール）（必須だが現時点では裏側で0セット）：
+  <%= f.collection_select :group_id,MstGroup.all.where(del_flg: "false"),:group_id,:group_nm,:include_blank => true, class:"form-control", style:"width:100px; display: inline-block;" %>
+  <br>
+  <br>
+
+
+※パスワード（英数記号8文字以上）：
+  <%= f.password_field :password, class:"form-control",style:"width:200px;" , autocomplete: 'off' %>
+<br>
+
+※パスワード確認：
+  <%= f.password_field :password_confirmation, class:"form-control",style:"width:200px;" , autocomplete: 'off' %>
+<br>
+
+会社名：
+  <%= f.text_field :company_nm, class:"form-control", style:"width:200px; display: inline-block;" ,autocomplete: 'off' %>
+
+　部署：
+  <%= f.text_field :department_nm, class:"form-control",style:"width:200px; display: inline-block;" , autocomplete: 'off' %>
+<br>
+<br>
+
+
+連絡先1（電話）：
+  <%= f.text_field :tel_1, class:"form-control",style:"width:150px; display: inline-block;", autocomplete: 'off' %>
+
+　連絡先2（電話）：
+  <%= f.text_field :tel_2, class:"form-control",style:"width:150px; display: inline-block;", autocomplete: 'off' %>
+
+　連絡先3（電話）：
+  <%= f.text_field :tel_3, class:"form-control",style:"width:150px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+
+入社日：
+  <%= f.text_field :entry_ymd, class:"form-control",style:"width:100px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+誕生日：
+  <%= f.text_field :birthday_ymd, class:"form-control",style:"width:100px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+
+<!-- 折り畳み展開ポインタ -->
+<div onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';">
+<a style="cursor:pointer;">▼ 展開/折り畳み</a>
+</div>
+<!--// 折り畳み展開ポインタ -->
+
+<br>
+
+<!-- 折り畳まれ部分 -->
+<div id="open" style="display:none;clear:both;">
+
+<br>
+Twitter：
+  <%= f.text_field :twitter_url, class:"form-control", style:"width:300px; display: inline-block;",autocomplete: 'off' %>
+<br>
+<br>
+Facebook：
+  <%= f.text_field :facebook_url, class:"form-control", style:"width:300px; display: inline-block;",autocomplete: 'off' %>
+<br>
+<br>
+アカウント1：
+  <%= f.text_field :account1, class:"form-control",style:"width:300px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+アカウント2：
+  <%= f.text_field :account2, class:"form-control",style:"width:300px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+
+※タイムゾーン（必須だが現時点では裏側で0セット）：
+  <%= f.text_field :timezone, class:"form-control",style:"width:50px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+※地域（必須だが現時点では裏側で0セット）：
+  <%= f.text_field :region, class:"form-control",style:"width:50px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+※言語（必須だが現時点では裏側で0セット）：
+  <%= f.text_field :language, class:"form-control",style:"width:50px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+
+住所_国：
+  <%= f.text_field :address_country, class:"form-control",style:"width:100px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+
+住所_郵便番号：
+  <%= f.text_field :address_zip_code, class:"form-control",style:"width:100px; display: inline-block;", autocomplete: 'off' %>
+<br>
+<br>
+
+住所_都道府県：
+  <%= f.text_field :address_prefectures, class:"form-control",style:"width:100px;", autocomplete: 'off' %>
+<br>
+
+住所_市区群：
+  <%= f.text_field :address_city, class:"form-control",style:"width:300px;", autocomplete: 'off' %>
+<br>
+
+住所_町名・番地：
+  <%= f.text_field :address_street, class:"form-control",style:"width:500px; ", autocomplete: 'off' %>
+<br>
+<br>
+
+コメント：
+  <%= f.text_area :comment, class:"form-control", autocomplete: 'off' %>
+<br>
+
+その他特記事項：
+  <%= f.text_area  :notices, class:"form-control", autocomplete: 'off' %>
+
+</div>
+<!--// 折り畳まれ部分 -->

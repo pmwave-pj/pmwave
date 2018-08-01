@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :trn_budget_details
   resources :trn_performance_details
   resources :trn_manhr_details
+  resources :mst_groups
   
 #ゆーた始まり  
   resources :trn_kadai_kanris

@@ -1,0 +1,36 @@
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th class="grid-th-width1">グループ名</th>
+    <th class="grid-th-width1">アカウント管理編集フラグ</th>
+    <th class="grid-th-width1">PJ管理編集フラグ</th>
+    <th class="grid-th-width1">TOPメッセージ編集フラグ</th>
+    <th class="grid-th-width1">コミュニケーション管理編集フラグ</th>
+    <th class="grid-th-width1">進捗管理編集フラグ</th>
+    <th class="grid-th-width1">課題・要件・品質管理承認フラグ</th>
+    <th class="grid-th-width1">課題・要件・品質管理編集フラグ</th>
+    <th class="grid-th-width1">予算管理承認フラグ</th>
+    <th class="grid-th-width1">予算管理編集フラグ</th>
+    <th class="grid-th-width1">人材管理承認フラグ</th>
+    <th class="grid-th-width1">人材管理編集フラグ</th>
+
+  </tr>
+  </thead>
+  <tbody>
+
+  <td style="vertical-align: middle;text-align: center;"> <%= f.text_field :group_nm, class:"form-control"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :account_edit_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :pj_mg_edit_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :top_msg_edit_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :com_mg_edit_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :progress_mg_edit_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :trq_mg_approval_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :trq_mg_edit_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :budget_mg_approval_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :budget_mg_edit_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :talent_mg_approval_flg, style:"width:30px;"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :talent_mg_edit_flg, style:"width:30px;"  %> </td>
+  <br>
+
+  <tbody>
+  </table>

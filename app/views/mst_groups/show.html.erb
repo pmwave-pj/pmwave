@@ -1,0 +1,45 @@
+<h2>照会画面</h2>
+<div class="waku">
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th class="grid-th-width1">グループID</th>
+    <th class="grid-th-width1">グループ名</th>
+    <th class="grid-th-width1">アカウント管理編集フラグ</th>
+    <th class="grid-th-width1">PJ管理編集フラグ</th>
+    <th class="grid-th-width1">TOPメッセージ編集フラグ</th>
+    <th class="grid-th-width1">コミュニケーション管理編集フラグ</th>
+    <th class="grid-th-width1">進捗管理編集フラグ</th>
+    <th class="grid-th-width1">課題・要件・品質管理承認フラグ</th>
+    <th class="grid-th-width1">課題・要件・品質管理編集フラグ</th>
+    <th class="grid-th-width1">予算管理承認フラグ</th>
+    <th class="grid-th-width1">予算管理編集フラグ</th>
+    <th class="grid-th-width1">人材管理承認フラグ</th>
+    <th class="grid-th-width1">人材管理編集フラグ</th>
+
+  </tr>
+  </thead>
+  <tbody>
+        <td style="vertical-align: middle;text-align: center;"> <%= @group.group_id %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= @group.group_nm %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.account_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.pj_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.top_msg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.com_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.progress_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.trq_mg_approval_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.trq_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.budget_mg_approval_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.budget_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.talent_mg_approval_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;"> <%= flg_check_tag(@group.talent_mg_edit_flg) %></td>
+      </tr>
+  <tbody>
+  </table>
+  <div class="row well" style="margin:20px 0 0 0">
+    <div class="col-sm-12">
+      <%= link_to "戻る", mst_groups_path, class:"btn btn-default", style:"float:left;" %>
+      <%= link_to "編集する", edit_mst_group_path, class:"btn btn-primary", style:"float:right" %>
+    </div>
+  </div>
+</div>
