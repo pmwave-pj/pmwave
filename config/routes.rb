@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   #root to: "tasks#index"
   root to: "sessions#new"
   resources :pj_tops, only: [:index]
+  resources :schedules, only: [:index]
   resources :mst_users, only: [:index, :show, :new, :edit, :create, :update,:destroy]
   resources :sessions, only: [:new, :create, :destroy]
   #Tasksコントローラーの7つのアクションを作成する

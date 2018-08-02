@@ -80,7 +80,7 @@ class MstUsersController < ApplicationController
         #エラー時
         #--------------
         #登録画面のviewを再表示
-        flash[:msg] = "ユーザ作成に失敗しました。"
+        #flash[:msg] = "ユーザ作成に失敗しました。"
         render 'new'
     end
   end

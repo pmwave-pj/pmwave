@@ -144,21 +144,24 @@
       $("#trn_task_detail_end_ymd_str").val("<%= @task.end_ymd_str %>");
       <% end %>
     }
+    if ($(".alert").length)
+    {
+      $(".alert").show();
+    }
     if ($("#slider").length)
     {
-      $('#slider').slider({
+      <% if @task.present? %>
+        <% if @task.progress_rate.nil? %>
+           val = 0
+        <% else %>
+           val = <%= @task.progress_rate %>
+        <% end %>
+      <% end %>
+      $("#slider").slider({
        min: 0,
        max: 100,
        step: 10,
-       value: 
-        <% if @task.present? %>
-          <% if @task.progress_rate.nil? %>
-                0
-          <% else %>
-            <%= @task.progress_rate %>
-          <% end %>
-        <% end %>
-       ,
+       value: val ,
        animate: 'fast',
        slide: function(event, ui){
           $('#trn_task_detail_progress_rate').html(ui.value);
@@ -169,10 +172,6 @@
           $('#trn_task_detail_progress_rate').val($(this).slider('option', 'value'));
         }
       })
-    }
-    if ($(".alert").length)
-    {
-      $(".alert").show();
     }
   });
 </script>
@@ -199,8 +198,9 @@
           <li><%= link_to '予算実績一覧', trn_performance_details_path %></li>
           <li><%= link_to '工数一覧', trn_manhr_details_path %></li>
           <li><%= link_to '課題一覧', trn_kadai_kanris_path %></li>
-          <li><%= link_to '品質管理（未実装）', top_hnsts_path %></li>
-          <li><%= link_to '要件管理（未実装）', top_yokens_path %></li>
+          <li><%= link_to '品質管理（未）', top_hnsts_path %></li>
+          <li><%= link_to '要件管理（未）', top_yokens_path %></li>
+          <li><%= link_to 'スケジュール', schedules_path %></li>
           <li><%= link_to 'ログアウト', signout_path, method: :delete %></li>
           <% else %>
           <% end %>
@@ -225,6 +225,15 @@
             <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
               <ul>
                 <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <% if @group.present? && @group.errors.present? %>
+            <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
+              <ul>
+                <% @group.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
                 <% end %>
               </ul>

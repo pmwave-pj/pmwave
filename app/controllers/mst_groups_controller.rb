@@ -86,7 +86,7 @@ class MstGroupsController < ApplicationController
         @group.save(validate:false)
      
         #フラッシュ（一度きりのセッション）にメッセージを格納
-        flash[:msg] = "登録しました。"
+        flash[:msg] = "グループ名：#{@group.group_nm} （グループID：#{@group.group_id} ）を登録しました。"
      
         #一覧画面へリダイレクト
         redirect_to mst_groups_path
@@ -132,7 +132,7 @@ class MstGroupsController < ApplicationController
         @group.save(validate:false)
      
         #フラッシュ（一度きりのセッション）にメッセージを格納
-        flash[:msg] = "編集しました。"
+        flash[:msg] = "グループ名：#{@group.group_nm} （グループID：#{@group.group_id} ）編集しました。"
      
         #一覧画面へリダイレクト
         redirect_to mst_groups_path
@@ -174,7 +174,7 @@ class MstGroupsController < ApplicationController
 
  
     #フラッシュ（一度きりのセッション）にメッセージを格納
-    flash[:msg] = "削除しました。"
+    flash[:msg] = "グループ名：#{@group.group_nm} （グループID：#{@group.group_id} ）削除しました。"
  
     #呼び出し元URLへリダイレクト
     redirect_to request.referer

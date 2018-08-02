@@ -144,7 +144,7 @@ class TrnTaskDetailsController < ApplicationController
         @task.save(validate:false)
      
         #フラッシュ（一度きりのセッション）にメッセージを格納
-        flash[:msg] = "登録しました。"
+        flash[:msg] = "タスク名：#{@task.task_title} （タスクID：#{@task.task_id} ）を登録しました。"
      
         #一覧画面へリダイレクト
         redirect_to trn_task_details_path
@@ -233,7 +233,7 @@ class TrnTaskDetailsController < ApplicationController
         @task.save(validate:false)
      
         #フラッシュ（一度きりのセッション）にメッセージを格納
-        flash[:msg] = "編集しました。"
+        flash[:msg] = "タスク名：#{@task.task_title} （タスクID：#{@task.task_id} ）を編集しました。"
      
         #一覧画面へリダイレクト
         redirect_to trn_task_details_path
@@ -275,7 +275,7 @@ class TrnTaskDetailsController < ApplicationController
 
  
     #フラッシュ（一度きりのセッション）にメッセージを格納
-    flash[:msg] = "削除しました。"
+    flash[:msg] = "タスク名：#{@task.task_title} （タスクID：#{@task.task_id} ）を削除しました。"
  
     #呼び出し元URLへリダイレクト
     redirect_to request.referer
@@ -299,6 +299,7 @@ class TrnTaskDetailsController < ApplicationController
  
     target = DateTime.current
     @task.updt_ymd = target
+    @task.end_ymd = target
 
     #ログインユーザ情報の取得
     @user = MstUser.find(current_user.id)
@@ -309,6 +310,9 @@ class TrnTaskDetailsController < ApplicationController
 
     #更新処理（update文発行）
     @task.save
+
+    #フラッシュ（一度きりのセッション）にメッセージを格納
+    flash[:msg] = "タスク名：#{@task.task_title} （タスクID：#{@task.task_id} ）を完了しました。"
  
     #呼び出し元URLへリダイレクト
     redirect_to request.referer

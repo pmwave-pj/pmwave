@@ -1,7 +1,7 @@
 <table class="table table-bordered">
   <thead>
   <tr>
-    <th class="grid-th-width1">グループ名</th>
+    <th class="grid-th-width3">グループ名</th>
     <th class="grid-th-width1">アカウント管理編集フラグ</th>
     <th class="grid-th-width1">PJ管理編集フラグ</th>
     <th class="grid-th-width1">TOPメッセージ編集フラグ</th>
@@ -18,7 +18,7 @@
   </thead>
   <tbody>
 
-  <td style="vertical-align: middle;text-align: center;"> <%= f.text_field :group_nm, class:"form-control"  %> </td>
+  <td style="vertical-align: middle;text-align: center;"> <%= f.text_field :group_nm, class:"form-control",autocomplete: 'off'  %> </td>
   <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :account_edit_flg, style:"width:30px;"  %> </td>
   <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :pj_mg_edit_flg, style:"width:30px;"  %> </td>
   <td style="vertical-align: middle;text-align: center;"> <%= f.check_box :top_msg_edit_flg, style:"width:30px;"  %> </td>
