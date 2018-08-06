@@ -1,0 +1,94 @@
+<%= form_for(@trn_manhr_details) do |f| %>
+  <% if @trn_manhr_details.errors.any? %>
+    <div bg_id="error_explanation">
+      <ul>
+        <% trn_manhr_detail.errors.full_messages.each do |trn_budget_detail| %>
+          <li><%= trn_manhr_detail %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="table table-bordered" style="table-layout: fixed;">
+    <tbody>
+    <tr>
+      <th style="width:20%;"><%= f.label :PJID, 'PJID' %></th>
+      <td style="width:80%;"><%= f.text_field :pj_id, class:"form-control", style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :subpjID, 'subpjID' %></th>
+      <td style="width:80%;"><%= f.text_field :subpj_id, class:"form-control", style:"width:100px;"  %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :teamID, 'チームID' %>></th>
+      <td style="width:80%;"><%= f.text_field :team_id, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :PJname, 'PJname' %></th>
+      <td style="width:80%;"><%= f.text_field :pj_name, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :subpjname, 'subpjname' %></th>
+      <td style="width:80%;"><%= f.text_field :subpj_name, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :teamname, 'チームname' %></th>
+      <td style="width:80%;"><%= f.text_field :team_name, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :bgtitle, '予算タイトル' %></th>
+      <td style="width:80%;"><%= f.text_field :bg_title, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :bgkind, '予算種別' %></th>
+      <td style="width:80%;"><%= f.text_field :bg_kind, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :bgdetai, '予算詳細' %></th>
+      <td style="width:80%;"><%= f.text_field :bg_detail, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :bgunitprice, '単価' %></th>
+      <td style="width:80%;"><%= f.text_field :bg_unit_price, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :bgquantity, '数量' %></th>
+      <td style="width:80%;"><%= f.text_field :bg_quantity, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :bgtotalprice, '合計' %></th>
+      <td style="width:80%;"><%= f.text_field :bg_total_price, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :file, '添付ファイル' %></th>
+      <td style="width:80%;"><%= f.text_field :file, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :instuserid, '登録者ID' %></th>
+      <td style="width:80%;"><%= f.text_field :inst_user_id, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tbody>
+  </table>
+
+      <div class="row well" style="margin:20px 0 0 0;padding:10px;">
+        <div class="col-sm-12">
+          <%= link_to "キャンセル", trn_manhr_details_path, class:"btn btn-default", style:"float:left;" %>
+          <%= f.submit "登録する", class:"btn btn-primary", style:"float:right" %>
+        </div>
+      </div>
+
+<% end %>
