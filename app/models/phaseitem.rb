@@ -1,0 +1,2 @@
+class Phaseitem < ApplicationRecord
+end

@@ -1,3 +1,362 @@
 // Place all the styles related to the trn_kadai_kanris controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.cp_ipselect {
+position: relative;
+width: 90%;
+margin: 2em auto;
+text-align: center;
+}
+.cp_sl06 {
+position: relative;
+font-family: inherit;
+background-color: transparent;
+width: 100%;
+padding: 10px 10px 10px 0;
+font-size: 18px;
+border-radius: 0;
+border: none;
+border-bottom: 1px solid rgba(0,0,0, 0.3);
+}
+.cp_sl06:focus {
+outline: none;
+border-bottom: 1px solid rgba(0,0,0, 0);
+}
+.cp_ipselect .cp_sl06 {
+appearance: none;
+-webkit-appearance:none
+}
+.cp_ipselect select::-ms-expand {
+display: none;
+}
+.cp_ipselect:after {
+position: absolute;
+top: 18px;
+right: 10px;
+width: 0;
+height: 0;
+padding: 0;
+content: '';
+border-left: 6px solid transparent;
+border-right: 6px solid transparent;
+border-top: 6px solid rgba(0, 0, 0, 0.3);
+pointer-events: none;
+}
+.cp_sl06_selectlabel {
+color: rgba(0,0,0, 0.5);
+font-size: 18px;
+font-weight: normal;
+position: absolute;
+pointer-events: none;
+left: 0;
+top: 10px;
+transition: 0.2s ease all;
+}
+.cp_sl06:focus ~ .cp_sl06_selectlabel, .cp_sl06:valid ~ .cp_sl06_selectlabel {
+color: #da3c41;
+top: -20px;
+transition: 0.2s ease all;
+font-size: 14px;
+}
+.cp_sl06_selectbar {
+position: relative;
+display: block;
+width: 100%;
+}
+.cp_sl06_selectbar:before, .cp_sl06_selectbar:after {
+content: '';
+height: 2px;
+width: 0;
+bottom: 1px;
+position: absolute;
+background: #da3c41;
+transition: 0.2s ease all;
+}
+.cp_sl06_selectbar:before {
+left: 50%;
+}
+.cp_sl06_selectbar:after {
+right: 50%;
+}
+.cp_sl06:focus ~ .cp_sl06_selectbar:before, .cp_sl06:focus ~ .cp_sl06_selectbar:after {
+width: 50%;
+}
+.cp_sl06_highlight {
+position: absolute;
+top: 25%;
+left: 0;
+pointer-events: none;
+opacity: 0.5;
+}
+
+/*2*/
+.cp_iptxt2 {
+	position: relative;
+	width: 90%;
+	margin: 26px 20px 0px 46px;
+}
+.cp_iptxt2 input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 4em;
+}
+.cp_iptxt2 input[type='text']:focus {
+	outline: none;
+}
+.ef2 {
+	padding: 4px 0;
+	border: 0;
+	border-bottom: 1px solid #1b2538;
+	background-color: transparent;
+}
+.ef2 ~ .focus_line2 {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #da3c41;
+}
+.ef2 ~ .focus_line2 {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #da3c41;
+}
+.ef2:focus ~ .focus_line2,
+.cp_iptxt2.ef2 ~ .focus_line2 {
+	left: 0;
+	width: 100%;
+	transition: 0.4s;
+}
+.ef2 ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 4px;
+	left: 0;
+	width: 100%;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: #aaaaaa;
+}
+.ef2:focus ~ label, .cp_iptxt2.ef2 ~ label {
+	font-size: 12px;
+	top: -16px;
+	transition: 0.3s;
+	color: #da3c41;
+}
+/*2*/
+/*3*/
+.cp_iptxt3 {
+	position: relative;
+	width: 90%;
+	margin: 25px 4%;
+}
+.cp_iptxt3 input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 4em;
+}
+.cp_iptxt3 input[type='text']:focus {
+	outline: none;
+}
+.ef3 {
+	padding: 4px 0 9px 58px;
+	width: 250px;
+	border: 0;
+	border-bottom: 1px solid #1b2538;
+	background-color: transparent;
+}
+.ef3 ~ .focus_line3 {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #da3c41;
+}
+.ef3 ~ .focus_line3 {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #da3c41;
+}
+.ef3:focus ~ .focus_line3,
+.cp_iptxt3.ef3 ~ .focus_line3 {
+	left: 0;
+	width: 100%;
+	transition: 0.4s;
+}
+.ef3 ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 4px;
+	left: 0;
+	width: 100%;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: #aaaaaa;
+}
+.ef3:focus ~ label, .cp_iptxt3.ef3 ~ label {
+	font-size: 12px;
+	top: -16px;
+	transition: 0.3s;
+	color: #da3c41;
+}
+/*3*/
+/*4 3列Ver*/
+.cp_iptxt4 {
+	position: relative;
+	width: 90%;
+	margin: 25px 4%;
+}
+.cp_iptxt4 input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+
+	letter-spacing: 1px;
+	padding-left: 4em;
+}
+.cp_iptxt2 input[type='text']:focus {
+	outline: none;
+}
+.ef4 {
+	padding: 4px 0;
+	border: 0;
+	border-bottom: 1px solid #1b2538;
+	background-color: transparent;
+}
+.ef4 ~ .focus_line4 {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #da3c41;
+}
+.ef4 ~ .focus_line4 {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #da3c41;
+}
+.ef4:focus ~ .focus_line4,
+.cp_iptxt2.ef2 ~ .focus_line2 {
+	left: 0;
+	width: 100%;
+	transition: 0.4s;
+}
+.ef4 ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 4px;
+	left: 0;
+	width: 100%;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: #aaaaaa;
+}
+.ef4:focus ~ label, .cp_iptxt2.ef4 ~ label {
+	font-size: 12px;
+	top: -16px;
+	transition: 0.3s;
+	color: #da3c41;
+}
+/*4*/
+
+h2 {
+color: #364e96;/*文字色*/
+padding: 0.5em 0;/*上下の余白*/
+border-top: solid 3px #364e96;/*上線*/
+border-bottom: solid 3px #364e96;/*下線*/
+}
+
+.box20 {
+    position: relative;
+    padding: 0.25em 1em;
+    margin: 2em 0;
+    top: 0;
+    background: #efefef;
+}
+.box20:before, .box20:after{ 
+    position: absolute;
+    top: 0;
+    content:'';
+    width: 10px;
+    height: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.box20:before{
+    border-left: dotted 2px #15adc1;
+    border-top: dotted 2px #15adc1;
+    border-bottom: dotted 2px #15adc1;
+    left: 0;
+}
+.box20:after{
+    border-top: dotted 2px #15adc1;
+    border-right: dotted 2px #15adc1;
+    border-bottom: dotted 2px #15adc1;
+    right: 0;
+}
+.box20 p {
+    margin: 0; 
+    padding: 0;
+}
+
+.clear {
+    clear:both;
+}
+
+.rowline {
+    width:90%;
+}
+
+.square_btn{
+    display: inline-block;
+    padding: 7px 20px;
+	border-radius: 25px;
+    text-decoration: none;
+    color: #FFF;
+    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+    background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+    transition: .4s;
+    float: right;
+    margin: 0 0 15px 0;
+}
+
+.square_btn:hover {
+    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+    background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+}
+
+.square_btn2 {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #00bcd4;
+    transition: .4s;
+  }
+
+.square_btn2:hover {
+    background: #1ec7bb;
+}

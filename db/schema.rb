@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_12_004920) do
+ActiveRecord::Schema.define(version: 2018_07_12_020257) do
 
   create_table "mst_kadai_cgrs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "pj_id", null: false
@@ -148,6 +148,13 @@ ActiveRecord::Schema.define(version: 2018_06_12_004920) do
     t.string "updt_history_tanto", limit: 256
   end
 
+  create_table "phaseitems", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "phaseitem"
+    t.string "imptitem"
+    t.string "statusitem"
+    t.string "cgritem"
+  end
+
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "shosai"
@@ -183,10 +190,11 @@ ActiveRecord::Schema.define(version: 2018_06_12_004920) do
   end
 
   create_table "trn_kadai_kanris", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "pj_id", null: false
+    t.integer "pj_id"
+    t.integer "INTEGER PRIMARY KEY AUTO_INCREMENT"
     t.integer "hojn_id", null: false
-    t.integer "menu_id", null: false
-    t.integer "kadai_s_id", null: false
+    t.integer "menu_id"
+    t.integer "kadai_s_id"
     t.string "kadai_title", null: false
     t.string "kadai_psner", null: false
     t.text "kadai_contents", null: false
@@ -215,7 +223,7 @@ ActiveRecord::Schema.define(version: 2018_06_12_004920) do
     t.datetime "kadai_inst_ymd"
     t.datetime "kadai_updt_ymd"
     t.datetime "kadai_del_ymd"
-    t.bigint "kadai_del_flag", null: false
+    t.bigint "kadai_del_flag"
     t.string "kadai_updt_id", limit: 256
     t.string "kadai_updt_s_end", limit: 256
     t.string "kadai_updt_t_end", limit: 256

@@ -1,8 +1,239 @@
-タイトル
-  <%= f.text_field :kadai_title, class:"form-control" %>
-  <br>
-内容
-  <%= f.text_area :kadai_contents, class:"form-control" %>
-  <br>
-期限
-  <%= f.text_field :kadai_limit, class:"form-control", style:"width:100px;" %>
+<!--プロジェクトID -->
+  <!--<%= f.text_field :pj_id, class:"form-control", style:"width:100px;" %>-->
+<!--法人ID -->
+  <!--<%= f.text_field :hojn_id, class:"form-control", style:"width:100px;" %> -->
+<!--メニュー管理ID-->
+  <!--<%= f.text_field :menu_id, class:"form-control", style:"width:100px;" %>-->
+<!--課題詳細ID-->
+  <!--<%= f.text_field :kadai_s_id, class:"form-control", style:"width:100px;" %>-->
+  <!--タイトル-->
+<div class="cp_iptxt2">
+  <%= f.text_field :kadai_title, class:"ef2" %>
+	<label>タイトル</label>
+	<span class="focus_line2"></span>
+</div>
+
+<!--起票者★ -->
+  <!--<%= f.text_field :kadai_psner, class:"form-control", style:"width:100px;" %> -->
+
+<!--内容★ -->
+<div class="cp_iptxt2">
+  <%= f.text_area :kadai_contents, class:"ef2", style:"resize: none; width:100%; height:100px; margin:15px 0 0 0" %>
+	<label>内容</label>
+	<span class="focus_line2"></span>
+</div>
+<!--3列Asta -->
+<table align="center" class="rowline">
+  <tr>
+    <td>
+<!--担当者-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_person, class:"ef4" %>
+	<label>担当者</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--回答期限-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_limit_str, class:"ef4" %>
+	<label>回答期限</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--フェーズ-->
+<div class="cp_iptxt3" style="width:74%">
+  <%= f.collection_select :kadai_phase, Phaseitem.all, "id", "phaseitem", {:include_blank => true}, {class: "ef3"} %>
+	<label>フェーズ</label>
+	<span class="focus_line3"></span>
+</div>
+　　</td>
+　</tr>
+</table>
+<!--3列Afin -->
+<!--3列Bsta -->
+<table align="center" class="rowline" style="margin:-50px 0 0 55px">
+  <tr>
+    <td>
+<!--重要度-->
+<div class="cp_iptxt3" style="width:74%">
+  <%= f.collection_select :kadai_impt, Phaseitem.all, "id", "imptitem", {:include_blank => true}, {class: "ef3"} %>
+	<label>重要度</label>
+	<span class="focus_line3"></span>
+</div>
+　　</td>
+    <td>
+<!--ステータス-->
+<div class="cp_iptxt3" style="width:74%">
+  <%= f.collection_select :kadai_status, Phaseitem.all, "id", "statusitem", {:include_blank => true}, {class: "ef3"} %>
+	<label>ステータス</label>
+	<span class="focus_line3"></span>
+</div>
+　　</td>
+    <td>
+<!--カテゴリ-->
+<div class="cp_iptxt3" style="width:74%">
+  <%= f.collection_select :kadai_cgr, Phaseitem.all, "id", "cgritem", {:include_blank => true}, {class: "ef3"} %>
+	<label>カテゴリ</label>
+	<span class="focus_line3"></span>
+</div>
+　　</td>
+　</tr>
+</table>
+<!--3列Bfin -->
+<!--線 -->
+<hr style="border: double 1px #364e96">
+<!--3列Csta -->
+<table align="center" class="rowline">
+  <tr>
+    <td>
+<!--対応-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try, class:"ef4" %>
+	<label>対応</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--暫定対応-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try2, class:"ef4" %>
+	<label>暫定対応</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--恒久対応-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try3, class:"ef4" %>
+	<label>恒久対応</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+　</tr>
+</table>
+<!--3列Cfin -->
+
+<!--3列Dsta -->
+<table align="center" class="rowline" style="margin:-70px 0 0 55px">
+  <tr>
+    <td>
+<!--対応期日-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try_d_str, class:"ef4" %>
+	<label>対応期日</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--暫定対応期日-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try2_d_str, class:"ef4" %>
+	<label>暫定対応期日</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--恒久対応期日-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try3_d_str, class:"ef4" %>
+	<label>恒久対応期日</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+　</tr>
+</table>
+<!--3列Dfin -->
+
+<!--3列Esta -->
+<table align="center" class="rowline">
+  <tr>
+    <td>
+<!--対応工数-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try_w, class:"ef4" %>
+	<label>対応工数</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--暫定対応工数-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try2_w, class:"ef4" %>
+	<label>暫定対応工数</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--恒久対応工数-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try3_w, class:"ef4" %>
+	<label>恒久対応工数</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+　</tr>
+</table>
+<!--3列Efin -->
+
+
+<!--3列Fsta -->
+<table align="center" class="rowline" style="margin:-70px 0 0 55px">
+  <tr>
+    <td>
+<!--開発担当-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try_p, class:"ef4" %>
+	<label>開発担当</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--暫定対応担当-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try2_p, class:"ef4" %>
+	<label>暫定対応担当</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+<!--恒久対応担当-->
+<div class="cp_iptxt4" style="width:74%">
+  <%= f.text_field :kadai_try3_p, class:"ef4" %>
+	<label>恒久対応担当</label>
+	<span class="focus_line4"></span>
+</div>
+　　</td>
+    <td>
+　</tr>
+</table>
+<!--3列Ffin -->
+<div style="width:370px; margin-left: auto">
+  <%= f.file_field :kadai_tenp, size: 10, maxlength: 15 %>
+</div>
+<!--コメント　記述者-->
+  <!--<%= f.text_field :kadai_cmt_psner, class:"form-control", style:"width:100px;" %>-->
+<!--コメント　内容-->
+  <!--<%= f.text_field :kadai_cmt_ents, class:"form-control", style:"width:100px;" %>-->
+<!--コメント　通知者-->
+  <!--<%= f.text_field :kadai_cmt_notifier, class:"form-control", style:"width:100px;" %>-->
+<!--登録年月日★-->
+  <!--<%= f.text_field :kadai_inst_ymd_str, class:"form-control", style:"width:100px;" %>-->
+<!--更新年月日-->
+  <!--<%= f.text_field :kadai_updt_ymd_str, class:"form-control", style:"width:100px;" %>-->
+<!--削除年月日-->
+  <!--<%= f.text_field :kadai_del_ymd_str, class:"form-control", style:"width:100px;" %>-->
+<!--削除フラグ-->
+  <!--<%= f.text_field :kadai_del_flag, class:"form-control", style:"width:100px;" %>-->
+<!--更新プログラムID-->
+  <!--<%= f.text_field :kadai_updt_id, class:"form-control", style:"width:100px;" %>-->
+<!--システム更新最終履歴-->
+  <!--<%= f.text_field :kadai_updt_s_end_str, class:"form-control", style:"width:100px;" %>-->
+<!--担当者更新最終履歴-->
+  <!--<%= f.text_field :kadai_updt_t_end_str, class:"form-control", style:"width:100px;" %>-->
+<!--完了フラグ-->
+  <!--<%= f.text_field :kadai_kanryo, class:"form-control", style:"width:100px;" %> -->

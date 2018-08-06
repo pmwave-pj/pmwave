@@ -17,7 +17,7 @@
       padding:20px;
       margin-bottom:20px;
       border-radius:4px;
-      border:2px solid #ddd;
+      border:2px solid #364e96;
     }
     @media (max-width: 768px) {
       h1#title{
@@ -30,19 +30,32 @@
         display:none;
       }
       .grid-th-width1{
-        width:0%;
+        width:5%;
+        text-align:center;
       }
       .grid-th-width2{
-        width:50%;
+        width:30%;
+        text-align:center;
       }
       .grid-th-width3{
-        width:15%;
+        width:20%;
+        text-align:center;
       }
       .grid-th-width4{
-        width:20%;
+        width:10%;
+        text-align:center;
       }
       .grid-th-width5{
-        width:15%;
+        width:10%;
+        text-align:center;
+      }
+      .grid-th-width6{
+        width:6%;
+        text-align:center;
+      }
+      .grid-th-width7{
+        width:19%;
+        text-align:center;
       }
       .henshu-cell a{
         display:block;
@@ -54,22 +67,36 @@
         font-size:24pt;
       }
       .grid-th-width1{
-        width:10%;
+        width:5%;
+        text-align:center;
       }
       .grid-th-width2{
-        width:55%;
+        width:30%;
+        text-align:center;
       }
       .grid-th-width3{
-        width:10%;
+        width:20%;
+        text-align:center;
       }
       .grid-th-width4{
         width:10%;
+        text-align:center;
       }
       .grid-th-width5{
-        width:15%;
+        width:10%;
+        text-align:center;
+      }
+      .grid-th-width6{
+        width:6%;
+        text-align:center;
+      }
+      .grid-th-width7{
+        width:19%;
+        text-align:center;
       }
       .henshu-cell a{
         margin-right:10px;
+        text-align:center;
       }
     }
   </style>
@@ -77,6 +104,82 @@
 <body>
 <script>
   $(function() {
+    // オオムラ修正中
+    if ($("#trn_kadai_kanri_kadai_limit_str").length)
+    {
+      $("#trn_kadai_kanri_kadai_limit_str").datepicker();
+      $("#trn_kadai_kanri_kadai_limit_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_kadai_kanri.present? %>
+      $("#trn_kadai_kanri_kadai_limit_str").val("<%= @trn_kadai_kanri.kadai_limit_str %>");
+      <% end %>
+    }
+    if ($("#trn_kadai_kanri_kadai_try_d_str").length)
+    {
+      $("#trn_kadai_kanri_kadai_try_d_str").datepicker();
+      $("#trn_kadai_kanri_kadai_try_d_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_kadai_kanri.present? %>
+      $("#trn_kadai_kanri_kadai_try_d_str").val("<%= @trn_kadai_kanri.kadai_try_d_str %>");
+      <% end %>
+    }
+    if ($("#trn_kadai_kanri_kadai_try2_d_str").length)
+    {
+      $("#trn_kadai_kanri_kadai_try2_d_str").datepicker();
+      $("#trn_kadai_kanri_kadai_try2_d_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_kadai_kanri.present? %>
+      $("#trn_kadai_kanri_kadai_try2_d_str").val("<%= @trn_kadai_kanri.kadai_try2_d_str %>");
+      <% end %>
+    }
+    if ($("#trn_kadai_kanri_kadai_try3_d_str").length)
+    {
+      $("#trn_kadai_kanri_kadai_try3_d_str").datepicker();
+      $("#trn_kadai_kanri_kadai_try3_d_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_kadai_kanri.present? %>
+      $("#trn_kadai_kanri_kadai_try3_d_str").val("<%= @trn_kadai_kanri.kadai_try3_d_str %>");
+      <% end %>
+    }
+    if ($("#trn_kadai_kanri_kadai_inst_ymd_str").length)
+    {
+      $("#trn_kadai_kanri_kadai_inst_ymd_str").datepicker();
+      $("#trn_kadai_kanri_kadai_inst_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_kadai_kanri.present? %>
+      $("#trn_kadai_kanri_kadai_inst_ymd_str").val("<%= @trn_kadai_kanri.kadai_inst_ymd_str %>");
+      <% end %>
+    }
+    if ($("#trn_kadai_kanri_kadai_updt_ymd_str").length)
+    {
+      $("#trn_kadai_kanri_kadai_updt_ymd_str").datepicker();
+      $("#trn_kadai_kanri_kadai_updt_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_kadai_kanri.present? %>
+      $("#trn_kadai_kanri_kadai_updt_ymd_str").val("<%= @trn_kadai_kanri.kadai_updt_ymd_str %>");
+      <% end %>
+    }
+    if ($("#trn_kadai_kanri_kadai_del_ymd_str").length)
+    {
+      $("#trn_kadai_kanri_kadai_del_ymd_str").datepicker();
+      $("#trn_kadai_kanri_kadai_del_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_kadai_kanri.present? %>
+      $("#trn_kadai_kanri_kadai_del_ymd_str").val("<%= @trn_kadai_kanri.kadai_del_ymd_str %>");
+      <% end %>
+    }
+    if ($("#trn_kadai_kanri_kadai_updt_s_end_str").length)
+    {
+      $("#trn_kadai_kanri_kadai_updt_s_end_str").datepicker();
+      $("#trn_kadai_kanri_kadai_updt_s_end_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_kadai_kanri.present? %>
+      $("#trn_kadai_kanri_kadai_updt_s_end_str").val("<%= @trn_kadai_kanri.kadai_updt_s_end_str %>");
+      <% end %>
+    }
+    if ($("#trn_kadai_kanri_kadai_updt_t_end_str").length)
+    {
+      $("#trn_kadai_kanri_kadai_updt_t_end_str").datepicker();
+      $("#trn_kadai_kanri_kadai_updt_t_end_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_kadai_kanri.present? %>
+      $("#trn_kadai_kanri_kadai_updt_t_end_str").val("<%= @trn_kadai_kanri.kadai_updt_t_end_str %>");
+      <% end %>
+    }
+    
+    
+    // オオムラ修正中
     if ($("#trn_task_detail_kaishiyotei_ymd").length)
     {
       $("#trn_task_detail_kaishiyotei_ymd").datepicker();
@@ -150,6 +253,19 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
+    <!-- オオムラ修正中 -->
+    
+        <% if @trn_kadai_kanri.present? && @trn_kadai_kanri.errors.present? %>
+            <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
+              <ul>
+                <% @trn_kadai_kanri.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %> 
+    
+    <!-- オオムラ修正中 -->
         <% if @task.present? && @task.errors.present? %>
             <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
               <ul>

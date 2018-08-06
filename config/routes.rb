@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get "trn_kadai_kanris/index"
   get "trn_kadai_kanris/show"
   get "trn_kadai_kanris/new"
+  get "trn_kadai_kanris/edit"
   post "trn_kadai_kanris/index"
 
   get "kadai_itiransyousais/index"
