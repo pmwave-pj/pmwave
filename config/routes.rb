@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   #アプリケーションのルートディレクトリのページを決定
   #root to: "tasks#index"
   root to: "sessions#new"
+  resources :pj_tops, only: [:index]
+  resources :schedules, only: [:index]
   resources :mst_users, only: [:index, :show, :new, :edit, :create, :update,:destroy]
   resources :sessions, only: [:new, :create, :destroy]
   #Tasksコントローラーの7つのアクションを作成する
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   resources :trn_budget_details
   resources :trn_performance_details
   resources :trn_manhr_details
+  resources :mst_groups
   
 #ゆーた始まり  
   resources :trn_kadai_kanris

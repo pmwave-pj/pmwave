@@ -1,0 +1,70 @@
+<h2>一覧画面</h2>
+<%= link_to "グループを登録", new_mst_group_path, class:"pull-right" %>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th class="grid-th-width1" ; colspan="4"></th>
+    <th class="grid-th-width1" ; colspan="2">共通管理</th>
+    <th class="grid-th-width1" ; colspan="2">ｺﾐｭﾆｹｰｼｮﾝ管理</th>
+    <th class="grid-th-width1" ; colspan="1">進捗管理</th>
+    <th class="grid-th-width1" ; colspan="2">課題/要件/品質管理</th>
+    <th class="grid-th-width1" ; colspan="2">予算管理</th>
+    <th class="grid-th-width1" ; colspan="2">人材管理</th>
+    <th class="grid-th-width1" ; colspan="2">操作</th>
+  </tr>
+  <tr>
+    <th class="grid-th-width1">No</th>
+    <th class="grid-th-width1">PJID</th>
+    <th class="grid-th-width1">ｸﾞﾙｰﾌﾟID</th>
+    <th class="grid-th-width2">ｸﾞﾙｰﾌﾟ名</th>  
+    <th class="grid-th-width1">ｱｶｳﾝﾄ<br>管理</th>
+    <th class="grid-th-width1">PJ管理</th>
+    <th class="grid-th-width1">TOP<br>ﾒｯｾｰｼﾞ</th>
+    <th class="grid-th-width1">ｺﾐｭﾆｹｰｼｮﾝ管理</th>
+    <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width1">承認</th>
+    <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width1">承認</th>
+    <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width1">承認</th>
+    <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width1">削除</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @groups.each do |group| %>
+      <tr style="height:48px;">
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= @grid_no.to_s %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= group.pj_id %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= group.group_id %></td>
+        <td style="vertical-align: middle"><%= link_to group.group_nm, group %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.account_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.pj_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.top_msg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.com_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.progress_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.trq_mg_approval_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.trq_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.budget_mg_approval_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.budget_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.talent_mg_approval_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= flg_check_tag(group.talent_mg_edit_flg) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= link_to "編集", edit_mst_group_path(group) %> </td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= link_to "削除", mst_group_path(group), method:"delete" , data: { confirm: '本当に削除してよろしいですか？' } %> </td>
+      </tr>
+      <% @grid_no = @grid_no + 1 %>
+  <% end %>
+  <tbody>
+  </table>
+<div style="text-align: center">
+  <%= will_paginate @groups,
+                    renderer: BootstrapPagination::Rails,
+                    previous_label: "前へ",
+                    next_label: "次へ",
+                    inner_window: 1,
+                    outer_window: 0,
+                    class:"pagination-sm"
+  %>
+</div>

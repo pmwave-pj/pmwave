@@ -53,12 +53,17 @@ class MstUsersController < ApplicationController
     #エラーがない場合
     #--------------
 
-       #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
+       #登録者のユーザID
        @user.inst_user_id = @current_user.id
-       #@user.hojn_id = 0
-       #@user.pj_id = 0
 
-       #とりあえずべた書き。現在時刻を取得する
+       #↓とりあえずべた書き。本当はマスタ管理し、選択出来るようにしたい
+       @user.hojn_id = 0
+       @user.pj_id = 0
+       @user.timezone = 0
+       @user.region = 0
+       @user.language = 0
+
+       #現在時刻を取得する。
        target = DateTime.now
        @user.inst_ymd = target
        @user.del_flg = false
@@ -85,8 +90,11 @@ class MstUsersController < ApplicationController
     #ログインチェック
     signed_check
 
-    @user = MstUser.new(user_params)
+    @user = MstUser.find(params[:id])
     @current_user = MstUser.find(current_user.id)
+
+    #レコードをPOSTされた値(入力値)で上書き
+    @user.assign_attributes(user_params)
 
     #エラーチェック
     if @user.valid?
@@ -94,13 +102,13 @@ class MstUsersController < ApplicationController
     #エラーがない場合
     #--------------
 
-       #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
+       #ログインユーザの情報を取得し登録
        @user.updt_history_tanto = @current_user.id
        @user.updt_history = 'user_update'
 
        #とりあえずべた書き。現在時刻を取得する
        target = DateTime.now
-       @user.inst_ymd = target
+       @user.updt_ymd = target
        @user.del_flg = false
 
        #更新（エラーチェックを行わない）

@@ -1,42 +1,46 @@
-タスク
+タスク名
   <%= f.text_field :task_title, class:"form-control" %>
   <br>
+  
 タスク詳細
   <%= f.text_area :task_detail, class:"form-control" %>
   <br>
-担当者
-  <%= f.text_field :tanto_user_id, class:"form-control", style:"width:100px;" %>
-  <br>
   
-関連工程
-  <%= f.text_field :relation_step_id, class:"form-control", style:"width:100px;" %>
+担当者：
+  <%= f.collection_select :tanto_user_id,MstUser.all.where(del_flg: "false"),:user_id,:user_nm,:include_blank => true, class:"form-control", style:"width:100px;" %>
   <br>
-  
-親工程フラグ
-  <%= f.text_field :step_ownership_flg, class:"form-control", style:"width:100px;" %>
   <br>
-  
-進捗率
-  <%= f.text_field :progress_rate, class:"form-control", style:"width:100px;" %>
-  <br>
-  
-開始予定日
-  <%= f.text_field :kaishiyotei_ymd, class:"form-control", style:"width:100px;" %>
 
-終了予定日
-  <%= f.text_field :syuryouyotei_ymd, class:"form-control", style:"width:100px;" %>
-  <br>
-作業開始日
-  <%= f.text_field :start_ymd, class:"form-control", style:"width:100px;" %>
+関連工程：
+  <%= f.collection_select :relation_step_id,TrnTaskDetail.all.where(del_flg: "false"),:task_id,:task_title,:include_blank => true, class:"form-control", style:"width:100px; display: inline-block;" %>
 
-作業完了日
-  <%= f.text_field :end_ymd, class:"form-control", style:"width:100px;" %>
+　親工程フラグチェック：
+  <%= f.check_box :step_ownership_flg,  style:"width:30px; display: inline-block;" %>
+  <br>
+  <br>
+
+進捗率：
+<!--スライダーの％を表示する領域-->
+  <%= f.text_field :progress_rate,style:"width:30px; text-align:center" ,readonly: true %> %
+<!--スライダーを表示する領域-->
+  <div id="slider" style="width:100px; margin-left: 10px; display: inline-block;"></div>
+
+　完了チェック：
+  <%= f.check_box :end_flg,style:"width:30px;" %>
+  <br>  
   <br>  
 
-完了フラグ
-  <%= f.text_field :end_flg, class:"form-control", style:"width:100px;" %>
+開始予定日：
+  <%= f.text_field :kaishiyotei_ymd_str, class:"form-control", style:"width:100px; display: inline-block;",autocomplete: 'off' %>
+
+　～　終了予定日：
+  <%= f.text_field :syuryouyotei_ymd_str, class:"form-control", style:"width:100px; display: inline-block;",autocomplete: 'off' %>
+  <br>
+  <br>
+作業開始日：
+  <%= f.text_field :start_ymd_str, class:"form-control", style:"width:100px;display: inline-block;",autocomplete: 'off' %>
+
+　～　作業完了日：
+  <%= f.text_field :end_ymd_str, class:"form-control", style:"width:100px;display: inline-block;",autocomplete: 'off' %>
   <br>  
 
-登録者
-  <%= f.text_field :inst_user_id, class:"form-control", style:"width:100px;" %>
-  <br>

@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new
     if signed_in?
       #TOPページにリダイレクト
-      redirect_to trn_task_details_path
+      redirect_to pj_tops_path
     else
     end
   end
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
                   #.where(del_flg: "false")←本当は削除されたユーザではログインをさせて区内が記述がわからない。
     if user && user.authenticate(params[:session][:password])
       sign_in user
-      redirect_to trn_task_details_path
+      redirect_to pj_tops_path
     else
       render 'new'
     end

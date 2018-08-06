@@ -1,7 +1,10 @@
 class TrnTaskDetail < ApplicationRecord
  
   #期限のアクセサー（画面入力用）
-  attr_accessor :end_ymd
+  attr_accessor :kaishiyotei_ymd_str
+  attr_accessor :syuryouyotei_ymd_str
+  attr_accessor :start_ymd_str
+  attr_accessor :end_ymd_str
   
   #kanryo（文字列）の値がある場合、絞り込みを行う
   scope :by_kanryo, ->(end_flg){
@@ -19,10 +22,10 @@ class TrnTaskDetail < ApplicationRecord
  
    validate :check_task_title
    validate :check_task_detail
-   validate :check_kaishiyotei_ymd
-   validate :check_syuryouyotei_ymd
-   validate :check_start_ymd
-   validate :check_end_ymd
+   validate :check_kaishiyotei_ymd_str
+   validate :check_syuryouyotei_ymd_str
+   validate :check_start_ymd_str
+   validate :check_end_ymd_str
 
  
   private
@@ -30,9 +33,9 @@ class TrnTaskDetail < ApplicationRecord
   #task_titleのバリデーション
   def check_task_title
     if !task_title.present?
-      errors.add("タスク","を入力してください")
+      errors.add("タスク名","を入力してください")
     elsif task_title.length > 20
-      errors.add("タスク","は20文字以内で入力してください")
+      errors.add("タスク名","は20文字以内で入力してください")
     end
   end
  
@@ -44,29 +47,29 @@ class TrnTaskDetail < ApplicationRecord
   end
  
   #kaishiyotei_ymdのバリデーション
-  def check_kaishiyotei_ymd
-    if end_ymd.present? && !is_yyyymmdd?(kaishiyotei_ymd)
+  def check_kaishiyotei_ymd_str
+    if kaishiyotei_ymd_str.present? && !is_yyyymmdd?(kaishiyotei_ymd_str)
       errors.add("開始予定日","のフォーマットが不正です")
     end
   end
 
   #syuryouyotei_ymdのバリデーション
-  def check_syuryouyotei_ymd
-    if end_ymd.present? && !is_yyyymmdd?(syuryouyotei_ymd)
+  def check_syuryouyotei_ymd_str
+    if syuryouyotei_ymd_str.present? && !is_yyyymmdd?(syuryouyotei_ymd_str)
       errors.add("終了予定日","のフォーマットが不正です")
     end
   end
 
   #start_ymdのバリデーション
-  def check_start_ymd
-    if end_ymd.present? && !is_yyyymmdd?(start_ymd)
+  def check_start_ymd_str
+    if start_ymd_str.present? && !is_yyyymmdd?(start_ymd_str)
       errors.add("作業開始日","のフォーマットが不正です")
     end
   end
 
   #end_ymdのバリデーション
-  def check_end_ymd
-    if end_ymd.present? && !is_yyyymmdd?(end_ymd)
+  def check_end_ymd_str
+    if end_ymd_str.present? && !is_yyyymmdd?(end_ymd_str)
       errors.add("作業完了日","のフォーマットが不正です")
     end
   end

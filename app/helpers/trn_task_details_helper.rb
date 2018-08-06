@@ -12,14 +12,4 @@ module TrnTaskDetailsHelper
     #文字列をそのままHTMLタグとして出力
     result.html_safe
   end
- 
-  #期限（日付型）をYYYY/MM/DD形式の文字列で表示する
-  def kigen_format(end_ymd)
-    result = ""
-    if end_ymd.present?
-      result = end_ymd.strftime("%Y/%m/%d")
-    end
-    result
-  end
- 
 end

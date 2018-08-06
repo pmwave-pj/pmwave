@@ -69,30 +69,52 @@
       .grid-th-width1{
         width:5%;
         text-align:center;
+        font-size:9pt;
       }
       .grid-th-width2{
-        width:30%;
+        width:10%;
         text-align:center;
+        font-size:9pt;
       }
       .grid-th-width3{
-        width:20%;
+        width:15%;
         text-align:center;
+        font-size:9pt;
       }
       .grid-th-width4{
-        width:10%;
+        width:20%;
         text-align:center;
+        font-size:9pt;
       }
       .grid-th-width5{
-        width:10%;
+        width:25%;
         text-align:center;
+        font-size:9pt;
       }
       .grid-th-width6{
-        width:6%;
+        width:30%;
         text-align:center;
+        font-size:9pt;
       }
       .grid-th-width7{
-        width:19%;
+        width:35%;
         text-align:center;
+        font-size:9pt;
+      }
+      .grid-th-width8{
+        width:40%;
+        text-align:center;
+        font-size:9pt;
+      }
+      .grid-th-width9{
+        width:45%;
+        text-align:center;
+        font-size:9pt;
+      }
+      .grid-th-width10{
+        width:50%;
+        text-align:center;
+        font-size:9pt;
       }
       .henshu-cell a{
         margin-right:10px;
@@ -104,7 +126,6 @@
 <body>
 <script>
   $(function() {
-    // オオムラ修正中
     if ($("#trn_kadai_kanri_kadai_limit_str").length)
     {
       $("#trn_kadai_kanri_kadai_limit_str").datepicker();
@@ -177,44 +198,66 @@
       $("#trn_kadai_kanri_kadai_updt_t_end_str").val("<%= @trn_kadai_kanri.kadai_updt_t_end_str %>");
       <% end %>
     }
-    
-    
-    // オオムラ修正中
-    if ($("#trn_task_detail_kaishiyotei_ymd").length)
+    if ($("#trn_task_detail_kaishiyotei_ymd_str").length)
     {
-      $("#trn_task_detail_kaishiyotei_ymd").datepicker();
-      $("#trn_task_detail_kaishiyotei_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      $("#trn_task_detail_kaishiyotei_ymd_str").datepicker();
+      $("#trn_task_detail_kaishiyotei_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#trn_task_detail_kaishiyotei_ymd").val("<%= @task.end_ymd %>");
+      $("#trn_task_detail_kaishiyotei_ymd_str").val("<%= @task.kaishiyotei_ymd_str %>");
       <% end %>
     }
-    if ($("#trn_task_detail_syuryouyotei_ymd").length)
+    if ($("#trn_task_detail_syuryouyotei_ymd_str").length)
     {
-      $("#trn_task_detail_syuryouyotei_ymd").datepicker();
-      $("#trn_task_detail_syuryouyotei_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      $("#trn_task_detail_syuryouyotei_ymd_str").datepicker();
+      $("#trn_task_detail_syuryouyotei_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#trn_task_detail_syuryouyotei_ymd").val("<%= @task.end_ymd %>");
+      $("#trn_task_detail_syuryouyotei_ymd_str").val("<%= @task.syuryouyotei_ymd_str %>");
       <% end %>
     }
-    if ($("#trn_task_detail_start_ymd").length)
+    if ($("#trn_task_detail_start_ymd_str").length)
     {
-      $("#trn_task_detail_start_ymd").datepicker();
-      $("#trn_task_detail_start_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      $("#trn_task_detail_start_ymd_str").datepicker();
+      $("#trn_task_detail_start_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#trn_task_detail_start_ymd").val("<%= @task.end_ymd %>");
+      $("#trn_task_detail_start_ymd_str").val("<%= @task.start_ymd_str %>");
       <% end %>
     }
-    if ($("#trn_task_detail_end_ymd").length)
+    if ($("#trn_task_detail_end_ymd_str").length)
     {
-      $("#trn_task_detail_end_ymd").datepicker();
-      $("#trn_task_detail_end_ymd").datepicker("option", "dateFormat", 'yymmdd');
+      $("#trn_task_detail_end_ymd_str").datepicker();
+      $("#trn_task_detail_end_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
       <% if @task.present? %>
-      $("#trn_task_detail_end_ymd").val("<%= @task.end_ymd %>");
+      $("#trn_task_detail_end_ymd_str").val("<%= @task.end_ymd_str %>");
       <% end %>
     }
     if ($(".alert").length)
     {
       $(".alert").show();
+    }
+    if ($("#slider").length)
+    {
+      <% if @task.present? %>
+        <% if @task.progress_rate.nil? %>
+           val = 0
+        <% else %>
+           val = <%= @task.progress_rate %>
+        <% end %>
+      <% end %>
+      $("#slider").slider({
+       min: 0,
+       max: 100,
+       step: 10,
+       value: val ,
+       animate: 'fast',
+       slide: function(event, ui){
+          $('#trn_task_detail_progress_rate').html(ui.value);
+          $('#trn_task_detail_progress_rate').val(ui.value);
+        },
+       //スライダーの初期化時に、その値をテキストボックスにも反映
+       create: function(event, ui) {
+          $('#trn_task_detail_progress_rate').val($(this).slider('option', 'value'));
+        }
+      })
     }
   });
 </script>
@@ -224,7 +267,7 @@
       <div class="col-xs-12">
         <h1 id="title">
           <% if signed_in? %>
-          <%= link_to "PMwave (Ruby on Rails)", trn_task_details_path%>
+          <%= link_to "PMwave (Ruby on Rails)", pj_tops_path%>
           <% else %>
           PMwave (Ruby on Rails)
           <% end %>
@@ -234,14 +277,16 @@
           <% if signed_in? %>
           <li><%= link_to 'ユーザ一覧', mst_users_path %></li>
           <li><%= link_to 'アカウント作成', signup_path %></li>
+          <li><%= link_to 'グループ一覧', mst_groups_path %></li>
           <li><%= link_to 'プロフィール', current_user %></li>
           <li><%= link_to 'タスク一覧', trn_task_details_path %></li>
           <li><%= link_to '予算一覧', trn_budget_details_path %></li>
           <li><%= link_to '予算実績一覧', trn_performance_details_path %></li>
           <li><%= link_to '工数一覧', trn_manhr_details_path %></li>
           <li><%= link_to '課題一覧', trn_kadai_kanris_path %></li>
-          <li><%= link_to '品質管理（未実装）', top_hnsts_path %></li>
-          <li><%= link_to '要件管理（未実装）', top_yokens_path %></li>
+          <li><%= link_to '品質管理（未）', top_hnsts_path %></li>
+          <li><%= link_to '要件管理（未）', top_yokens_path %></li>
+          <li><%= link_to 'スケジュール', schedules_path %></li>
           <li><%= link_to 'ログアウト', signout_path, method: :delete %></li>
           <% else %>
           <% end %>
@@ -253,8 +298,6 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-    <!-- オオムラ修正中 -->
-    
         <% if @trn_kadai_kanri.present? && @trn_kadai_kanri.errors.present? %>
             <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
               <ul>
@@ -264,8 +307,6 @@
               </ul>
             </div>
         <% end %> 
-    
-    <!-- オオムラ修正中 -->
         <% if @task.present? && @task.errors.present? %>
             <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
               <ul>
@@ -279,6 +320,15 @@
             <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
               <ul>
                 <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <% if @group.present? && @group.errors.present? %>
+            <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
+              <ul>
+                <% @group.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
                 <% end %>
               </ul>

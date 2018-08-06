@@ -19,7 +19,7 @@
     </tr>
     <tr>
       <th>役割（ロール）</th>
-      <td><%= @user.group_id %></td>
+      <td><%= group_nm_tag(@user.group_id) %></td>
     </tr>
     <tr>
       <th>法人コード</th>
@@ -47,11 +47,11 @@
     </tr>
     <tr>
       <th>誕生日</th>
-      <td><%= @user.birthday_ymd %></td>
+      <td><%= kigen_format(@user.birthday_ymd)%></td>
     </tr>
     <tr>
       <th>入社日</th>
-      <td><%= @user.entry_ymd %></td>
+      <td><%= kigen_format(@user.entry_ymd)%></td>
     </tr>
     <tr>
       <th>Twitter</th>
@@ -110,8 +110,21 @@
       <td><%= @user.notices %></td>
     </tr>
     <tr>
-      <th>登録者ID</th>
-      <td><%= @user.inst_user_id %></td>
+      <th>登録者</th>
+      <td><%= user_nm_tag(@user.inst_user_id) %></td>
+    </tr>
+    <tr>
+      <th>登録日時</th>
+      <td><%= dt_format(@user.inst_ymd) %></td>
+    </tr>
+
+    <tr>
+      <th>最終更新者</th>
+      <td><%= user_nm_tag(@user.updt_history_tanto) %></td>
+    </tr>
+    <tr>
+      <th>最終更新日時</th>
+      <td><%= dt_format(@user.updt_ymd) %></td>
     </tr>
 
 </table>

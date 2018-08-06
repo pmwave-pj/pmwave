@@ -9,7 +9,7 @@ class TrnTaskDetailsController < ApplicationController
         .by_kanryo(params[:end_flg])
         .where(del_flg: "false")
         .paginate(page: params[:page], per_page: 10)
-        .order('task_id asc')
+        .order('task_id desc')
      
       #No列の開始No
       @grid_no = 1
@@ -56,8 +56,17 @@ class TrnTaskDetailsController < ApplicationController
       @task = TrnTaskDetail.find(params[:id])
      
       #期限に値がある場合、日付型から文字列へ変換
+      if @task.kaishiyotei_ymd.present?
+        @task.kaishiyotei_ymd_str = @task.kaishiyotei_ymd.strftime("%Y%m%d")
+      end
+      if @task.syuryouyotei_ymd.present?
+        @task.syuryouyotei_ymd_str = @task.syuryouyotei_ymd.strftime("%Y%m%d")
+      end
+      if @task.start_ymd.present?
+        @task.start_ymd_str = @task.start_ymd.strftime("%Y%m%d")
+      end
       if @task.end_ymd.present?
-        @task.end_ymd = @task.end_ymd.strftime("%Y%m%d")
+        @task.end_ymd_str = @task.end_ymd.strftime("%Y%m%d")
       end
      
     end
@@ -76,23 +85,49 @@ class TrnTaskDetailsController < ApplicationController
         #--------------
         #エラーがない場合
         #--------------
-        if @task.end_ymd.present?
+        if @task.kaishiyotei_ymd_str.present?
+           @task.kaishiyotei_ymd = Date.new(
+            @task.kaishiyotei_ymd_str[0..3].to_i,
+            @task.kaishiyotei_ymd_str[4..5].to_i,
+            @task.kaishiyotei_ymd_str[6..7].to_i)
+        end
+        if @task.syuryouyotei_ymd_str.present?
+           @task.syuryouyotei_ymd = Date.new(
+            @task.syuryouyotei_ymd_str[0..3].to_i,
+            @task.syuryouyotei_ymd_str[4..5].to_i,
+            @task.syuryouyotei_ymd_str[6..7].to_i)
+        end
+        if @task.start_ymd_str.present?
+           @task.start_ymd = Date.new(
+            @task.start_ymd_str[0..3].to_i,
+            @task.start_ymd_str[4..5].to_i,
+            @task.start_ymd_str[6..7].to_i)
+        end
+        if @task.end_ymd_str.present?
            @task.end_ymd = Date.new(
-            @task.end_ymd[0..3].to_i,
-            @task.end_ymd[4..5].to_i,
-            @task.end_ymd[6..7].to_i)
+            @task.end_ymd_str[0..3].to_i,
+            @task.end_ymd_str[4..5].to_i,
+            @task.end_ymd_str[6..7].to_i)
         end
         #完了フラグをセットする。未入力の場合でもfalseでセットする
-        if @task.end_flg == true
-          else
-           @task.end_flg = false
+        if @task.progress_rate == 100
+          @task.end_flg = true
+        elsif @task.progress_rate < 100
+          @task.end_flg = false
+        elsif @task.progress_rate < 100 && @task.progress_rate == true
+          @task.end_flg = false
+        elsif
+          @task.end_flg = false
         end
         #親工程フラグをセットする。未入力の場合でもfalseでセットする
-        if @task.step_ownership_flg == true
-          else
-           @task.step_ownership_flg = false
+        #テスト中
+        if !@task.relation_step_id?
+          @task.step_ownership_flg = true
+        elsif @task.step_ownership_flg == true
+        elsif
+          @task.step_ownership_flg = false
         end
-        #ここの記述は大丈夫そう
+        #ログインユーザ情報の取得
         @user = MstUser.find(current_user.id)
         #↓とりあえずべた書き。ログインユーザの情報を取得
         @task.inst_user_id = @user.user_id
@@ -100,7 +135,7 @@ class TrnTaskDetailsController < ApplicationController
         @task.pj_id = @user.pj_id
 
         #とりあえずべた書き。現在時刻を取得する
-        target = DateTime.now
+        target = DateTime.current
         @task.inst_ymd = target
         @task.del_flg = false
 
@@ -109,7 +144,7 @@ class TrnTaskDetailsController < ApplicationController
         @task.save(validate:false)
      
         #フラッシュ（一度きりのセッション）にメッセージを格納
-        flash[:msg] = "登録しました。"
+        flash[:msg] = "タスク名：#{@task.task_title} （タスクID：#{@task.task_id} ）を登録しました。"
      
         #一覧画面へリダイレクト
         redirect_to trn_task_details_path
@@ -140,31 +175,57 @@ class TrnTaskDetailsController < ApplicationController
         #--------------
         #エラーがない場合
         #--------------
-        if @task.end_ymd.present?
+        if @task.kaishiyotei_ymd_str.present?
+           @task.kaishiyotei_ymd = Date.new(
+            @task.kaishiyotei_ymd_str[0..3].to_i,
+            @task.kaishiyotei_ymd_str[4..5].to_i,
+            @task.kaishiyotei_ymd_str[6..7].to_i)
+        end
+        if @task.syuryouyotei_ymd_str.present?
+           @task.syuryouyotei_ymd = Date.new(
+            @task.syuryouyotei_ymd_str[0..3].to_i,
+            @task.syuryouyotei_ymd_str[4..5].to_i,
+            @task.syuryouyotei_ymd_str[6..7].to_i)
+        end
+        if @task.start_ymd_str.present?
+           @task.start_ymd = Date.new(
+            @task.start_ymd_str[0..3].to_i,
+            @task.start_ymd_str[4..5].to_i,
+            @task.start_ymd_str[6..7].to_i)
+        end
+        if @task.end_ymd_str.present?
            @task.end_ymd = Date.new(
-            @task.end_ymd[0..3].to_i,
-            @task.end_ymd[4..5].to_i,
-            @task.end_ymd[6..7].to_i)
+            @task.end_ymd_str[0..3].to_i,
+            @task.end_ymd_str[4..5].to_i,
+            @task.end_ymd_str[6..7].to_i)
         end
         #完了フラグをセットする。未入力の場合でもfalseでセットする
-        if @task.end_flg == true
-          else
-           @task.end_flg = false
+        if @task.progress_rate == 100
+          @task.end_flg = true
+        elsif @task.progress_rate < 100
+          @task.end_flg = false
+        elsif @task.progress_rate < 100 && @task.progress_rate == true
+          @task.end_flg = false
+        elsif
+          @task.end_flg = false
         end
         #親工程フラグをセットする。未入力の場合でもfalseでセットする
-        if @task.step_ownership_flg == true
-          else
-           @task.step_ownership_flg = false
+        #テスト中
+        if !@task.relation_step_id?
+          @task.step_ownership_flg = true
+        elsif @task.step_ownership_flg == true
+        elsif
+          @task.step_ownership_flg = false
         end
 
-        #ここの記述は大丈夫そう
+        #ログインユーザ情報の取得
         @user = MstUser.find(current_user.id)
         #↓とりあえずべた書き。ログインユーザの情報を取得
         @task.updt_history_tanto = @user.user_id
         @task.updt_history = 'task_update'
 
         #とりあえずべた書き。現在時刻を取得する
-        target = DateTime.now
+        target = DateTime.current
         @task.updt_ymd = target
         @task.del_flg = false
      
@@ -172,7 +233,7 @@ class TrnTaskDetailsController < ApplicationController
         @task.save(validate:false)
      
         #フラッシュ（一度きりのセッション）にメッセージを格納
-        flash[:msg] = "編集しました。"
+        flash[:msg] = "タスク名：#{@task.task_title} （タスクID：#{@task.task_id} ）を編集しました。"
      
         #一覧画面へリダイレクト
         redirect_to trn_task_details_path
@@ -198,11 +259,11 @@ class TrnTaskDetailsController < ApplicationController
     
     #削除処理（論理削除）
     @task.del_flg = true
-    target = DateTime.now
+    target = DateTime.current
     @task.updt_ymd = target
     @task.del_ymd = target
 
-    #ここの記述は大丈夫そう
+    #ログインユーザ情報の取得
     @user = MstUser.find(current_user.id)
 
     #↓とりあえずべた書き。ログインユーザの情報を取得
@@ -214,7 +275,7 @@ class TrnTaskDetailsController < ApplicationController
 
  
     #フラッシュ（一度きりのセッション）にメッセージを格納
-    flash[:msg] = "削除しました。"
+    flash[:msg] = "タスク名：#{@task.task_title} （タスクID：#{@task.task_id} ）を削除しました。"
  
     #呼び出し元URLへリダイレクト
     redirect_to request.referer
@@ -230,13 +291,17 @@ class TrnTaskDetailsController < ApplicationController
     #idでTasksテーブルを取得
     @task = TrnTaskDetail.find(params[:id])
 
-    #kanryoにtrueをセット
+    #end_flgにtrueをセット
     @task.end_flg = true
- 
-    target = DateTime.now
-    @task.updt_ymd = target
 
-    #ここの記述は大丈夫そう
+    #progress_rateに100をセット
+    @task.progress_rate = 100
+ 
+    target = DateTime.current
+    @task.updt_ymd = target
+    @task.end_ymd = target
+
+    #ログインユーザ情報の取得
     @user = MstUser.find(current_user.id)
 
     #↓とりあえずべた書き。ログインユーザの情報を取得
@@ -245,6 +310,9 @@ class TrnTaskDetailsController < ApplicationController
 
     #更新処理（update文発行）
     @task.save
+
+    #フラッシュ（一度きりのセッション）にメッセージを格納
+    flash[:msg] = "タスク名：#{@task.task_title} （タスクID：#{@task.task_id} ）を完了しました。"
  
     #呼び出し元URLへリダイレクト
     redirect_to request.referer
@@ -267,14 +335,14 @@ class TrnTaskDetailsController < ApplicationController
       params.require(:trn_task_detail).permit(
         :task_title,
         :task_detail,
-        :end_ymd,
         :tanto_user_id, 
         :relation_step_id, 
         :step_ownership_flg, 
         :progress_rate, 
-        :kaishiyotei_ymd, 
-        :syuryouyotei_ymd, 
-        :start_ymd, 
+        :kaishiyotei_ymd_str, 
+        :syuryouyotei_ymd_str, 
+        :start_ymd_str, 
+        :end_ymd_str,
         :end_flg,
         :inst_user_id,
         :hojn_id,
