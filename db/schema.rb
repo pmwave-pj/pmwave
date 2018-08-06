@@ -215,11 +215,10 @@ ActiveRecord::Schema.define(version: 2018_07_31_004721) do
   end
 
   create_table "trn_kadai_kanris", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "pj_id"
-    t.integer "INTEGER PRIMARY KEY AUTO_INCREMENT"
+    t.integer "pj_id", null: false
     t.integer "hojn_id", null: false
-    t.integer "menu_id"
-    t.integer "kadai_s_id"
+    t.integer "menu_id", null: false
+    t.integer "kadai_s_id", null: false
     t.string "kadai_title", null: false
     t.string "kadai_psner", null: false
     t.text "kadai_contents", null: false
@@ -248,7 +247,7 @@ ActiveRecord::Schema.define(version: 2018_07_31_004721) do
     t.datetime "kadai_inst_ymd"
     t.datetime "kadai_updt_ymd"
     t.datetime "kadai_del_ymd"
-    t.bigint "kadai_del_flag"
+    t.bigint "kadai_del_flag", null: false
     t.string "kadai_updt_id", limit: 256
     t.string "kadai_updt_s_end", limit: 256
     t.string "kadai_updt_t_end", limit: 256
