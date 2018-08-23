@@ -190,25 +190,21 @@ ActiveRecord::Schema.define(version: 2018_07_31_004721) do
   end
 
   create_table "trn_budget_details", primary_key: "bg_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "pj_id", null: false
-    t.bigint "subpj_id", null: false
-    t.bigint "team_id", null: false
-    t.bigint "pj_name", null: false
-    t.bigint "subpj_name", null: false
-    t.bigint "team_name", null: false
     t.string "bg_title", limit: 256
     t.bigint "bg_kind", null: false
-    t.string "bg_detail", limit: 256, null: false
+    t.text "bg_detail"
     t.integer "bg_unit_price", null: false
     t.integer "bg_quantity", limit: 1
     t.bigint "bg_total_price"
     t.string "file", limit: 256
-    t.string "bg_remarks", limit: 256
-    t.bigint "inst_user_id", null: false
-    t.datetime "inst_ymd", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.text "bg_remarks"
+    t.integer "inst_user_id", null: false
+    t.integer "hojn_id", null: false
+    t.integer "pj_id", null: false
+    t.datetime "inst_ymd", null: false
     t.datetime "updt_ymd", default: -> { "CURRENT_TIMESTAMP" }
-    t.datetime "del_ymd", default: -> { "CURRENT_TIMESTAMP" }
-    t.bigint "del_flg", null: false
+    t.datetime "del_ymd"
+    t.boolean "del_flg", default: false, null: false
     t.string "updt_pgm_id", limit: 256
     t.string "updt_history", limit: 256
     t.string "updt_history_tanto", limit: 256
@@ -256,20 +252,26 @@ ActiveRecord::Schema.define(version: 2018_07_31_004721) do
   end
 
   create_table "trn_manhr_details", primary_key: "mh_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "pj_id", null: false
-    t.bigint "subpj_id", null: false
-    t.bigint "team_id", null: false
-    t.bigint "pj_name", null: false
-    t.bigint "subpj_name", null: false
-    t.bigint "team_name", null: false
     t.string "mh_task_name", limit: 256
-    t.time "mh_work_time", null: false
+    t.time "mh_work_time"
+    t.text "mh_detail"
     t.string "mh_remarks", limit: 256
-    t.bigint "inst_user_id", null: false
-    t.datetime "inst_ymd", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "relation_step_id"
+    t.integer "tanto_user_id"
+    t.integer "relation_kadai_id"
+    t.integer "progress_rate"
+    t.datetime "kaishiyotei_ymd"
+    t.datetime "syuryouyotei_ymd"
+    t.datetime "start_ymd"
+    t.datetime "end_ymd"
+    t.boolean "end_flg"
+    t.integer "inst_user_id", null: false
+    t.integer "hojn_id", null: false
+    t.integer "pj_id", null: false
+    t.datetime "inst_ymd", null: false
     t.datetime "updt_ymd", default: -> { "CURRENT_TIMESTAMP" }
-    t.datetime "del_ymd", default: -> { "CURRENT_TIMESTAMP" }
-    t.bigint "del_flg", null: false
+    t.datetime "del_ymd"
+    t.boolean "del_flg", default: false, null: false
     t.string "updt_pgm_id", limit: 256
     t.string "updt_history", limit: 256
     t.string "updt_history_tanto", limit: 256

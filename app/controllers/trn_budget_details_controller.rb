@@ -21,10 +21,13 @@ class TrnBudgetDetailsController < ApplicationController
    target = DateTime.now
        @trn_budget_detail.inst_ymd = target
 
-       #↓とりあえずべた書き。本当はログインユーザの情報を取得したい
-       #@user.inst_user_id = 0
-       #@user.hojn_id = 0
-       #@user.pj_id = 0
+      #ログインユーザ情報の取得
+        @user = MstUser.find(current_user.id)
+
+      #↓とりあえずべた書き。ログインユーザの情報を取得
+        @trn_budget_detail.inst_user_id = @user.user_id
+        @trn_budget_detail.hojn_id = @user.hojn_id
+        @trn_budget_detail.pj_id = @user.pj_id
 
      #とりあえずべた書き。現在時刻を取得する
        target = DateTime.now
@@ -88,12 +91,8 @@ class TrnBudgetDetailsController < ApplicationController
 
   def trn_budget_detail_params
     params.require(:trn_budget_detail).permit(
+      :hojn_id,
       :pj_id,
-      :subpj_id, 
-      :team_id, 
-      :pj_name, 
-      :subpj_name, 
-      :team_name, 
       :bg_id, 
       :bg_title, 
       :bg_kind, 

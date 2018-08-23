@@ -12,33 +12,13 @@
   <table class="table table-bordered" style="table-layout: fixed;">
     <tbody>
     <tr>
+      <th style="width:20%;"><%= f.label :法人ID, '法人ID' %></th>
+      <td style="width:80%;"><%= f.text_field :hojn_id, class:"form-control", style:"width:100px;" %></td>
+    </tr>
+    
+    <tr>
       <th style="width:20%;"><%= f.label :PJID, 'PJID' %></th>
       <td style="width:80%;"><%= f.text_field :pj_id, class:"form-control", style:"width:100px;" %></td>
-    </tr>
-
-    <tr>
-      <th style="width:20%;"><%= f.label :subpjID, 'subpjID' %></th>
-      <td style="width:80%;"><%= f.text_field :subpj_id, class:"form-control", style:"width:100px;"  %></td>
-    </tr>
-
-    <tr>
-      <th style="width:20%;"><%= f.label :teamID, 'チームID' %>></th>
-      <td style="width:80%;"><%= f.text_field :team_id, class:"form-control" , style:"width:100px;" %></td>
-    </tr>
-
-    <tr>
-      <th style="width:20%;"><%= f.label :PJname, 'PJname' %></th>
-      <td style="width:80%;"><%= f.text_field :pj_name, class:"form-control" , style:"width:100px;" %></td>
-    </tr>
-
-    <tr>
-      <th style="width:20%;"><%= f.label :subpjname, 'subpjname' %></th>
-      <td style="width:80%;"><%= f.text_field :subpj_name, class:"form-control" , style:"width:100px;" %></td>
-    </tr>
-
-    <tr>
-      <th style="width:20%;"><%= f.label :teamname, 'チームname' %></th>
-      <td style="width:80%;"><%= f.text_field :team_name, class:"form-control" , style:"width:100px;" %></td>
     </tr>
 
     <tr>
@@ -52,7 +32,7 @@
     </tr>
 
     <tr>
-      <th style="width:20%;"><%= f.label :bgdetai, '予算詳細' %></th>
+      <th style="width:20%;"><%= f.label :bgdetail, '予算詳細' %></th>
       <td style="width:80%;"><%= f.text_field :bg_detail, class:"form-control" , style:"width:100px;" %></td>
     </tr>
 
@@ -74,11 +54,6 @@
     <tr>
       <th style="width:20%;"><%= f.label :file, '添付ファイル' %></th>
       <td style="width:80%;"><%= f.text_field :file, class:"form-control" , style:"width:100px;" %></td>
-    </tr>
-
-    <tr>
-      <th style="width:20%;"><%= f.label :instuserid, '登録者ID' %></th>
-      <td style="width:80%;"><%= f.text_field :inst_user_id, class:"form-control" , style:"width:100px;" %></td>
     </tr>
 
     <tbody>
