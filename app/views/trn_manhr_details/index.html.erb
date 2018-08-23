@@ -1,7 +1,55 @@
 <h1>工数一覧</h1>
 
-<ul>
+<%= link_to '新規工数の登録', new_trn_manhr_detail_path %>
+<div class="table-responsive">
+<table class="table table-bordered" "table-sm">
+  <thead>
+  <tr>
+    <th class="grid-th-width1">工数ID</th>
+    <th class="grid-th-width2">工数名</th>
+    <th class="grid-th-width3">工数詳細</th>
+    <th class="grid-th-width2">開始予定日</th>
+    <th class="grid-th-width2">作業開始日</th>
+    <th class="grid-th-width2">終了予定日</th>
+    <th class="grid-th-width2">作業完了日</th>
+    <th class="grid-th-width1">実工数時間</th>
+    <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width1">削除</th>
+    <th class="grid-th-width1">完了</th>
+    <th class="grid-th-width2">更新日時</th>
+  </tr>
+  </thead>
+  <tbody>
   <% @trn_manhr_details.each do |trn_manhr_detail| %>
-    <li><%= trn_manhr_detail.content %></li>
+      <tr style="height:48px;">
+        <td style="vertical-align: middle"><%= trn_manhr_detail.mh_id %></td>
+        <td style="vertical-align: middle"><%= trn_manhr_detail.mh_task_name %></td>
+        <td style="vertical-align: middle"><%= trn_manhr_detail.mh_detail %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(trn_manhr_detail.kaishiyotei_ymd) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(trn_manhr_detail.start_ymd) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(trn_manhr_detail.syuryouyotei_ymd) %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(trn_manhr_detail.end_ymd) %></td>
+        <td style="vertical-align: middle"><%= trn_manhr_detail.mh_work_time %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;">
+           <button type="button" class="btn btn-default"><%= link_to '編集',edit_trn_manhr_detail_path(trn_manhr_detail) %></button></td>
+        <td style="vertical-align: middle;text-align: center">
+           <button type="button" class="btn btn-default"><%= link_to '削除',trn_manhr_detail, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></button></td>
+        <td style="vertical-align: middle;text-align: center"><%= kanryo_tag(trn_manhr_detail) %>
+　      <td style="vertical-align: middle;text-align: center;font-size:8pt;"><%= dt_format(trn_manhr_detail.updt_ymd) %></td>
+      </tr>
+      <% @grid_no = @grid_no %>
   <% end %>
-</ul>
+  <tbody>
+  </table>
+</div>  
+
+<div style="text-align: center">
+  <%= will_paginate @trn_manhr_details,
+                    renderer: BootstrapPagination::Rails,
+                    previous_label: "前へ",
+                    next_label: "次へ",
+                    inner_window: 1,
+                    outer_window: 0,
+                    class:"pagination-sm"
+  %>
+</div>

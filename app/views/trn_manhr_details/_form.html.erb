@@ -1,0 +1,48 @@
+
+  <table class="table table-bordered" style="table-layout: fixed;">
+    <tbody>
+    <tr>
+      <th style="width:20%;"><%= f.label :法人ID, '法人ID' %></th>
+      <td style="width:80%;"><%= f.text_field :hojn_id, class:"form-control", style:"width:100px;" %></td>
+    </tr>
+    
+    <tr>
+      <th style="width:20%;"><%= f.label :PJID, 'PJID' %></th>
+      <td style="width:80%;"><%= f.text_field :pj_id, class:"form-control", style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :mhtaskname, '工数タイトル' %></th>
+      <td style="width:80%;"><%= f.text_field :mh_task_name, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :mhdetail, '工数詳細' %></th>
+      <td style="width:80%;"><%= f.text_field :mh_detail, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :mhworktime, '開始予定日　～　終了予定日' %></th>
+      <td style="width:80%;"><%= f.text_field :kaishiyotei_ymd, class:"form-control", style:"width:100px; display: inline-block;",autocomplete: 'off' %>
+      ～ <%= f.text_field :syuryouyotei_ymd, class:"form-control", style:"width:100px; display: inline-block;",autocomplete: 'off' %>
+　　</td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :mhworktime, '作業開始日　～　作業終了日' %></th>
+      <td style="width:80%;"><%= f.text_field :start_ymd, class:"form-control", style:"width:100px;display: inline-block;",autocomplete: 'off' %>
+      ～ <%= f.text_field :end_ymd, class:"form-control", style:"width:100px;display: inline-block;",autocomplete: 'off' %>
+　　</td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :mhworktime, '実工数時間' %></th>
+      <td style="width:80%;"><%= f.text_field :mh_work_time, class:"form-control" , style:"width:100px;" %></td>
+    </tr>
+
+    <tr>
+      <th style="width:20%;"><%= f.label :endflg, '完了チェック' %></th>
+      <td style="width:80%;"><%= f.check_box :end_flg,style:"width:30px;" %></td>
+    </tr>
+
+  </table>

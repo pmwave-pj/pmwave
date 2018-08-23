@@ -1,0 +1,12 @@
+<h2>編集画面</h2>
+<div class="waku">
+  <%= form_for @trn_manhr_detail do |f| %>
+      <%= render "form", f: f %>
+      <div class="row well" style="margin:20px 0 0 0;padding:10px;">
+        <div class="col-sm-12">
+          <%= link_to "キャンセル", request.referer, class:"btn btn-default", style:"float:left;" %>
+          <%= f.submit "更新", class:"btn btn-primary", style:"float:right" %>
+        </div>
+      </div>
+  <% end %>
+</div>
