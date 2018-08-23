@@ -300,6 +300,7 @@ ActiveRecord::Schema.define(version: 2018_07_31_004721) do
   end
 
   create_table "trn_task_details", primary_key: "task_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "row_order"
     t.boolean "step_ownership_flg", null: false
     t.string "task_title", limit: 256, null: false
     t.integer "relation_step_id"

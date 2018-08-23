@@ -6,31 +6,22 @@
     <th class="grid-th-width1 pc-only">No</th>
     <th class="grid-th-width3">ユーザ名</th>
     <th class="grid-th-width3">ログインID</th>
-    <th class="grid-th-width4">編集欄</th>
+    <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width1">削除</th>
+    <th class="grid-th-width3">最終ログイン</th>
   </tr>
   </thead>
   <tbody>
-        <% @users.each do |user| %>
+    <% @users.each do |user| %>
       <tr style="height:48px;">
         <td class="pc-only"><%= @grid_no.to_s %></td>
-        <td class="user_nm-cell">
-          <%= link_to user.user_nm, user %>
-        <td class="user_cd-cell">
-          <%= user.user_cd %>
-        <td class="henshu-cell">
-          <%= link_to "照会", mst_user_path(user) %>
-          <% if current_user?(user) %>
-          <%= link_to "編集", edit_mst_user_path(user) %>
-          <% end %>
-          <% if current_user?(user) %>
-          <% else %>
-          <%= link_to "削除", mst_user_path(user), method:"delete", data: { confirm: '本当に削除してよろしいですか？' } %>
-          <% #ここに権限によって出し分けをしたい
-          %>
-          <% end %>
-        </td>
+        <td class="user_nm-cell"> <%= link_to user.user_nm, user %></td>
+        <td class="user_cd-cell"> <%= user.user_cd %> </td>
+        <td class="henshu-cell"> <%= link_to "編集", edit_mst_user_path(user) %> </td>
+        <td class="henshu-cell"> <%= link_to "削除", mst_user_path(user), method:"delete", data: { confirm: '本当に削除してよろしいですか？' } %> </td>
+        <td class="henshu-cell"> <%= dt_format(user.updt_ymd) %> </td>
       </tr>
-          <% @grid_no = @grid_no + 1 %>
+    <% @grid_no = @grid_no + 1 %>
   <% end %>
 
   <tbody>

@@ -2,6 +2,7 @@ class CreateTrnTaskDetails < ActiveRecord::Migration[5.2]
   def change
     create_table :trn_task_details,id: false do |t|
       t.column :task_id, 'INTEGER PRIMARY KEY AUTO_INCREMENT'
+      t.integer :row_order
       t.boolean :step_ownership_flg, limit: 1, null: false
       t.string :task_title, limit: 256, null: false
       t.integer :relation_step_id, limit: 4

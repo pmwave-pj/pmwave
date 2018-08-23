@@ -6,39 +6,47 @@
 <table class="table table-bordered">
   <thead>
   <tr>
-    <th class="grid-th-width1">No</th>
-    <th class="grid-th-width1">ID</th>
-    <th class="grid-th-width6">タスク名</th>
+   <tr>
+    <th class="grid-th-width1">ﾀｽｸID</th>
+    <th class="grid-th-width1">親ID</th>
+    <th class="grid-th-width3">ﾀｽｸ名</th>
+    <th class="grid-th-width2">担当者</th>
     <th class="grid-th-width2">開始予定日</th>
     <th class="grid-th-width2">作業開始日</th>
     <th class="grid-th-width2">終了予定日</th>
     <th class="grid-th-width2">作業完了日</th>
     <th class="grid-th-width1">進捗率</th>
     <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width2">完了ボタン</th>
+    <th class="grid-th-width1">更新日時</th>
     <th class="grid-th-width1">削除</th>
-    <th class="grid-th-width1">完了</th>
-    <th class="grid-th-width2">更新日時</th>
+   </tr>
   </tr>
   </thead>
-  <tbody>
+  <tbody id="list">
   <% @tasks.each do |task| %>
-      <tr style="height:48px;">
-        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= @grid_no.to_s %></td>
+    <tr style="height:48px;" class="unsortable" data-model-name="trn_task_detail" data-update-url="<%= sort_trn_task_detail_path(task)%>" >
         <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= task.task_id %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= task.relation_step_id %></td>
         <td style="vertical-align: middle"><%= link_to task.task_title, task %></td>
+        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= link_to user_nm_tag(task.tanto_user_id), task %></td>
         <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(task.kaishiyotei_ymd) %></td>
         <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(task.start_ymd) %></td>
         <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(task.syuryouyotei_ymd) %></td>
         <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= kigen_format(task.end_ymd) %></td>
         <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= task.progress_rate %> % </td>
-        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= link_to "編集", edit_trn_task_detail_path(task) %> </td>
-        <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= link_to "削除", trn_task_detail_path(task), method:"delete" , data: { confirm: '本当に削除してよろしいですか？' } %> </td>
-        <td style="vertical-align: middle;text-align: center"><%= kanryo_tag(task) %></td>
-        <td style="vertical-align: middle;text-align: center;font-size:8pt;"><%= dt_format(task.updt_ymd) %></td>
-      </tr>
-      <% @grid_no = @grid_no + 1 %>
+          <% if task_roll_check? %>
+          <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= link_to "編集", edit_trn_task_detail_path(task) %> </td>
+          <td style="vertical-align: middle;text-align: center"><%= kanryo_tag(task) %></td>
+          <td style="vertical-align: middle;text-align: center;font-size:8pt;"><%= dt_format(task.updt_ymd) %></td>
+          <td style="vertical-align: middle;text-align: center;font-size:9pt;"><%= link_to "削除", trn_task_detail_path(task), method:"delete" , data: { confirm: '本当に削除してよろしいですか？' } %> </td>
+          <% else %>
+          <td style="vertical-align: middle;text-align: center;font-size:9pt;"> </td>
+          <td style="vertical-align: middle;text-align: center;font-size:9pt;"> </td>
+          <% end %>
+    </tr>
   <% end %>
-  <tbody>
+  </tbody>
   </table>
 <div style="text-align: center">
   <%= will_paginate @tasks,

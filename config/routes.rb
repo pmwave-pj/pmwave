@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do
       #一覧画面 完了ボタン押下時のアクション
       get "kanryo"
+      put :sort
     end
   end
   resources :trn_budget_details

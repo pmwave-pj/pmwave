@@ -13,7 +13,7 @@
 
     <tr>
       <th>タスク詳細</th>
-      <td><%= @task.task_detail %></td>
+      <td><%= simple_format(@task.task_detail) %></td>
     </tr>
 
     <tr>
@@ -82,8 +82,12 @@
   </table>
   <div class="row well" style="margin:20px 0 0 0">
     <div class="col-sm-12">
-      <%= link_to "戻る", trn_task_details_path, class:"btn btn-default", style:"float:left;" %>
-      <%= link_to "編集する", edit_trn_task_detail_path, class:"btn btn-primary", style:"float:right" %>
+      <% if task_roll_check? %>
+        <%= link_to "戻る", trn_task_details_path, class:"btn btn-default", style:"float:left;" %>
+        <%= link_to "編集する", edit_trn_task_detail_path, class:"btn btn-primary", style:"float:right" %>
+      <% else %>
+        <%= link_to "戻る", trn_task_details_path, class:"btn btn-default", style:"float:center;" %>
+      <% end %>
     </div>
   </div>
 </div>

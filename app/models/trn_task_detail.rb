@@ -1,4 +1,6 @@
 class TrnTaskDetail < ApplicationRecord
+  include RankedModel
+  ranks :row_order
  
   #期限のアクセサー（画面入力用）
   attr_accessor :kaishiyotei_ymd_str

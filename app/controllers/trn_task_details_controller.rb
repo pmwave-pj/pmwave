@@ -8,18 +8,43 @@ class TrnTaskDetailsController < ApplicationController
       @tasks = TrnTaskDetail
         .by_kanryo(params[:end_flg])
         .where(del_flg: "false")
-        .paginate(page: params[:page], per_page: 10)
-        .order('task_id desc')
-     
+        .paginate(page: params[:page], per_page: 100)
+        .order('relation_step_id asc')
+        .rank(:row_order)
+
       #No列の開始No
-      @grid_no = 1
+      #@grid_no = 1
      
       #params[:page]がNullまたは空ではない場合
-      if params[:page].present?
+      #if params[:page].present?
         #開始No = ページ × ページングサイズ
-        @grid_no = (params[:page].to_i - 1) * 10 + 1
-      end
+      #  @grid_no = (params[:page].to_i - 1) * 10 + 1
+      #end
      
+    end
+
+    #ソートのアクション# this action will be called via ajax
+    def sort
+
+      @task = TrnTaskDetail.find(params[:id])
+      @task.update(task_params)
+
+#      @tasks = TrnTaskDetail
+#
+#      #親タスクを一つ上のタスクに設定する
+#      ownertask_id = @task.row_order - 1
+#      @ownertask = TrnTaskDetail.find_by(row_order: ownertask_id)
+#      @task.relation_step_id =  @ownertask.task_id
+#
+#      @task.save
+      #render nothing: true
+
+      #呼び出し元URLへリダイレクト
+      #redirect_to request.referer      
+
+      #一覧画面へリダイレクト
+      redirect_to trn_task_details_path
+
     end
 
     #照会画面 表示のアクション
@@ -121,12 +146,15 @@ class TrnTaskDetailsController < ApplicationController
         end
         #親工程フラグをセットする。未入力の場合でもfalseでセットする
         #テスト中
-        if !@task.relation_step_id?
-          @task.step_ownership_flg = true
-        elsif @task.step_ownership_flg == true
-        elsif
-          @task.step_ownership_flg = false
-        end
+        #if !@task.relation_step_id?
+        #  @task.step_ownership_flg = true
+        #  @task.relation_step_id = @task.task_id
+        #elsif @task.step_ownership_flg == true
+        #  @task.relation_step_id = @task.task_id
+        #elsif
+        #  @task.step_ownership_flg = false
+        #end
+        
         #ログインユーザ情報の取得
         @user = MstUser.find(current_user.id)
         #↓とりあえずべた書き。ログインユーザの情報を取得
@@ -210,14 +238,14 @@ class TrnTaskDetailsController < ApplicationController
           @task.end_flg = false
         end
         #親工程フラグをセットする。未入力の場合でもfalseでセットする
-        #テスト中
-        if !@task.relation_step_id?
-          @task.step_ownership_flg = true
-        elsif @task.step_ownership_flg == true
-        elsif
-          @task.step_ownership_flg = false
-        end
-
+        #if !@task.relation_step_id?
+        #  @task.step_ownership_flg = true
+        #  @task.relation_step_id = @task.task_id
+        #elsif @task.step_ownership_flg == true
+        #  @task.relation_step_id = @task.task_id
+        #elsif
+        #  @task.step_ownership_flg = false
+        #end
         #ログインユーザ情報の取得
         @user = MstUser.find(current_user.id)
         #↓とりあえずべた書き。ログインユーザの情報を取得
@@ -333,7 +361,9 @@ class TrnTaskDetailsController < ApplicationController
     #ストロングパラメータ（マスアサインメント脆弱性回避）
     def task_params
       params.require(:trn_task_detail).permit(
+        :task_id,
         :task_title,
+        :row_order_position,
         :task_detail,
         :tanto_user_id, 
         :relation_step_id, 

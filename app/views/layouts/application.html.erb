@@ -72,7 +72,7 @@
         font-size:9pt;
       }
       .grid-th-width2{
-        width:10%;
+        width:8%;
         text-align:center;
         font-size:9pt;
       }
@@ -234,6 +234,42 @@
     {
       $(".alert").show();
     }
+    if ($("#list").length)
+    {
+      $("#list").sortable({
+        axis: 'y',
+        cursor: 'move',
+        opacity: 0.2,
+        items: '>*',
+        placeholder: 'sort-placeholder',
+        forcePlaceholderSize: true,
+       //ドラッグ中の幅をテーブルに合わせる
+        start: function(e, ui) {
+          tableWidth = $(this).width(),
+          cells = ui.item.children('td'),
+          widthForEachCell = tableWidth / cells.length + 'px',
+          cells.css('width', widthForEachCell)
+          },
+       //ドロップ時にハイライトさせる
+        stop: function(e, ui) {
+          ui.item.children('td').effect('highlight')
+          },
+       //Ajaxリクエストを送信する
+        update: function(e, ui) {
+          item = ui.item,
+          item_data = item.data(),
+          //req_url = item.data('updateUrl'),
+          params = { _method: 'put' },
+          params[item_data.modelName] = { row_order_position: item.index() },
+           $.ajax({
+             type: 'POST',
+             url: item_data.updateUrl,
+             dataType: 'json',
+             data: params
+           });
+        }
+      });
+    }
     if ($("#slider").length)
     {
       <% if @task.present? %>
@@ -276,7 +312,9 @@
         <ul class="headerlist">
           <% if signed_in? %>
           <li><%= link_to 'ユーザ一覧', mst_users_path %></li>
-          <li><%= link_to 'アカウント作成', signup_path %></li>
+              <% if account_roll_check? %>
+                  <li><%= link_to 'アカウント作成', signup_path %></li>
+              <% end %>
           <li><%= link_to 'グループ一覧', mst_groups_path %></li>
           <li><%= link_to 'プロフィール', current_user %></li>
           <li><%= link_to 'タスク一覧', trn_task_details_path %></li>

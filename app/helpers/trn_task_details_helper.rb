@@ -5,7 +5,7 @@ module TrnTaskDetailsHelper
   def kanryo_tag(trn_task_detail)
     result = ""
     if trn_task_detail.end_flg == true
-      result = '済'
+      result = '-'
     else
       result = '<a class="btn btn-sm btn-primary" href="' + kanryo_trn_task_detail_path(trn_task_detail) + '">完了</a>'
     end

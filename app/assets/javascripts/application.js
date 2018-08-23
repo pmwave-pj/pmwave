@@ -12,6 +12,7 @@
 //
 //= require jquery-ui
 //= require jquery-ui/i18n/datepicker-ja
+//= require jquery-ui/widgets/sortable
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
