@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_31_004721) do
+ActiveRecord::Schema.define(version: 2018_08_09_015938) do
 
   create_table "mst_groups", primary_key: "group_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "hojn_id", null: false
@@ -327,6 +327,46 @@ ActiveRecord::Schema.define(version: 2018_07_31_004721) do
     t.string "updt_pgm_id", limit: 256
     t.string "updt_history", limit: 256
     t.string "updt_history_tanto", limit: 256
+  end
+
+  create_table "trn_yoken_kanris", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "pj_id"
+    t.integer "INTEGER PRIMARY KEY AUTO_INCREMENT"
+    t.integer "hojn_id", null: false
+    t.integer "menu_id"
+    t.integer "yoken_s_id"
+    t.string "yoken_title", null: false
+    t.string "yoken_psner", null: false
+    t.text "yoken_contents", null: false
+    t.string "yoken_person", null: false
+    t.datetime "yoken_limit", null: false
+    t.text "yoken_merit", null: false
+    t.integer "yoken_impt", null: false
+    t.integer "yoken_status", null: false
+    t.string "yoken_tenp"
+    t.text "yoken_try"
+    t.text "yoken_try2"
+    t.text "yoken_try3"
+    t.datetime "yoken_try_d"
+    t.datetime "yoken_try2_d"
+    t.datetime "yoken_try3_d"
+    t.string "yoken_try_w"
+    t.string "yoken_try2_w"
+    t.string "yoken_try3_w"
+    t.string "yoken_try_p"
+    t.string "yoken_try2_p"
+    t.string "yoken_try3_p"
+    t.string "yoken_cmt_psner"
+    t.text "yoken_cmt_ents"
+    t.string "yoken_cmt_notifier"
+    t.datetime "yoken_inst_ymd"
+    t.datetime "yoken_updt_ymd"
+    t.datetime "yoken_del_ymd"
+    t.bigint "yoken_del_flag"
+    t.string "yoken_updt_id", limit: 256
+    t.string "yoken_updt_s_end", limit: 256
+    t.string "yoken_updt_t_end", limit: 256
+    t.boolean "yoken_kanryo"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
