@@ -57,6 +57,30 @@
         width:19%;
         text-align:center;
       }
+      .grid-th-width8{
+        width:10%;
+        text-align:center;
+      }
+      .grid-th-width9{
+        width:20%;
+        text-align:center;
+      }
+      .grid-th-width10{
+        width:10%;
+        text-align:center;
+      }
+      .grid-th-width11{
+        width:25%;
+        text-align:center;
+      }
+      .grid-th-width12{
+        width:5%;
+        text-align:center;
+      }
+      .grid-th-width13{
+        width:30%;
+        text-align:center;
+      }
       .henshu-cell a{
         display:block;
         text-align:center;
@@ -126,6 +150,78 @@
 <body>
 <script>
   $(function() {
+     if ($("#trn_yoken_kanri_yoken_limit_str").length)
+    {
+      $("#trn_yoken_kanri_yoken_limit_str").datepicker();
+      $("#trn_yoken_kanri_yoken_limit_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_yoken_kanri.present? %>
+      $("#trn_yoken_kanri_yoken_limit_str").val("<%= @trn_yoken_kanri.yoken_limit_str %>");
+      <% end %>
+    }
+    if ($("#trn_yoken_kanri_yoken_try_d_str").length)
+    {
+      $("#trn_yoken_kanri_yoken_try_d_str").datepicker();
+      $("#trn_yoken_kanri_yoken_try_d_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_yoken_kanri.present? %>
+      $("#trn_yoken_kanri_yoken_try_d_str").val("<%= @trn_yoken_kanri.yoken_try_d_str %>");
+      <% end %>
+    }
+    if ($("#trn_yoken_kanri_yoken_try2_d_str").length)
+    {
+      $("#trn_yoken_kanri_yoken_try2_d_str").datepicker();
+      $("#trn_yoken_kanri_yoken_try2_d_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_yoken_kanri.present? %>
+      $("#trn_yoken_kanri_yoken_try2_d_str").val("<%= @trn_yoken_kanri.yoken_try2_d_str %>");
+      <% end %>
+    }
+    if ($("#trn_yoken_kanri_yoken_try3_d_str").length)
+    {
+      $("#trn_yoken_kanri_yoken_try3_d_str").datepicker();
+      $("#trn_yoken_kanri_yoken_try3_d_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_yoken_kanri.present? %>
+      $("#trn_yoken_kanri_yoken_try3_d_str").val("<%= @trn_yoken_kanri.yoken_try3_d_str %>");
+      <% end %>
+    }
+    if ($("#trn_yoken_kanri_yoken_inst_ymd_str").length)
+    {
+      $("#trn_yoken_kanri_yoken_inst_ymd_str").datepicker();
+      $("#trn_yoken_kanri_yoken_inst_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_yoken_kanri.present? %>
+      $("#trn_yoken_kanri_yoken_inst_ymd_str").val("<%= @trn_yoken_kanri.yoken_inst_ymd_str %>");
+      <% end %>
+    }
+    if ($("#trn_yoken_kanri_yoken_updt_ymd_str").length)
+    {
+      $("#trn_yoken_kanri_yoken_updt_ymd_str").datepicker();
+      $("#trn_yoken_kanri_yoken_updt_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_yoken_kanri.present? %>
+      $("#trn_yoken_kanri_yoken_updt_ymd_str").val("<%= @trn_yoken_kanri.yoken_updt_ymd_str %>");
+      <% end %>
+    }
+    if ($("#trn_yoken_kanri_yoken_del_ymd_str").length)
+    {
+      $("#trn_yoken_kanri_yoken_del_ymd_str").datepicker();
+      $("#trn_yoken_kanri_yoken_del_ymd_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_yoken_kanri.present? %>
+      $("#trn_yoken_kanri_yoken_del_ymd_str").val("<%= @trn_yoken_kanri.yoken_del_ymd_str %>");
+      <% end %>
+    }
+    if ($("#trn_yoken_kanri_yoken_updt_s_end_str").length)
+    {
+      $("#trn_yoken_kanri_yoken_updt_s_end_str").datepicker();
+      $("#trn_yoken_kanri_yoken_updt_s_end_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_yoken_kanri.present? %>
+      $("#trn_yoken_kanri_yoken_updt_s_end_str").val("<%= @trn_yoken_kanri.yoken_updt_s_end_str %>");
+      <% end %>
+    }
+    if ($("#trn_yoken_kanri_yoken_updt_t_end_str").length)
+    {
+      $("#trn_yoken_kanri_yoken_updt_t_end_str").datepicker();
+      $("#trn_yoken_kanri_yoken_updt_t_end_str").datepicker("option", "dateFormat", 'yymmdd');
+      <% if @trn_yoken_kanri.present? %>
+      $("#trn_yoken_kanri_yoken_updt_t_end_str").val("<%= @trn_yoken_kanri.yoken_updt_t_end_str %>");
+      <% end %>
+    }
     if ($("#trn_kadai_kanri_kadai_limit_str").length)
     {
       $("#trn_kadai_kanri_kadai_limit_str").datepicker();
@@ -285,7 +381,7 @@
           <li><%= link_to '工数一覧', trn_manhr_details_path %></li>
           <li><%= link_to '課題一覧', trn_kadai_kanris_path %></li>
           <li><%= link_to '品質管理（未）', top_hnsts_path %></li>
-          <li><%= link_to '要件管理（未）', top_yokens_path %></li>
+          <li><%= link_to '要件管理（未）', trn_yoken_kanris_path %></li>
           <li><%= link_to 'スケジュール', schedules_path %></li>
           <li><%= link_to 'ログアウト', signout_path, method: :delete %></li>
           <% else %>
@@ -298,6 +394,15 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
+        <% if @trn_yoken_kanri.present? && @trn_yoken_kanri.errors.present? %>
+            <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
+              <ul>
+                <% @trn_yoken_kanri.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %> 
         <% if @trn_kadai_kanri.present? && @trn_kadai_kanri.errors.present? %>
             <div class="alert alert-danger" style="margin-top:20px;border-width:3px;display:none">
               <ul>

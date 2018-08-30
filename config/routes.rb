@@ -24,7 +24,14 @@ Rails.application.routes.draw do
   resources :top_kadais
   resources :kadai_itiransyousais
   resources :top_hnsts
-  resources :top_yokens  
+  resources :top_yokens
+  resources :trn_yoken_kanris
+  
+  get "trn_yoken_kanris/index"
+  get "trn_yoken_kanris/show"
+  get "trn_yoken_kanris/new"
+  get "trn_yoken_kanris/edit"
+  post "trn_yoken_kanris/index"
   
   get "trn_kadai_kanris/index"
   get "trn_kadai_kanris/show"
