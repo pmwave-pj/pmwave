@@ -1,5 +1,13 @@
 class TrnTaskDetailsController < ApplicationController
 
+  before_action :reset_row_order, only: [:sort, :create, :update]
+
+    def reset_row_order
+     TrnTaskDetail.rank(:row_order).each_with_index do |task, i|
+     task.update_attribute :row_order, i + 1
+      end
+    end
+
     #一覧画面 表示のアクション
     def index
       signed_check
