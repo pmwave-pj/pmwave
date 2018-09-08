@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_09_015938) do
+ActiveRecord::Schema.define(version: 2018_09_08_035514) do
 
   create_table "mst_groups", primary_key: "group_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "hojn_id", null: false
@@ -198,6 +198,25 @@ ActiveRecord::Schema.define(version: 2018_08_09_015938) do
     t.bigint "bg_total_price"
     t.string "file", limit: 256
     t.text "bg_remarks"
+    t.integer "inst_user_id", null: false
+    t.integer "hojn_id", null: false
+    t.integer "pj_id", null: false
+    t.datetime "inst_ymd", null: false
+    t.datetime "updt_ymd", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "del_ymd"
+    t.boolean "del_flg", default: false, null: false
+    t.string "updt_pgm_id", limit: 256
+    t.string "updt_history", limit: 256
+    t.string "updt_history_tanto", limit: 256
+  end
+
+  create_table "trn_dailyreport_details", primary_key: "dailyreport_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "create_ymd", null: false
+    t.text "work_plan_today"
+    t.text "work_result"
+    t.text "work_verification"
+    t.text "work_plan_tomorrow"
+    t.text "work_impression"
     t.integer "inst_user_id", null: false
     t.integer "hojn_id", null: false
     t.integer "pj_id", null: false

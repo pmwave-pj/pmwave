@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       put :sort
     end
   end
+
+  resources :trn_dailyreport_details
+
   resources :trn_budget_details
   resources :trn_performance_details
   resources :trn_manhr_details

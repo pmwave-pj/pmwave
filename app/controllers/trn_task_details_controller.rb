@@ -152,6 +152,12 @@ class TrnTaskDetailsController < ApplicationController
         elsif
           @task.end_flg = false
         end
+
+#        #
+#        if @task.relation_step_id?
+#          @task.row_order = TrnTaskDetail.find(@task.relation_step_id).row_order + 1
+#        else
+#        end
         #親工程フラグをセットする。未入力の場合でもfalseでセットする
         #テスト中
         #if !@task.relation_step_id?

@@ -1,0 +1,49 @@
+<h1>日報</h1>
+
+<div class="waku">
+  <table class="table table-bordered" style="table-layout: fixed;">
+    <tbody>
+    <tr>
+      <th>日報ID</th>
+      <td><%= @report.dailyreport_id %></td>
+    </tr>
+    <tr>
+      <th>作成日</th>
+      <td><%= kigen_format(@report.create_ymd) %></td>
+    </tr>
+    <tr>
+      <th>本日の業務予定</th>
+      <td><%=simple_format(@report.work_plan_today) %></td>
+    </tr>
+    <tr>
+      <th>本日の業務実績</th>
+      <td><%=simple_format(@report.work_result) %></td>
+    </tr>
+    <tr>
+      <th>実績の振り返り</th>
+      <td><%=simple_format(@report.work_verification) %></td>
+    </tr>
+    <tr>
+      <th>明日の業務予定</th>
+      <td><%=simple_format(@report.work_plan_tomorrow) %></td>
+    </tr>
+    <tr>
+      <th>所感</th>
+      <td><%=simple_format(@report.work_impression) %></td>
+    </tr>
+    <tr>
+      <th>最終更新日時</th>
+      <td><%= dt_format(@report.updt_ymd) %></td>
+    </tr>
+    <tbody>
+  </table>
+<% if current_user?(@user) %>
+      <div class="row well" style="margin:20px 0 0 0;padding:10px;">
+        <div class="col-sm-12">
+          <%= link_to "戻る", trn_dailyreport_details_path, class:"btn btn-default", style:"float:left" %>
+          <%= link_to '編集', edit_trn_dailyreport_detail_path, class:"btn btn-primary", style:"float:right" %>
+        </div>
+      </div>
+<% end %>
+
+</div>

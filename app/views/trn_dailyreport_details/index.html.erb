@@ -1,0 +1,46 @@
+<h1>日報一覧</h1>
+<%= link_to "日報を登録", new_trn_dailyreport_detail_path, class:"pull-right" %>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th class="grid-th-width1 pc-only">No</th>
+    <th class="grid-th-width3">日報ID</th>
+    <th class="grid-th-width3">作成者</th>
+    <th class="grid-th-width3">作成日</th>
+    <th class="grid-th-width3">本日の業務実績</th>
+    <th class="grid-th-width3">実績の振り返り</th>
+    <th class="grid-th-width3">所感</th>
+    <th class="grid-th-width1">編集</th>
+    <th class="grid-th-width1">削除</th>
+    <th class="grid-th-width3">最終更新</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr style="height:48px;">
+        <td class="pc-only"><%= @grid_no.to_s %></td>
+        <td class="user_nm-cell"> <%= link_to report.dailyreport_id, report %></td>
+        <td class="user_cd-cell"> <%= user_nm_tag(report.inst_user_id) %> </td>
+        <td class="user_cd-cell"> <%= kigen_format(report.create_ymd) %> </td>
+        <td class="user_cd-cell"> <%= truncate(report.work_result, length:20, omission:"...") %> </td>
+        <td class="user_cd-cell"> <%= truncate(report.work_verification, length:20, omission:"...") %> </td>
+        <td class="user_cd-cell"> <%= truncate(report.work_impression, length:20, omission:"...") %> </td>
+        <td class="henshu-cell"> <%= link_to "編集", edit_trn_dailyreport_detail_path(report) %> </td>
+        <td class="henshu-cell"> <%= link_to "削除", trn_dailyreport_detail_path(report), method:"delete", data: { confirm: '本当に削除してよろしいですか？' } %> </td>
+        <td class="henshu-cell"> <%= dt_format(report.updt_ymd) %> </td>
+      </tr>
+    <% @grid_no = @grid_no + 1 %>
+  <% end %>
+
+  <tbody>
+  </table>
+<div style="text-align: center">
+  <%= will_paginate @reports,
+                    renderer: BootstrapPagination::Rails,
+                    previous_label: "前へ",
+                    next_label: "次へ",
+                    inner_window: 1,
+                    outer_window: 0,
+                    class:"pagination-sm"
+  %>
+</div>
