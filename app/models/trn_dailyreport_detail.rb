@@ -1,4 +1,7 @@
 class TrnDailyreportDetail < ApplicationRecord
+
+  has_many :trn_dailyreport_comments
+
   #期限のアクセサー（画面入力用）
   attr_accessor :create_ymd_str
 

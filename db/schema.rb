@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_08_035514) do
+ActiveRecord::Schema.define(version: 2018_09_11_121147) do
 
   create_table "mst_groups", primary_key: "group_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "hojn_id", null: false
@@ -208,6 +208,22 @@ ActiveRecord::Schema.define(version: 2018_09_08_035514) do
     t.string "updt_pgm_id", limit: 256
     t.string "updt_history", limit: 256
     t.string "updt_history_tanto", limit: 256
+  end
+
+  create_table "trn_dailyreport_comments", primary_key: "dr_comment_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "trn_dailyreport_detail_id", null: false
+    t.text "comment_detail"
+    t.integer "inst_user_id", null: false
+    t.integer "hojn_id", null: false
+    t.integer "pj_id", null: false
+    t.datetime "inst_ymd", null: false
+    t.datetime "updt_ymd", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "del_ymd"
+    t.boolean "del_flg", default: false, null: false
+    t.string "updt_pgm_id", limit: 256
+    t.string "updt_history", limit: 256
+    t.string "updt_history_tanto", limit: 256
+    t.index ["trn_dailyreport_detail_id"], name: "index_trn_dailyreport_comments_on_trn_dailyreport_detail_id"
   end
 
   create_table "trn_dailyreport_details", primary_key: "dailyreport_id", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
